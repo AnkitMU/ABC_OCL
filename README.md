@@ -416,22 +416,6 @@ Contributions welcome! Areas for improvement:
 
 ---
 
-## 📝 Citation
-
-If you use this framework in your research, please cite:
-
-```bibtex
-@inproceedings{ocl-benchmark-generator-2025,
-  title={A Two-Phase Framework for Automated Generation and Verification of OCL Constraint Benchmarks},
-  author={[Authors]},
-  booktitle={[Conference]},
-  year={2025},
-  note={Evaluated on 10 metamodels (1,250 constraints) with 94.3\% validity}
-}
-```
-
----
-
 ## 🐛 Known Limitations
 
 1. **Bounded Semantics:** Verification uses bounded scope (default: 3 instances per class). Results are sound within scope but may not generalize to unbounded models.
