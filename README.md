@@ -433,21 +433,3 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ---
 
-## 🙏 Acknowledgments
-
-- **Z3 SMT Solver** - Microsoft Research
-- **SentenceTransformers** - Hugging Face
-- **USE Validator** - University of Bremen
-- **EMFtoCSP** - Model validation community
-
----
-
-## 📧 Contact
-
-For questions, issues, or collaboration:
-- **Issues:** [GitHub Issues](https://github.com/...)
-- **Email:** [maintainer@example.com]
-
----
-
-**Built with ❤️ for the model-driven engineering and formal methods community**
