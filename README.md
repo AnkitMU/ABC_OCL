@@ -22,7 +22,7 @@ This framework implements a **two-phase approach** to OCL benchmark generation:
 ## 🌟 Key Features
 
 ### Core Capabilities
-- ✅ **113 Universal OCL Patterns** → 50 canonical SMT encoders
+- ✅ **110 Universal OCL Patterns** → 50 canonical SMT encoders
 - ✅ **Generic Z3-Based Verification** - Works with any UML/Ecore metamodel
 - ✅ **Pattern Mapping & Rewriting** - Novel universal→canonical transformation layer
 - ✅ **Global Consistency Checking** - Ensures all SAT constraints are mutually consistent
@@ -30,7 +30,7 @@ This framework implements a **two-phase approach** to OCL benchmark generation:
 ### Research Features Pipeline
 1. **Metadata Enrichment** - Operators, navigation depth, quantifier depth, difficulty classification
 2. **UNSAT Generation** - 5 mutation strategies (contradictory bounds, empty collection, type contradiction, universal negation, simple negation)
-3. **AST Similarity** - Structural deduplication via abstract syntax tree comparison
+3. **Similarity** - Structural deduplication via jaccard similarities comparison
 4. **Semantic Similarity** - BERT-based embeddings for meaning-based clustering
 5. **Implication Detection** - Logical subsumption analysis (A ⊢ B)
 6. **Manifest Generation** - JSONL output for ML pipelines and downstream tooling
