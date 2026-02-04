@@ -2,7 +2,7 @@
 
 This framework generates OCL (Object Constraint Language) benchmarks from UML/Ecore metamodels. It generates feature driven diverse OCL constraints which are solver verified (Z3 SMT) through a verification pipeline.
 
-## What it does
+## Feature of Framework
 - Generate OCL constraints from a pattern library based on user Configuration
 - Create SAT and UNSAT constraints
 - Add metadata (operators, difficulty, depth, etc.)
@@ -39,7 +39,7 @@ Typical run produces:
 - summary JSON
 
 
-- Solver verification is slower but gives ground truth labels.
+- Solver verification is slower(affected by number of constraints to be verified) but gives verification labels (SAT/UNSAT).
 - Adavance features (similarity, implication checks, metadata_label) are enabled by default in the config file (example_suite.yaml).
 
 ---
