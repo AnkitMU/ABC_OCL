@@ -1,13 +1,13 @@
 # OCL Benchmark Generation Framework
 
-This project generates OCL (Object Constraint Language) benchmarks from UML/Ecore metamodels. It builds diverse SAT/UNSAT constraints, enriches them with metadata, and can verify them with Z3 through the included verification pipeline.
+This framework generates OCL (Object Constraint Language) benchmarks from UML/Ecore metamodels. It generates feature driven diverse OCL constraints which are solver verified (Z3 SMT) through a verification pipeline.
 
 ## What it does
-- Generate OCL constraints from a pattern library
-- Create SAT and UNSAT sets
+- Generate OCL constraints from a pattern library based on user Configuration
+- Create SAT and UNSAT constraints
 - Add metadata (operators, difficulty, depth, etc.)
-- Deduplicate and analyze constraints
-- Optionally verify constraints with Z3
+-  Remove deduplicate and analyze constraints.
+- verify entire benchmark using SMT solver (Z3)
 - Export JSON/JSONL and OCL files
 
 ## Quick start
@@ -20,7 +20,7 @@ pip install -r requirements.txt
 python generate_benchmark_suite.py --config examples/example_suite.yaml
 ```
 
-Outputs are written to `benchmarks/` by default.
+Outputs are written to `benchmarks/`.
 
 ## Configuration
 Edit a YAML file like `examples/example_suite.yaml` to control:
@@ -38,10 +38,9 @@ Typical run produces:
 - `manifest.jsonl`
 - summary JSON
 
-## Notes
+
 - Solver verification is slower but gives ground truth labels.
-- Research features (similarity, implication checks, manifest) are enabled by default in the example config.
+- Adavance features (similarity, implication checks, metadata_label) are enabled by default in the config file (example_suite.yaml).
 
 ---
 
-If you want a more detailed write‑up, check the `docs/` folder.
