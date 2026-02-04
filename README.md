@@ -1,6 +1,6 @@
-# OCL Benchmark Generation Framework
+# Automatic Benchmark Generation Framework for OCL(Object Constraint Language)
 
-This framework generates OCL (Object Constraint Language) benchmarks from UML/Ecore metamodels. It generates feature driven diverse OCL constraints which are solver verified (Z3 SMT) through a verification pipeline.
+Our framework generates OCL benchmarks from UML/Ecore metamodels. It generates feature driven diverse OCL constraints which are solver verified (Z3 SMT) through a verification pipeline.
 
 ## Feature of Framework
 - Generate OCL constraints from a pattern library based on user Configuration
