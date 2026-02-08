@@ -43,4 +43,9 @@ Typical run produces:
 - Adavance features (similarity, implication checks, metadata_label) are enabled by default in the config file (example_suite.yaml).
 
 ---
+## GenAI Disclosure & Usage
+This project acknowledges the use of Generative AI (GenAI) in its development and debugging:
 
+Development: GenAI tools were utilized for code optimization, documentation assistance and refining the natural language patterns within the OCL generation engine.
+
+Verification: No constraint is added to a benchmark without passing the SMT verification pipeline. Every SAT/UNSAT label is confirmed by the Z3 solver, ensuring the ground truth is mathematically sound and not subject to AI hallucinations.
