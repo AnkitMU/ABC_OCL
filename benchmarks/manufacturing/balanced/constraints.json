@@ -1,0 +1,3482 @@
+{
+  "metadata": {
+    "suite": "OCL-Benchmark-Balanced",
+    "model": "manufacturing",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:38:57.736635",
+    "seed": 42,
+    "complexity": "standard",
+    "framework_version": "2.0",
+    "git_commit": null,
+    "constraint_count": 100,
+    "research_features_enabled": true
+  },
+  "constraints": [
+    {
+      "ocl": "context Workshop\ninv: self.lines->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Workshop",
+      "parameters": {
+        "collection": "lines"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:18.586918",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: self.quantity <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "InventoryItem",
+      "parameters": {
+        "attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:18.876140",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 1,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BOMItem\ninv: self.name <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "BOMItem",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:19.572864",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.qualityChecks->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:20.295548",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 6,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": [
+          "collection_max_size_WorkOrder"
+        ]
+      }
+    },
+    {
+      "ocl": "context Workstation\ninv: self.machines->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "Workstation",
+      "parameters": {
+        "collection": "machines"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:20.855304",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: self.items->size() = 1",
+      "pattern_id": "collection_has_size",
+      "pattern_name": "Collection Has Specific Size",
+      "context": "Shipment",
+      "parameters": {
+        "collection": "items",
+        "size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:20.995623",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Operator\ninv: self.empId <> self.name",
+      "pattern_id": "two_attributes_not_equal",
+      "pattern_name": "Two Attributes Not Equal",
+      "context": "Operator",
+      "parameters": {
+        "first_attribute": "empId",
+        "second_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:21.135925",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BillOfMaterials\ninv: self.product <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "BillOfMaterials",
+      "parameters": {
+        "association": "product"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:21.478712",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 13,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTask\ninv: self.machine <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "MaintenanceTask",
+      "parameters": {
+        "association": "machine"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:21.519305",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 14,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.workshop <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "ProductionLine",
+      "parameters": {
+        "association": "workshop"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:21.538382",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 15,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Robot\ninv: self.model.size() = 34",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Robot",
+      "parameters": {
+        "string_attribute": "model",
+        "length": 34
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.102693",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 19,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Operator\ninv: self.empId.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Operator",
+      "parameters": {
+        "string_attribute": "empId",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.127328",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 20,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workshop\ninv: self.lines->collect(x | x.lineId)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Workshop",
+      "parameters": {
+        "collection": "lines",
+        "iterator": "x",
+        "attribute": "lineId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.128573",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 23,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.orderId.size() = 44",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "WorkOrder",
+      "parameters": {
+        "string_attribute": "orderId",
+        "length": 44
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.129067",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 24,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context QualityCheck\ninv: self.defects->excluding(self.defects->any(true))->size() < self.defects->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "QualityCheck",
+      "parameters": {
+        "collection": "defects",
+        "element": "workOrder"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.129449",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 25,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: self.items->union(self.items)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Shipment",
+      "parameters": {
+        "collection1": "items",
+        "collection2": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.130017",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 26,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BillOfMaterials\ninv: self.items->notEmpty() implies self.items->sortedBy(x | x.name)->first().name <= self.items->sortedBy(x | x.name)->last().name",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "BillOfMaterials",
+      "parameters": {
+        "collection": "items",
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.130541",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 27,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 5,
+        "implies": [
+          "collection_last_BillOfMaterials"
+        ]
+      }
+    },
+    {
+      "ocl": "context BOMItem\ninv: self.name.size() >= 10 implies self.name.substring(1, 10) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "BOMItem",
+      "parameters": {
+        "string_attribute": "name",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.131336",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 28,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.sensors->notEmpty() implies self.sensors->last().type <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Machine",
+      "parameters": {
+        "collection": "sensors",
+        "attribute": "type"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.132502",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 29,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.qualityChecks->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.133058",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 30,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.qualityChecks->isUnique(x | x.checkedAt)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "attribute": "checkedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.134247",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 31,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shift\ninv: self.startTime.size() >= 18",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Shift",
+      "parameters": {
+        "string_attribute": "startTime",
+        "min_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.135890",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 33,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Sensor\ninv: self.sensorId.size() <= 59",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Sensor",
+      "parameters": {
+        "string_attribute": "sensorId",
+        "max_length": 59
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.136732",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 34,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.manufacturer <> null implies self.serialNumber <> null",
+      "pattern_id": "implies_reverse",
+      "pattern_name": "Reverse Implication",
+      "context": "Machine",
+      "parameters": {
+        "first_attribute": "serialNumber",
+        "second_attribute": "manufacturer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.137339",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 35,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BOMItem\ninv: self.name.size() <= 56",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "BOMItem",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 56
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.137851",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 36,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BillOfMaterials\ninv: self.bomId.size() <= 89",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "BillOfMaterials",
+      "parameters": {
+        "string_attribute": "bomId",
+        "max_length": 89
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.138304",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 37,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTask\ninv: self.scheduledAt <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "MaintenanceTask",
+      "parameters": {
+        "attribute": "scheduledAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.140659",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.sku.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Product",
+      "parameters": {
+        "string_attribute": "sku",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.141584",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 41,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: self.tasks->excludingAll(self.tasks)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Technician",
+      "parameters": {
+        "collection1": "tasks",
+        "collection2": "tasks"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.143677",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: self.suppliers->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Plant",
+      "parameters": {
+        "collection": "suppliers"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.144623",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: self.name = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Plant",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.146704",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 45,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context QualityCheck\ninv: self.workOrder.oclIsTypeOf(WorkOrder)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "QualityCheck",
+      "parameters": {
+        "attribute": "workOrder",
+        "type": "WorkOrder"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.148021",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 47,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: self.shipments->notEmpty() implies self.shipments->sortedBy(x | x.shipmentId)->first().shipmentId <= self.shipments->sortedBy(x | x.shipmentId)->last().shipmentId",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Supplier",
+      "parameters": {
+        "collection": "shipments",
+        "attribute": "shipmentId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.149372",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 49,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BillOfMaterials\ninv: self.bomId.size() >= 5 implies self.bomId.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "BillOfMaterials",
+      "parameters": {
+        "string_attribute": "bomId",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.150086",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 50,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: self.received = false",
+      "pattern_id": "boolean_is_false",
+      "pattern_name": "Boolean Is False",
+      "context": "Shipment",
+      "parameters": {
+        "boolean_attribute": "received"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.150541",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 51,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.lineId.size() <= 53",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "ProductionLine",
+      "parameters": {
+        "string_attribute": "lineId",
+        "max_length": 53
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.152344",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 54,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: self.items->isUnique(x | x.quantity)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Shipment",
+      "parameters": {
+        "collection": "items",
+        "attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.152756",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 55,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTask\ninv: self.isDone = true",
+      "pattern_id": "boolean_is_true",
+      "pattern_name": "Boolean Is True",
+      "context": "MaintenanceTask",
+      "parameters": {
+        "boolean_attribute": "isDone"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.154292",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 58,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BillOfMaterials\ninv: self.items->excluding(self.items->any(true))->size() < self.items->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "BillOfMaterials",
+      "parameters": {
+        "collection": "items",
+        "element": "product"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.155232",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 60,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.workOrders->intersection(self.workOrders)->notEmpty()",
+      "pattern_id": "intersection_operation",
+      "pattern_name": "Set Intersection",
+      "context": "ProductionLine",
+      "parameters": {
+        "collection1": "workOrders",
+        "collection2": "workOrders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.156119",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 61,
+        "operators_used": [
+          "-",
+          ">",
+          "intersection",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.manufacturer.concat(self.serialNumber).size() >= 19",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Machine",
+      "parameters": {
+        "first_string": "manufacturer",
+        "second_string": "serialNumber",
+        "min_length": 19
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.157055",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 62,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workstation\ninv: self.name.size() <= 100",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Workstation",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 100
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.158064",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.workOrders->asSequence()->notEmpty()",
+      "pattern_id": "collection_asSequence",
+      "pattern_name": "Collection As Sequence Conversion",
+      "context": "ProductionLine",
+      "parameters": {
+        "collection": "workOrders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.158500",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 65,
+        "operators_used": [
+          "-",
+          ">",
+          "asSequence",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: self.name.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Supplier",
+      "parameters": {
+        "string_attribute": "name",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.158967",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 66,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: self.name.size() <= 51",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Technician",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 51
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.159406",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 67,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: self.quantity >= 0",
+      "pattern_id": "numeric_non_negative",
+      "pattern_name": "Numeric Attribute Non-Negative",
+      "context": "InventoryItem",
+      "parameters": {
+        "numeric_attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.160807",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "=",
+          ">",
+          ">="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: self.shift <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Technician",
+      "parameters": {
+        "association": "shift"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.161185",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 71,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.qualityChecks->notEmpty() implies self.qualityChecks->sortedBy(x | x.checkId)->first().checkId <= self.qualityChecks->sortedBy(x | x.checkId)->last().checkId",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "attribute": "checkId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.161566",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 72,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 2,
+        "implies": [
+          "collection_first_unsat_WorkOrder"
+        ]
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.maintenanceTasks->forAll(x, y | x <> y implies x.scheduledAt <> y.scheduledAt)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Machine",
+      "parameters": {
+        "collection": "maintenanceTasks",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "scheduledAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.162190",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 73,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.stations->collect(x | x.machines)->size() >= 2",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "ProductionLine",
+      "parameters": {
+        "collection": "stations",
+        "nested_collection": "machines",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.163494",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 75,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: self.workshops->excludingAll(self.workshops)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Plant",
+      "parameters": {
+        "collection1": "workshops",
+        "collection2": "workshops"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.163912",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 76,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context QualityCheck\ninv: self.defects->collect(x | x.severity)->sum() >= 6",
+      "pattern_id": "collection_sum",
+      "pattern_name": "Collection Sum",
+      "context": "QualityCheck",
+      "parameters": {
+        "collection": "defects",
+        "numeric_attribute": "severity",
+        "min_sum": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.164315",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 77,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "sum"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.station.oclIsTypeOf(Workstation)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Machine",
+      "parameters": {
+        "attribute": "station",
+        "type": "Workstation"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.165942",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 79,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BillOfMaterials\ninv: self.items->notEmpty() implies self.items->last().requiredQty <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "BillOfMaterials",
+      "parameters": {
+        "collection": "items",
+        "attribute": "requiredQty"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.166413",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 80,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 5,
+        "implies": [
+          "sortedBy_BillOfMaterials"
+        ]
+      }
+    },
+    {
+      "ocl": "context Workstation\ninv: self.machines->forAll(x, y | x <> y implies x.manufacturer <> y.manufacturer)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Workstation",
+      "parameters": {
+        "collection": "machines",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "manufacturer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.166846",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 81,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 18,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Sensor\ninv: self.lastReading > 100",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Sensor",
+      "parameters": {
+        "numeric_attribute": "lastReading",
+        "value": 100
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.167286",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 82,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.serialNumber.concat(self.manufacturer).size() >= 8",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Machine",
+      "parameters": {
+        "first_string": "serialNumber",
+        "second_string": "manufacturer",
+        "min_length": 8
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.168317",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 84,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: self.items->symmetricDifference(self.items)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "Shipment",
+      "parameters": {
+        "collection1": "items",
+        "collection2": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.168970",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 85,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.maintenanceTasks->notEmpty() implies self.maintenanceTasks->last().isDone <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Machine",
+      "parameters": {
+        "collection": "maintenanceTasks",
+        "attribute": "isDone"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.169357",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 86,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: self.serialNumber.size() >= 6 implies self.serialNumber.substring(1, 6) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Machine",
+      "parameters": {
+        "string_attribute": "serialNumber",
+        "prefix": "value",
+        "prefix_length": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.169927",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 87,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: self.name.size() = 49",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "InventoryItem",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 49
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.170541",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 88,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context QualityCheck\ninv: self.defects->includesAll(self.defects) or self.defects->excludesAll(self.defects)",
+      "pattern_id": "includesAll_excludesAll",
+      "pattern_name": "IncludesAll/ExcludesAll Check",
+      "context": "QualityCheck",
+      "parameters": {
+        "collection1": "defects",
+        "collection2": "defects"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.171976",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 91,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shift\ninv: self.operators->symmetricDifference(self.operators)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "Shift",
+      "parameters": {
+        "collection1": "operators",
+        "collection2": "operators"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.173214",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 93,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.lineId.size() >= 5 implies self.lineId.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "ProductionLine",
+      "parameters": {
+        "string_attribute": "lineId",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.173874",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 94,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Sensor\ninv: self.type = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Sensor",
+      "parameters": {
+        "attribute": "type"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.174380",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 95,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Sensor\ninv: self.sensorId.concat(self.type).size() >= 10",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Sensor",
+      "parameters": {
+        "first_string": "sensorId",
+        "second_string": "type",
+        "min_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.175297",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 97,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DefectReport\ninv: self.defectId <> null and self.description <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "DefectReport",
+      "parameters": {
+        "first_attribute": "defectId",
+        "second_attribute": "description"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.175810",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 98,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.plannedQuantity > 32",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "WorkOrder",
+      "parameters": {
+        "numeric_attribute": "plannedQuantity",
+        "value": 32
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.176774",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 100,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 20,
+        "implies": [
+          "collection_max_size_WorkOrder"
+        ]
+      }
+    },
+    {
+      "ocl": "context QualityCheck\ninv: self.defects->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "QualityCheck",
+      "parameters": {
+        "collection": "defects"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.177163",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 101,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.qualityChecks->select(x | x.passed)->size() >= 65",
+      "pattern_id": "sum_operation",
+      "pattern_name": "Sum Operation",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "iterator": "x",
+        "attribute": "passed",
+        "operator": ">=",
+        "value": 65
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.177673",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 102,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "select",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: self.tasks->includesAll(self.tasks) or self.tasks->excludesAll(self.tasks)",
+      "pattern_id": "includesAll_excludesAll",
+      "pattern_name": "IncludesAll/ExcludesAll Check",
+      "context": "Technician",
+      "parameters": {
+        "collection1": "tasks",
+        "collection2": "tasks"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.178117",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 103,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context QualityCheck\ninv: self.defects->size() >= 2 and self.defects->size() <= 3",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "QualityCheck",
+      "parameters": {
+        "collection": "defects",
+        "min_size": 2,
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.179057",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 104,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 6,
+        "implies": [
+          "collection_not_empty_check_QualityCheck"
+        ]
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: self.location.size() >= 5 implies self.location.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Plant",
+      "parameters": {
+        "string_attribute": "location",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.179573",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 105,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workstation\ninv: self.machines->excluding(self.machines->any(true))->size() < self.machines->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Workstation",
+      "parameters": {
+        "collection": "machines",
+        "element": "line"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.180386",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 106,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: self.workOrders->collect(x | x.orderId)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "ProductionLine",
+      "parameters": {
+        "collection": "workOrders",
+        "iterator": "x",
+        "attribute": "orderId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.180819",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 107,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DefectReport\ninv: self.description.size() = 5",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "DefectReport",
+      "parameters": {
+        "string_attribute": "description",
+        "length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.181235",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 108,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: self.qualityChecks->forAll(x, y | x <> y implies x.checkedAt <> y.checkedAt)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "checkedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.182108",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 110,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BOMItem\ninv: self.name.size() >= 5 implies self.name.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "BOMItem",
+      "parameters": {
+        "string_attribute": "name",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.182636",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 111,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: self.shipments->collect(x | x.items)->flatten()->notEmpty()",
+      "pattern_id": "flatten_operation",
+      "pattern_name": "Flatten Operation",
+      "context": "Supplier",
+      "parameters": {
+        "collection": "shipments",
+        "iterator": "x",
+        "nested_collection": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.183154",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 112,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "flatten",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: (self.workshops->notEmpty()) and (self.workshops->isEmpty())",
+      "pattern_id": "collection_not_empty_simple_unsat",
+      "pattern_name": "Collection Not Empty (Simple) (UNSAT)",
+      "context": "Plant",
+      "parameters": {
+        "collection": "workshops"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230690",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: not(self.empId <> null implies self.name <> null)",
+      "pattern_id": "implies_simple_unsat",
+      "pattern_name": "Simple Implication (UNSAT)",
+      "context": "Technician",
+      "parameters": {
+        "first_attribute": "empId",
+        "second_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230710",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 5,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DefectReport\ninv: not(self.description <> null and self.defectId <> null)",
+      "pattern_id": "all_attributes_defined_unsat",
+      "pattern_name": "All Attributes Defined (UNSAT)",
+      "context": "DefectReport",
+      "parameters": {
+        "first_attribute": "description",
+        "second_attribute": "defectId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230725",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: not(self.station <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Machine",
+      "parameters": {
+        "association": "station"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230739",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shift\ninv: (self.operators->size() >= 1 and self.operators->size() <= 1) and (self.operators->size() < 1)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Shift",
+      "parameters": {
+        "collection": "operators",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230905",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 18,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 21,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: not(self.manufacturer.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Machine",
+      "parameters": {
+        "string_attribute": "manufacturer",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230954",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 22,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: not(self.maintenanceTasks->collect(x | x.isDone)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Machine",
+      "parameters": {
+        "collection": "maintenanceTasks",
+        "iterator": "x",
+        "attribute": "isDone"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230994",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 38,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: not(self.name <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Plant",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231005",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 39,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: not(self.workOrders->symmetricDifference(self.workOrders)->isEmpty())",
+      "pattern_id": "symmetricDifference_unsat",
+      "pattern_name": "Symmetric Difference (UNSAT)",
+      "context": "ProductionLine",
+      "parameters": {
+        "collection1": "workOrders",
+        "collection2": "workOrders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231019",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 42,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: not(self.items->excluding(self.items->any(true))->size() < self.items->size())",
+      "pattern_id": "collection_excluding_unsat",
+      "pattern_name": "Collection Excluding Element (UNSAT)",
+      "context": "Shipment",
+      "parameters": {
+        "collection": "items",
+        "element": "plant"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231153",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: not(self.tasks->select(x | x.isDone)->size() = 93)",
+      "pattern_id": "sum_operation_unsat",
+      "pattern_name": "Sum Operation (UNSAT)",
+      "context": "Technician",
+      "parameters": {
+        "collection": "tasks",
+        "iterator": "x",
+        "attribute": "isDone",
+        "operator": "=",
+        "value": 93
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231183",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "select",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 22,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: not(self.supplierId.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Supplier",
+      "parameters": {
+        "string_attribute": "supplierId",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231225",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 53,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workstation\ninv: not(self.machines->collect(x | x.status)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Workstation",
+      "parameters": {
+        "collection": "machines",
+        "iterator": "x",
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231245",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 56,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DefectReport\ninv: (self.severity >= 18 and self.severity <= 60) and (self.severity < 18)",
+      "pattern_id": "range_constraint_unsat",
+      "pattern_name": "Range Constraint (UNSAT)",
+      "context": "DefectReport",
+      "parameters": {
+        "attribute": "severity",
+        "min_value": 18,
+        "max_value": 60
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231257",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 57,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: not(self.workshops->isUnique(x | x.name))",
+      "pattern_id": "collection_isUnique_attr_unsat",
+      "pattern_name": "Collection Unique Attribute Values (UNSAT)",
+      "context": "Plant",
+      "parameters": {
+        "collection": "workshops",
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231274",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 23,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: (self.shipments->size() <= 3) and (self.shipments->size() > 3)",
+      "pattern_id": "collection_max_size_unsat",
+      "pattern_name": "Collection Maximum Size (UNSAT)",
+      "context": "Supplier",
+      "parameters": {
+        "collection": "shipments",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231287",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 74,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 24,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTask\ninv: not(self.scheduledAt.size() = 24)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "MaintenanceTask",
+      "parameters": {
+        "string_attribute": "scheduledAt",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231324",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: not(self.name.size() <= 13)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "Supplier",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 13
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231348",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 89,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: (self.qualityChecks->notEmpty() implies self.qualityChecks->first().passed <> null) and (self.qualityChecks->isEmpty())",
+      "pattern_id": "collection_first_unsat",
+      "pattern_name": "Collection First Element (UNSAT)",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "attribute": "passed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231361",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 90,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 2,
+        "implies": [
+          "sortedBy_WorkOrder"
+        ]
+      }
+    },
+    {
+      "ocl": "context Product\ninv: not((self.name <> null) = (self.sku <> null))",
+      "pattern_id": "bi_implication_unsat",
+      "pattern_name": "Bi-directional Implication (UNSAT)",
+      "context": "Product",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "sku"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231373",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 92,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workshop\ninv: not(self.name = null)",
+      "pattern_id": "attribute_null_check_unsat",
+      "pattern_name": "Attribute Must Be Null (UNSAT)",
+      "context": "Workshop",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231386",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 99,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    }
+  ],
+  "verification": {
+    "enabled": true,
+    "results": [
+      {
+        "constraint_id": "collection_not_empty_check_Workshop",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_InventoryItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_BOMItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_empty_check_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_empty_check_Workstation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_has_size_Shipment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "two_attributes_not_equal_Operator",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "association_exists_BillOfMaterials",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "association_exists_MaintenanceTask",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "association_exists_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_exact_length_Robot",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_contains_substring_Operator",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collect_operation_Workshop",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_exact_length_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_excluding_QualityCheck",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "union_operation_Shipment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "sortedBy_BillOfMaterials",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_starts_with_BOMItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_last_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_max_size_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_isUnique_attr_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_min_length_Shift",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_max_length_Sensor",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "implies_reverse_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_max_length_BOMItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_max_length_BillOfMaterials",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_MaintenanceTask",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_exact_length_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "difference_operation_Technician",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_not_empty_check_Plant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "attribute_null_check_Plant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "type_check_QualityCheck",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "sortedBy_Supplier",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_starts_with_BillOfMaterials",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "boolean_is_false_Shipment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_max_length_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_isUnique_attr_Shipment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "boolean_is_true_MaintenanceTask",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_excluding_BillOfMaterials",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "intersection_operation_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_concat_check_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_max_length_Workstation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_asSequence_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_contains_substring_Supplier",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_max_length_Technician",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "numeric_non_negative_InventoryItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "association_exists_Technician",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "sortedBy_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "all_different_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_collectNested_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "difference_operation_Plant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_sum_QualityCheck",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "type_check_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_last_BillOfMaterials",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "all_different_Workstation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_Sensor",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_concat_check_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "symmetricDifference_Shipment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_last_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_starts_with_Machine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_exact_length_InventoryItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "includesAll_excludesAll_QualityCheck",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "symmetricDifference_Shift",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_starts_with_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "attribute_null_check_Sensor",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_concat_check_Sensor",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "all_attributes_defined_DefectReport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_not_empty_check_QualityCheck",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "sum_operation_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "includesAll_excludesAll_Technician",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_size_range_QualityCheck",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_starts_with_Plant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collection_excluding_Workstation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "collect_operation_ProductionLine",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_exact_length_DefectReport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "all_different_WorkOrder",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "string_starts_with_BOMItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      },
+      {
+        "constraint_id": "flatten_operation_Supplier",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014124308960347235
+      }
+    ]
+  }
+}

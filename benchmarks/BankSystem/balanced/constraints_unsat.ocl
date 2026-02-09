@@ -1,0 +1,125 @@
+-- Benchmark: BankSystem / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T18:47:29.179182
+-- Count: 20
+
+-- #1 Collection As Sequence Conversion (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.employees->asSequence()->notEmpty())
+
+-- #2 Association Exists (UNSAT) in KYCRecord
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context KYCRecord
+inv: not(self.customer <> null)
+
+-- #3 Collection Size in Range (UNSAT) in Bank
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Bank
+inv: (self.branches->size() >= 1 and self.branches->size() <= 1) and (self.branches->size() < 1)
+
+-- #4 Numeric Is Odd (UNSAT) in CheckingAccount
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context CheckingAccount
+inv: (self.overdraftLimit mod 2 = 1) and (2 <> 1)
+
+-- #5 XOR Condition (UNSAT) in Address
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Address
+inv: not((self.country <> null and self.postalCode = null) or (self.country = null and self.postalCode <> null))
+
+-- #6 Collection Has Specific Size (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Branch
+inv: (self.customers->size() = 3) and (self.customers->size() <> 3)
+
+-- #7 String Minimum Length (UNSAT) in Customer
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Customer
+inv: not(self.fullName.size() >= 18)
+
+-- #8 Attribute Not Null (Simple) (UNSAT) in CreditCard
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context CreditCard
+inv: not(self.cardNo <> null)
+
+-- #9 Attribute Not Null (Simple) (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.city <> null)
+
+-- #10 Collection Unique Attribute Values (UNSAT) in Customer
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Customer
+inv: not(self.cards->isUnique(x | x.isActive))
+
+-- #11 Collection At Index (UNSAT) in Customer
+-- Difficulty: hard
+-- Mutation Strategy: contradictory_bounds
+context Customer
+inv: (self.cards->size() >= 2 implies self.cards->asSequence()->at(2).limit <> null) and (self.cards->size() < 2)
+
+-- #12 String Contains Substring (UNSAT) in Account
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Account
+inv: not(self.accountNo.indexOf('value') >= 0)
+
+-- #13 Collection Excluding Element (UNSAT) in Account
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Account
+inv: not(self.transactions->excluding(self.transactions->any(true))->size() < self.transactions->size())
+
+-- #14 SortedBy Operation (UNSAT) in Customer
+-- Difficulty: hard
+-- Mutation Strategy: empty_collection
+context Customer
+inv: (self.cards->notEmpty() implies self.cards->sortedBy(x | x.cardNo)->first().cardNo <= self.cards->sortedBy(x | x.cardNo)->last().cardNo) and (self.cards->isEmpty())
+
+-- #15 Collection Nested Collection Flatten (UNSAT) in Customer
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Customer
+inv: not(self.accounts->collect(x | x.transactions)->size() >= 2)
+
+-- #16 Collection Last Element (UNSAT) in Branch
+-- Difficulty: medium
+-- Mutation Strategy: empty_collection
+context Branch
+inv: (self.customers->notEmpty() implies self.customers->last().email <> null) and (self.customers->isEmpty())
+
+-- #17 String Starts With (UNSAT) in Account
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Account
+inv: not(self.accountNo.size() >= 5 implies self.accountNo.substring(1, 5) = 'value')
+
+-- #18 Collection First Element (UNSAT) in Customer
+-- Difficulty: medium
+-- Mutation Strategy: empty_collection
+context Customer
+inv: (self.accounts->notEmpty() implies self.accounts->first().balance <> null) and (self.accounts->isEmpty())
+
+-- #19 Reverse Implication (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.branchCode <> null implies self.city <> null)
+
+-- #20 Attribute Must Be Null (UNSAT) in Loan
+-- Difficulty: trivial
+-- Mutation Strategy: simple_negation
+context Loan
+inv: not(self.interestRate = null)
+

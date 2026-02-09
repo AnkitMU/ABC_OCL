@@ -1,0 +1,107 @@
+-- Benchmark: ecommerce_system / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:01:54.910198
+-- Count: 17
+
+-- #1 Collection Size Constraint (UNSAT) in Order
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Order
+inv: (self.items->size() <= 1) and (self.items->size() > 1)
+
+-- #2 Collection Including Element (UNSAT) in Coupon
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Coupon
+inv: not(self.orders->including(self.orders)->size() > self.orders->size())
+
+-- #3 Association Exists (UNSAT) in ProductVariant
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context ProductVariant
+inv: not(self.product <> null)
+
+-- #4 Association Exists (UNSAT) in CartItem
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context CartItem
+inv: not(self.cart <> null)
+
+-- #5 Collect (Map) Operation (UNSAT) in Store
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Store
+inv: not(self.categories->collect(x | x.title)->notEmpty())
+
+-- #6 String Starts With (UNSAT) in Address
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Address
+inv: not(self.country.size() >= 10 implies self.country.substring(1, 10) = 'value')
+
+-- #7 Reverse Implication (UNSAT) in Coupon
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Coupon
+inv: not(self.validUntil <> null implies self.code <> null)
+
+-- #8 Attribute Must Be Null (UNSAT) in InventoryItem
+-- Difficulty: trivial
+-- Mutation Strategy: simple_negation
+context InventoryItem
+inv: not(self.quantity = null)
+
+-- #9 String Exact Length (UNSAT) in Product
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Product
+inv: not(self.name.size() = 40)
+
+-- #10 Collection Size in Range (UNSAT) in Store
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Store
+inv: (self.coupons->size() >= 2 and self.coupons->size() <= 2) and (self.coupons->size() < 2)
+
+-- #11 String Maximum Length (UNSAT) in Order
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Order
+inv: not(self.placedAt.size() <= 53)
+
+-- #12 Collection Unique Attribute Values (UNSAT) in Product
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Product
+inv: not(self.reviews->isUnique(x | x.rating))
+
+-- #13 Bi-directional Implication (UNSAT) in Address
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Address
+inv: not((self.country <> null) = (self.postalCode <> null))
+
+-- #14 String Contains Substring (UNSAT) in ReturnRequest
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context ReturnRequest
+inv: not(self.requestedAt.indexOf('value') >= 0)
+
+-- #15 Collection As Set Conversion (UNSAT) in Order
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Order
+inv: not(self.items->asSet()->size() <= self.items->size())
+
+-- #16 Two Attributes Not Equal (UNSAT) in Customer
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Customer
+inv: not(self.customerId <> self.email)
+
+-- #17 Attribute Not Null (Simple) (UNSAT) in Shipment
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Shipment
+inv: not(self.trackingNo <> null)
+

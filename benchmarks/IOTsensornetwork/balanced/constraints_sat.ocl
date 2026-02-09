@@ -1,0 +1,360 @@
+-- Benchmark: IOTsensornetwork / balanced
+-- Type: SAT Constraints Only
+-- Generated: 2026-02-09T10:39:59.696717
+-- Count: 71
+
+-- #1 Collection Not Empty (Simple) in Device
+-- Difficulty: easy
+context Device
+inv: self.tickets->notEmpty()
+
+-- #2 Collection As Sequence Conversion in Cluster
+-- Difficulty: easy
+context Cluster
+inv: self.edgeNodes->asSequence()->notEmpty()
+
+-- #3 Attribute Not Null (Simple) in AlertRule
+-- Difficulty: easy
+context AlertRule
+inv: self.severity <> null
+
+-- #4 Attribute Not Null (Simple) in EventLog
+-- Difficulty: easy
+context EventLog
+inv: self.time <> null
+
+-- #5 All Attributes Defined in MaintenanceTicket
+-- Difficulty: easy
+context MaintenanceTicket
+inv: self.openedAt <> null and self.status <> null
+
+-- #6 Collection Size Constraint in SensorNode
+-- Difficulty: medium
+context SensorNode
+inv: self.metrics->size() <> 1
+
+-- #7 Set Difference in ConnectivityModule
+-- Difficulty: easy
+context ConnectivityModule
+inv: self.links->excludingAll(self.links)->isEmpty()
+
+-- #8 Collection Must Be Empty in User
+-- Difficulty: easy
+context User
+inv: self.alerts->isEmpty()
+
+-- #9 Association Exists in Role
+-- Difficulty: easy
+context Role
+inv: self.platform <> null
+
+-- #10 Association Exists in Alert
+-- Difficulty: easy
+context Alert
+inv: self.rule <> null
+
+-- #11 Association Exists in Gateway
+-- Difficulty: easy
+context Gateway
+inv: self.cluster <> null
+
+-- #12 Association Exists in PowerSource
+-- Difficulty: easy
+context PowerSource
+inv: self.device <> null
+
+-- #13 Association Exists in Metric
+-- Difficulty: easy
+context Metric
+inv: self.sensor <> null
+
+-- #14 Association Exists in DataStream
+-- Difficulty: easy
+context DataStream
+inv: self.link <> null
+
+-- #15 Association Exists in APIKey
+-- Difficulty: easy
+context APIKey
+inv: self.user <> null
+
+-- #16 Numeric Multiple Of in SolarPanel
+-- Difficulty: easy
+context SolarPanel
+inv: self.wattPeak mod 6 = 0
+
+-- #17 Numeric Is Odd in Battery
+-- Difficulty: easy
+context Battery
+inv: self.healthPct mod 2 = 1
+
+-- #18 Collection Size in Range in AccessPolicy
+-- Difficulty: medium
+context AccessPolicy
+inv: self.roles->size() >= 1 and self.roles->size() <= 3
+
+-- #19 String Minimum Length in Device
+-- Difficulty: medium
+context Device
+inv: self.name.size() >= 20
+
+-- #20 Collection Unique Attribute Values in OTAUpdate
+-- Difficulty: easy
+context OTAUpdate
+inv: self.tickets->isUnique(x | x.status)
+
+-- #21 String Starts With in AccessPolicy
+-- Difficulty: medium
+context AccessPolicy
+inv: self.description.size() >= 10 implies self.description.substring(1, 10) = 'value'
+
+-- #22 Collection Maximum Size in Role
+-- Difficulty: medium
+context Role
+inv: self.policies->size() <= 3
+
+-- #23 Collection Unique Attribute Values in Role
+-- Difficulty: easy
+context Role
+inv: self.users->isUnique(x | x.name)
+
+-- #24 Boolean Guard in Alert
+-- Difficulty: trivial
+context Alert
+inv: self.acknowledged
+
+-- #25 String Minimum Length in Metric
+-- Difficulty: medium
+context Metric
+inv: self.unit.size() >= 14
+
+-- #26 String Contains Substring in MaintenanceTicket
+-- Difficulty: medium
+context MaintenanceTicket
+inv: self.status.indexOf('value') >= 0
+
+-- #27 Not Both Defined in DataStream
+-- Difficulty: medium
+context DataStream
+inv: not(self.streamId <> null and self.topic <> null)
+
+-- #28 Collect (Map) Operation in Cluster
+-- Difficulty: medium
+context Cluster
+inv: self.edgeNodes->collect(x | x.cpuCores)->notEmpty()
+
+-- #29 Simple Implication in Firmware
+-- Difficulty: easy
+context Firmware
+inv: self.version <> null implies self.checksum <> null
+
+-- #30 String Exact Length in Device
+-- Difficulty: easy
+context Device
+inv: self.deviceId.size() = 37
+
+-- #31 Both Defined Or Both Null in IoTPlatform
+-- Difficulty: medium
+context IoTPlatform
+inv: (self.name <> null and self.version <> null) or (self.name = null and self.version = null)
+
+-- #32 Collection Size Constraint in SensorNode
+-- Difficulty: easy
+context SensorNode
+inv: self.metrics->size() > 1
+
+-- #33 Set Difference in Cluster
+-- Difficulty: easy
+context Cluster
+inv: self.edgeNodes->excludingAll(self.edgeNodes)->isEmpty()
+
+-- #34 Collection Maximum Size in IoTPlatform
+-- Difficulty: medium
+context IoTPlatform
+inv: self.accessPolicies->size() <= 3
+
+-- #35 SortedBy Operation in Network
+-- Difficulty: hard
+context Network
+inv: self.links->notEmpty() implies self.links->sortedBy(x | x.linkId)->first().linkId <= self.links->sortedBy(x | x.linkId)->last().linkId
+
+-- #36 SortedBy Operation in Device
+-- Difficulty: hard
+context Device
+inv: self.tickets->notEmpty() implies self.tickets->sortedBy(x | x.ticketId)->first().ticketId <= self.tickets->sortedBy(x | x.ticketId)->last().ticketId
+
+-- #37 Bi-directional Implication in User
+-- Difficulty: easy
+context User
+inv: (self.userId <> null) = (self.email <> null)
+
+-- #38 Collection At Index in Firmware
+-- Difficulty: hard
+context Firmware
+inv: self.devices->size() >= 4 implies self.devices->asSequence()->at(4).deviceId <> null
+
+-- #39 IncludesAll/ExcludesAll Check in Device
+-- Difficulty: medium
+context Device
+inv: self.dataStreams->includesAll(self.dataStreams) or self.dataStreams->excludesAll(self.dataStreams)
+
+-- #40 String Not Empty in Location
+-- Difficulty: medium
+context Location
+inv: self.site <> '' and self.site.size() > 0
+
+-- #41 Collect (Map) Operation in User
+-- Difficulty: medium
+context User
+inv: self.alerts->collect(x | x.alertId)->notEmpty()
+
+-- #42 Collection Not Empty Check in DataStream
+-- Difficulty: easy
+context DataStream
+inv: self.alertRules->size() > 0
+
+-- #43 SortedBy Operation in Network
+-- Difficulty: hard
+context Network
+inv: self.links->notEmpty() implies self.links->sortedBy(x | x.bandwidthKbps)->first().bandwidthKbps <= self.links->sortedBy(x | x.bandwidthKbps)->last().bandwidthKbps
+
+-- #44 All Different in Device
+-- Difficulty: medium
+context Device
+inv: self.dataStreams->forAll(x, y | x <> y implies x.topic <> y.topic)
+
+-- #45 Set Difference in IoTPlatform
+-- Difficulty: easy
+context IoTPlatform
+inv: self.networks->excludingAll(self.networks)->isEmpty()
+
+-- #46 Collection Must Be Empty in User
+-- Difficulty: easy
+context User
+inv: self.apiKeys->isEmpty()
+
+-- #47 Collection Has Specific Size in Cluster
+-- Difficulty: easy
+context Cluster
+inv: self.gateways->size() = 1
+
+-- #48 Collection Last Element in IoTPlatform
+-- Difficulty: medium
+context IoTPlatform
+inv: self.networks->notEmpty() implies self.networks->last().networkId <> null
+
+-- #49 String Minimum Length in EventLog
+-- Difficulty: medium
+context EventLog
+inv: self.message.size() >= 12
+
+-- #50 String Not Empty in APIKey
+-- Difficulty: medium
+context APIKey
+inv: self.value <> '' and self.value.size() > 0
+
+-- #51 Collection Not Empty (Simple) in IoTPlatform
+-- Difficulty: easy
+context IoTPlatform
+inv: self.accessPolicies->notEmpty()
+
+-- #52 String Contains Substring in Network
+-- Difficulty: medium
+context Network
+inv: self.name.indexOf('value') >= 0
+
+-- #53 String Maximum Length in OTAUpdate
+-- Difficulty: medium
+context OTAUpdate
+inv: self.scheduledAt.size() <= 44
+
+-- #54 Association Exists in OTAUpdate
+-- Difficulty: easy
+context OTAUpdate
+inv: self.targetDevice <> null
+
+-- #55 SortedBy Operation in Role
+-- Difficulty: hard
+context Role
+inv: self.policies->notEmpty() implies self.policies->sortedBy(x | x.rulesJson)->first().rulesJson <= self.policies->sortedBy(x | x.rulesJson)->last().rulesJson
+
+-- #56 Set Difference in Device
+-- Difficulty: easy
+context Device
+inv: self.eventLogs->excludingAll(self.eventLogs)->isEmpty()
+
+-- #57 Collection Sum in Gateway
+-- Difficulty: medium
+context Gateway
+inv: self.connectedEdges->collect(x | x.memoryMB)->sum() >= 6
+
+-- #58 Collection Minimum Size in DataStream
+-- Difficulty: medium
+context DataStream
+inv: self.alertRules->size() >= 2
+
+-- #59 String Contains Substring in User
+-- Difficulty: medium
+context User
+inv: self.email.indexOf('value') >= 0
+
+-- #60 Collection As Set Conversion in Gateway
+-- Difficulty: medium
+context Gateway
+inv: self.connectedEdges->asSet()->size() <= self.connectedEdges->size()
+
+-- #61 SortedBy Operation in AccessPolicy
+-- Difficulty: hard
+context AccessPolicy
+inv: self.roles->notEmpty() implies self.roles->sortedBy(x | x.roleName)->first().roleName <= self.roles->sortedBy(x | x.roleName)->last().roleName
+
+-- #62 Uniqueness Constraint in Gateway
+-- Difficulty: easy
+context Gateway
+inv: self.connectedEdges->isUnique(x | x.memoryMB)
+
+-- #63 String Exact Length in DataStream
+-- Difficulty: easy
+context DataStream
+inv: self.streamId.size() = 21
+
+-- #64 Set Union in IoTPlatform
+-- Difficulty: easy
+context IoTPlatform
+inv: self.roles->union(self.roles)->notEmpty()
+
+-- #65 Set Difference in IoTPlatform
+-- Difficulty: easy
+context IoTPlatform
+inv: self.roles->excludingAll(self.roles)->isEmpty()
+
+-- #66 Attribute Must Be Null in Device
+-- Difficulty: trivial
+context Device
+inv: self.status = null
+
+-- #67 String Maximum Length in Metric
+-- Difficulty: medium
+context Metric
+inv: self.unit.size() <= 13
+
+-- #68 Reverse Implication in AccessPolicy
+-- Difficulty: easy
+context AccessPolicy
+inv: self.description <> null implies self.policyId <> null
+
+-- #69 String Maximum Length in IoTPlatform
+-- Difficulty: medium
+context IoTPlatform
+inv: self.version.size() <= 21
+
+-- #70 All Attributes Defined in AccessPolicy
+-- Difficulty: easy
+context AccessPolicy
+inv: self.rulesJson <> null and self.description <> null
+
+-- #71 Not Both Defined in Network
+-- Difficulty: medium
+context Network
+inv: not(self.name <> null and self.networkId <> null)
+

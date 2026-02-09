@@ -1,0 +1,1425 @@
+{
+  "metadata": {
+    "type": "SAT",
+    "model": "University_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:17:39.918959",
+    "constraint_count": 49
+  },
+  "constraints": [
+    {
+      "ocl": "context Staff\ninv: self.name <> null and self.role <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "Staff",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "role"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:13.222412",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CourseOffering\ninv: self.enrollments->size() = 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "CourseOffering",
+      "parameters": {
+        "collection": "enrollments",
+        "operator": "=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:13.387901",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 1,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Course\ninv: self.offerings->symmetricDifference(self.offerings)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "Course",
+      "parameters": {
+        "collection1": "offerings",
+        "collection2": "offerings"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:15.376263",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 4,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Instructor\ninv: self.department <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Instructor",
+      "parameters": {
+        "association": "department"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:15.551477",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Building\ninv: self.university <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Building",
+      "parameters": {
+        "association": "university"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:15.618931",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_max_size_Building"
+        ]
+      }
+    },
+    {
+      "ocl": "context Scholarship\ninv: self.student <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Scholarship",
+      "parameters": {
+        "association": "student"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:15.660421",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.building <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Room",
+      "parameters": {
+        "association": "building"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:15.767932",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Semester\ninv: self.year mod 2 = 0",
+      "pattern_id": "numeric_even",
+      "pattern_name": "Numeric Is Even",
+      "context": "Semester",
+      "parameters": {
+        "numeric_attribute": "year"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.057283",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 15,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Instructor\ninv: self.name.size() >= 14",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Instructor",
+      "parameters": {
+        "string_attribute": "name",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.744100",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 18,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: self.attempts->collect(x | x.marks)->sum() >= 7",
+      "pattern_id": "collection_sum",
+      "pattern_name": "Collection Sum",
+      "context": "Exam",
+      "parameters": {
+        "collection": "attempts",
+        "numeric_attribute": "marks",
+        "min_sum": 7
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.744797",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 19,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "sum"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ExamAttempt\ninv: self.attemptDate.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "ExamAttempt",
+      "parameters": {
+        "string_attribute": "attemptDate",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.745985",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 22,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Instructor\ninv: self.email = self.staffId",
+      "pattern_id": "string_equality",
+      "pattern_name": "String Equality",
+      "context": "Instructor",
+      "parameters": {
+        "attr1": "email",
+        "attr2": "staffId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.747594",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 25,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Course\ninv: self.credits > 0",
+      "pattern_id": "numeric_positive",
+      "pattern_name": "Numeric Attribute Positive",
+      "context": "Course",
+      "parameters": {
+        "numeric_attribute": "credits"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.747959",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 26,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Instructor\ninv: (self.email <> null) = (self.staffId <> null)",
+      "pattern_id": "bi_implication",
+      "pattern_name": "Bi-directional Implication",
+      "context": "Instructor",
+      "parameters": {
+        "first_attribute": "email",
+        "second_attribute": "staffId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.748605",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 27,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Program\ninv: self.durationYears > 34",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Program",
+      "parameters": {
+        "numeric_attribute": "durationYears",
+        "value": 34
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.749012",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 28,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.programs->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Department",
+      "parameters": {
+        "collection": "programs"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.749811",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 30,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context University\ninv: self.faculties->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "University",
+      "parameters": {
+        "collection": "faculties"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.750223",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CourseOffering\ninv: self.section.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "CourseOffering",
+      "parameters": {
+        "string_attribute": "section",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.750580",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 32,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Student\ninv: self.enrollments->collect(x | x.enrolledAt)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Student",
+      "parameters": {
+        "collection": "enrollments",
+        "iterator": "x",
+        "attribute": "enrolledAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.751054",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 33,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.programs->size() >= 1",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "Department",
+      "parameters": {
+        "collection": "programs",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.751931",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 35,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_not_empty_check_Department"
+        ]
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.offerings->union(self.offerings)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Room",
+      "parameters": {
+        "collection1": "offerings",
+        "collection2": "offerings"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.752743",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 37,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Building\ninv: self.rooms->notEmpty() implies self.rooms->sortedBy(x | x.roomNumber)->first().roomNumber <= self.rooms->sortedBy(x | x.roomNumber)->last().roomNumber",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Building",
+      "parameters": {
+        "collection": "rooms",
+        "attribute": "roomNumber"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.753251",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 38,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Building\ninv: self.rooms->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Building",
+      "parameters": {
+        "collection": "rooms",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.753846",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 39,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Instructor\ninv: self.offerings->size() = 2",
+      "pattern_id": "collection_has_size",
+      "pattern_name": "Collection Has Specific Size",
+      "context": "Instructor",
+      "parameters": {
+        "collection": "offerings",
+        "size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.754267",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Building\ninv: self.rooms->collect(x | x.roomNumber)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Building",
+      "parameters": {
+        "collection": "rooms",
+        "iterator": "x",
+        "attribute": "roomNumber"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.754640",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 41,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CourseOffering\ninv: self.semester <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "CourseOffering",
+      "parameters": {
+        "association": "semester"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.755024",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 42,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CourseOffering\ninv: self.exams->isUnique(x | x.maxMarks)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "CourseOffering",
+      "parameters": {
+        "collection": "exams",
+        "attribute": "maxMarks"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.755395",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Student\ninv: self.enrollments->isUnique(x | x.status)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Student",
+      "parameters": {
+        "collection": "enrollments",
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.756079",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 44,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CourseOffering\ninv: self.capacity >= 23 and self.capacity <= 75",
+      "pattern_id": "range_constraint",
+      "pattern_name": "Range Constraint",
+      "context": "CourseOffering",
+      "parameters": {
+        "attribute": "capacity",
+        "min_value": 23,
+        "max_value": 75
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.757717",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 46,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.roomNumber.size() >= 14",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Room",
+      "parameters": {
+        "string_attribute": "roomNumber",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.758203",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 47,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Student\ninv: self.yearOfStudy mod 2 = 1",
+      "pattern_id": "numeric_odd",
+      "pattern_name": "Numeric Is Odd",
+      "context": "Student",
+      "parameters": {
+        "numeric_attribute": "yearOfStudy"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.758737",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: self.attempts->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "Exam",
+      "parameters": {
+        "collection": "attempts"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.759129",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 49,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 12,
+        "implies": [
+          "collection_not_empty_check_Exam"
+        ]
+      }
+    },
+    {
+      "ocl": "context Department\ninv: not(self.name <> null and self.code <> null)",
+      "pattern_id": "not_both_defined",
+      "pattern_name": "Not Both Defined",
+      "context": "Department",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "code"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.759503",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 50,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CourseOffering\ninv: self.exams->collect(x | x.maxMarks)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "CourseOffering",
+      "parameters": {
+        "collection": "exams",
+        "iterator": "x",
+        "attribute": "maxMarks"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.760085",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 51,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: self.examDate <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Exam",
+      "parameters": {
+        "attribute": "examDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.760532",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 52,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.code <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Department",
+      "parameters": {
+        "attribute": "code"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.760898",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 53,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Faculty\ninv: self.departments->symmetricDifference(self.departments)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "Faculty",
+      "parameters": {
+        "collection1": "departments",
+        "collection2": "departments"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.761884",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 55,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: self.attempts->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Exam",
+      "parameters": {
+        "collection": "attempts"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.762473",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 56,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.offerings->collect(x | x.exams)->size() >= 1",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Room",
+      "parameters": {
+        "collection": "offerings",
+        "nested_collection": "exams",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.762852",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Semester\ninv: self.year div 72 = 0",
+      "pattern_id": "division_modulo",
+      "pattern_name": "Division and Modulo",
+      "context": "Semester",
+      "parameters": {
+        "attr1": "year",
+        "operation": "div",
+        "value": 72
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.763372",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 58,
+        "operators_used": [
+          "=",
+          "div"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.instructors->collect(x | x.offerings)->size() >= 2",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Department",
+      "parameters": {
+        "collection": "instructors",
+        "nested_collection": "offerings",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.765152",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 61,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Course\ninv: self.code.size() >= 5 implies self.code.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Course",
+      "parameters": {
+        "string_attribute": "code",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.765593",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 62,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context GradeRecord\ninv: self.points >= 8 and self.points <= 27",
+      "pattern_id": "numeric_bounded",
+      "pattern_name": "Numeric Attribute Bounded",
+      "context": "GradeRecord",
+      "parameters": {
+        "numeric_attribute": "points",
+        "min_value": 8,
+        "max_value": 27
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.766150",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 63,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 13,
+        "implies": [
+          "numeric_positive_unsat_GradeRecord"
+        ]
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: self.maxMarks > 98",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Exam",
+      "parameters": {
+        "numeric_attribute": "maxMarks",
+        "value": 98
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.766568",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Scholarship\ninv: self.endYear <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Scholarship",
+      "parameters": {
+        "attribute": "endYear"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.767066",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 65,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Scholarship\ninv: self.name.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Scholarship",
+      "parameters": {
+        "string_attribute": "name",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.767437",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 66,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Faculty\ninv: self.name.size() <= 53",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Faculty",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 53
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.767879",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 67,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Program\ninv: self.students->isUnique(x | x.name)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Program",
+      "parameters": {
+        "collection": "students",
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.768247",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 68,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Building\ninv: self.code.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Building",
+      "parameters": {
+        "string_attribute": "code",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.768798",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    }
+  ]
+}

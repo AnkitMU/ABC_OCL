@@ -1,0 +1,607 @@
+-- Benchmark: manufacturing / balanced
+-- Generated: 2026-02-07T19:38:57.736267
+-- Seed: 42
+-- Complexity: standard
+-- Count: 100
+-- Research Features: ENABLED
+
+-- #1 Collection Not Empty Check in Workshop
+-- Difficulty: easy
+-- Type: SAT
+context Workshop
+inv: self.lines->size() > 0
+
+-- #2 Attribute Not Null (Simple) in InventoryItem
+-- Difficulty: easy
+-- Type: SAT
+context InventoryItem
+inv: self.quantity <> null
+
+-- #3 Attribute Not Null (Simple) in BOMItem
+-- Difficulty: easy
+-- Type: SAT
+context BOMItem
+inv: self.name <> null
+
+-- #4 Collection Must Be Empty in WorkOrder
+-- Difficulty: easy
+-- Type: SAT
+context WorkOrder
+inv: self.qualityChecks->isEmpty()
+
+-- #5 Collection Must Be Empty in Workstation
+-- Difficulty: easy
+-- Type: SAT
+context Workstation
+inv: self.machines->isEmpty()
+
+-- #6 Collection Has Specific Size in Shipment
+-- Difficulty: easy
+-- Type: SAT
+context Shipment
+inv: self.items->size() = 1
+
+-- #7 Two Attributes Not Equal in Operator
+-- Difficulty: easy
+-- Type: SAT
+context Operator
+inv: self.empId <> self.name
+
+-- #8 Association Exists in BillOfMaterials
+-- Difficulty: easy
+-- Type: SAT
+context BillOfMaterials
+inv: self.product <> null
+
+-- #9 Association Exists in MaintenanceTask
+-- Difficulty: easy
+-- Type: SAT
+context MaintenanceTask
+inv: self.machine <> null
+
+-- #10 Association Exists in ProductionLine
+-- Difficulty: easy
+-- Type: SAT
+context ProductionLine
+inv: self.workshop <> null
+
+-- #11 String Exact Length in Robot
+-- Difficulty: easy
+-- Type: SAT
+context Robot
+inv: self.model.size() = 34
+
+-- #12 String Contains Substring in Operator
+-- Difficulty: medium
+-- Type: SAT
+context Operator
+inv: self.empId.indexOf('value') >= 0
+
+-- #13 Collect (Map) Operation in Workshop
+-- Difficulty: medium
+-- Type: SAT
+context Workshop
+inv: self.lines->collect(x | x.lineId)->notEmpty()
+
+-- #14 String Exact Length in WorkOrder
+-- Difficulty: easy
+-- Type: SAT
+context WorkOrder
+inv: self.orderId.size() = 44
+
+-- #15 Collection Excluding Element in QualityCheck
+-- Difficulty: medium
+-- Type: SAT
+context QualityCheck
+inv: self.defects->excluding(self.defects->any(true))->size() < self.defects->size()
+
+-- #16 Set Union in Shipment
+-- Difficulty: easy
+-- Type: SAT
+context Shipment
+inv: self.items->union(self.items)->notEmpty()
+
+-- #17 SortedBy Operation in BillOfMaterials
+-- Difficulty: hard
+-- Type: SAT
+context BillOfMaterials
+inv: self.items->notEmpty() implies self.items->sortedBy(x | x.name)->first().name <= self.items->sortedBy(x | x.name)->last().name
+
+-- #18 String Starts With in BOMItem
+-- Difficulty: medium
+-- Type: SAT
+context BOMItem
+inv: self.name.size() >= 10 implies self.name.substring(1, 10) = 'value'
+
+-- #19 Collection Last Element in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.sensors->notEmpty() implies self.sensors->last().type <> null
+
+-- #20 Collection Maximum Size in WorkOrder
+-- Difficulty: medium
+-- Type: SAT
+context WorkOrder
+inv: self.qualityChecks->size() <= 3
+
+-- #21 Collection Unique Attribute Values in WorkOrder
+-- Difficulty: easy
+-- Type: SAT
+context WorkOrder
+inv: self.qualityChecks->isUnique(x | x.checkedAt)
+
+-- #22 String Minimum Length in Shift
+-- Difficulty: medium
+-- Type: SAT
+context Shift
+inv: self.startTime.size() >= 18
+
+-- #23 String Maximum Length in Sensor
+-- Difficulty: medium
+-- Type: SAT
+context Sensor
+inv: self.sensorId.size() <= 59
+
+-- #24 Reverse Implication in Machine
+-- Difficulty: easy
+-- Type: SAT
+context Machine
+inv: self.manufacturer <> null implies self.serialNumber <> null
+
+-- #25 String Maximum Length in BOMItem
+-- Difficulty: medium
+-- Type: SAT
+context BOMItem
+inv: self.name.size() <= 56
+
+-- #26 String Maximum Length in BillOfMaterials
+-- Difficulty: medium
+-- Type: SAT
+context BillOfMaterials
+inv: self.bomId.size() <= 89
+
+-- #27 Attribute Not Null (Simple) in MaintenanceTask
+-- Difficulty: easy
+-- Type: SAT
+context MaintenanceTask
+inv: self.scheduledAt <> null
+
+-- #28 String Exact Length in Product
+-- Difficulty: easy
+-- Type: SAT
+context Product
+inv: self.sku.size() = 37
+
+-- #29 Set Difference in Technician
+-- Difficulty: easy
+-- Type: SAT
+context Technician
+inv: self.tasks->excludingAll(self.tasks)->isEmpty()
+
+-- #30 Collection Not Empty Check in Plant
+-- Difficulty: easy
+-- Type: SAT
+context Plant
+inv: self.suppliers->size() > 0
+
+-- #31 Attribute Must Be Null in Plant
+-- Difficulty: trivial
+-- Type: SAT
+context Plant
+inv: self.name = null
+
+-- #32 Type Check in QualityCheck
+-- Difficulty: medium
+-- Type: SAT
+context QualityCheck
+inv: self.workOrder.oclIsTypeOf(WorkOrder)
+
+-- #33 SortedBy Operation in Supplier
+-- Difficulty: hard
+-- Type: SAT
+context Supplier
+inv: self.shipments->notEmpty() implies self.shipments->sortedBy(x | x.shipmentId)->first().shipmentId <= self.shipments->sortedBy(x | x.shipmentId)->last().shipmentId
+
+-- #34 String Starts With in BillOfMaterials
+-- Difficulty: medium
+-- Type: SAT
+context BillOfMaterials
+inv: self.bomId.size() >= 5 implies self.bomId.substring(1, 5) = 'value'
+
+-- #35 Boolean Is False in Shipment
+-- Difficulty: trivial
+-- Type: SAT
+context Shipment
+inv: self.received = false
+
+-- #36 String Maximum Length in ProductionLine
+-- Difficulty: medium
+-- Type: SAT
+context ProductionLine
+inv: self.lineId.size() <= 53
+
+-- #37 Collection Unique Attribute Values in Shipment
+-- Difficulty: easy
+-- Type: SAT
+context Shipment
+inv: self.items->isUnique(x | x.quantity)
+
+-- #38 Boolean Is True in MaintenanceTask
+-- Difficulty: trivial
+-- Type: SAT
+context MaintenanceTask
+inv: self.isDone = true
+
+-- #39 Collection Excluding Element in BillOfMaterials
+-- Difficulty: medium
+-- Type: SAT
+context BillOfMaterials
+inv: self.items->excluding(self.items->any(true))->size() < self.items->size()
+
+-- #40 Set Intersection in ProductionLine
+-- Difficulty: easy
+-- Type: SAT
+context ProductionLine
+inv: self.workOrders->intersection(self.workOrders)->notEmpty()
+
+-- #41 String Concatenation Check in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.manufacturer.concat(self.serialNumber).size() >= 19
+
+-- #42 String Maximum Length in Workstation
+-- Difficulty: medium
+-- Type: SAT
+context Workstation
+inv: self.name.size() <= 100
+
+-- #43 Collection As Sequence Conversion in ProductionLine
+-- Difficulty: easy
+-- Type: SAT
+context ProductionLine
+inv: self.workOrders->asSequence()->notEmpty()
+
+-- #44 String Contains Substring in Supplier
+-- Difficulty: medium
+-- Type: SAT
+context Supplier
+inv: self.name.indexOf('value') >= 0
+
+-- #45 String Maximum Length in Technician
+-- Difficulty: medium
+-- Type: SAT
+context Technician
+inv: self.name.size() <= 51
+
+-- #46 Numeric Attribute Non-Negative in InventoryItem
+-- Difficulty: easy
+-- Type: SAT
+context InventoryItem
+inv: self.quantity >= 0
+
+-- #47 Association Exists in Technician
+-- Difficulty: easy
+-- Type: SAT
+context Technician
+inv: self.shift <> null
+
+-- #48 SortedBy Operation in WorkOrder
+-- Difficulty: hard
+-- Type: SAT
+context WorkOrder
+inv: self.qualityChecks->notEmpty() implies self.qualityChecks->sortedBy(x | x.checkId)->first().checkId <= self.qualityChecks->sortedBy(x | x.checkId)->last().checkId
+
+-- #49 All Different in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.maintenanceTasks->forAll(x, y | x <> y implies x.scheduledAt <> y.scheduledAt)
+
+-- #50 Collection Nested Collection Flatten in ProductionLine
+-- Difficulty: medium
+-- Type: SAT
+context ProductionLine
+inv: self.stations->collect(x | x.machines)->size() >= 2
+
+-- #51 Set Difference in Plant
+-- Difficulty: easy
+-- Type: SAT
+context Plant
+inv: self.workshops->excludingAll(self.workshops)->isEmpty()
+
+-- #52 Collection Sum in QualityCheck
+-- Difficulty: medium
+-- Type: SAT
+context QualityCheck
+inv: self.defects->collect(x | x.severity)->sum() >= 6
+
+-- #53 Type Check in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.station.oclIsTypeOf(Workstation)
+
+-- #54 Collection Last Element in BillOfMaterials
+-- Difficulty: medium
+-- Type: SAT
+context BillOfMaterials
+inv: self.items->notEmpty() implies self.items->last().requiredQty <> null
+
+-- #55 All Different in Workstation
+-- Difficulty: medium
+-- Type: SAT
+context Workstation
+inv: self.machines->forAll(x, y | x <> y implies x.manufacturer <> y.manufacturer)
+
+-- #56 Numeric Greater Than Value in Sensor
+-- Difficulty: trivial
+-- Type: SAT
+context Sensor
+inv: self.lastReading > 100
+
+-- #57 String Concatenation Check in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.serialNumber.concat(self.manufacturer).size() >= 8
+
+-- #58 Symmetric Difference in Shipment
+-- Difficulty: easy
+-- Type: SAT
+context Shipment
+inv: self.items->symmetricDifference(self.items)->isEmpty()
+
+-- #59 Collection Last Element in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.maintenanceTasks->notEmpty() implies self.maintenanceTasks->last().isDone <> null
+
+-- #60 String Starts With in Machine
+-- Difficulty: medium
+-- Type: SAT
+context Machine
+inv: self.serialNumber.size() >= 6 implies self.serialNumber.substring(1, 6) = 'value'
+
+-- #61 String Exact Length in InventoryItem
+-- Difficulty: easy
+-- Type: SAT
+context InventoryItem
+inv: self.name.size() = 49
+
+-- #62 IncludesAll/ExcludesAll Check in QualityCheck
+-- Difficulty: medium
+-- Type: SAT
+context QualityCheck
+inv: self.defects->includesAll(self.defects) or self.defects->excludesAll(self.defects)
+
+-- #63 Symmetric Difference in Shift
+-- Difficulty: easy
+-- Type: SAT
+context Shift
+inv: self.operators->symmetricDifference(self.operators)->isEmpty()
+
+-- #64 String Starts With in ProductionLine
+-- Difficulty: medium
+-- Type: SAT
+context ProductionLine
+inv: self.lineId.size() >= 5 implies self.lineId.substring(1, 5) = 'value'
+
+-- #65 Attribute Must Be Null in Sensor
+-- Difficulty: trivial
+-- Type: SAT
+context Sensor
+inv: self.type = null
+
+-- #66 String Concatenation Check in Sensor
+-- Difficulty: medium
+-- Type: SAT
+context Sensor
+inv: self.sensorId.concat(self.type).size() >= 10
+
+-- #67 All Attributes Defined in DefectReport
+-- Difficulty: easy
+-- Type: SAT
+context DefectReport
+inv: self.defectId <> null and self.description <> null
+
+-- #68 Numeric Greater Than Value in WorkOrder
+-- Difficulty: trivial
+-- Type: SAT
+context WorkOrder
+inv: self.plannedQuantity > 32
+
+-- #69 Collection Not Empty Check in QualityCheck
+-- Difficulty: easy
+-- Type: SAT
+context QualityCheck
+inv: self.defects->size() > 0
+
+-- #70 Sum Operation in WorkOrder
+-- Difficulty: medium
+-- Type: SAT
+context WorkOrder
+inv: self.qualityChecks->select(x | x.passed)->size() >= 65
+
+-- #71 IncludesAll/ExcludesAll Check in Technician
+-- Difficulty: medium
+-- Type: SAT
+context Technician
+inv: self.tasks->includesAll(self.tasks) or self.tasks->excludesAll(self.tasks)
+
+-- #72 Collection Size in Range in QualityCheck
+-- Difficulty: medium
+-- Type: SAT
+context QualityCheck
+inv: self.defects->size() >= 2 and self.defects->size() <= 3
+
+-- #73 String Starts With in Plant
+-- Difficulty: medium
+-- Type: SAT
+context Plant
+inv: self.location.size() >= 5 implies self.location.substring(1, 5) = 'value'
+
+-- #74 Collection Excluding Element in Workstation
+-- Difficulty: medium
+-- Type: SAT
+context Workstation
+inv: self.machines->excluding(self.machines->any(true))->size() < self.machines->size()
+
+-- #75 Collect (Map) Operation in ProductionLine
+-- Difficulty: medium
+-- Type: SAT
+context ProductionLine
+inv: self.workOrders->collect(x | x.orderId)->notEmpty()
+
+-- #76 String Exact Length in DefectReport
+-- Difficulty: easy
+-- Type: SAT
+context DefectReport
+inv: self.description.size() = 5
+
+-- #77 All Different in WorkOrder
+-- Difficulty: medium
+-- Type: SAT
+context WorkOrder
+inv: self.qualityChecks->forAll(x, y | x <> y implies x.checkedAt <> y.checkedAt)
+
+-- #78 String Starts With in BOMItem
+-- Difficulty: medium
+-- Type: SAT
+context BOMItem
+inv: self.name.size() >= 5 implies self.name.substring(1, 5) = 'value'
+
+-- #79 Flatten Operation in Supplier
+-- Difficulty: medium
+-- Type: SAT
+context Supplier
+inv: self.shipments->collect(x | x.items)->flatten()->notEmpty()
+
+-- #80 Collection Not Empty (Simple) (UNSAT) in Plant
+-- Difficulty: easy
+-- Type: UNSAT
+context Plant
+inv: (self.workshops->notEmpty()) and (self.workshops->isEmpty())
+
+-- #81 Simple Implication (UNSAT) in Technician
+-- Difficulty: easy
+-- Type: UNSAT
+context Technician
+inv: not(self.empId <> null implies self.name <> null)
+
+-- #82 All Attributes Defined (UNSAT) in DefectReport
+-- Difficulty: easy
+-- Type: UNSAT
+context DefectReport
+inv: not(self.description <> null and self.defectId <> null)
+
+-- #83 Association Exists (UNSAT) in Machine
+-- Difficulty: easy
+-- Type: UNSAT
+context Machine
+inv: not(self.station <> null)
+
+-- #84 Collection Size in Range (UNSAT) in Shift
+-- Difficulty: medium
+-- Type: UNSAT
+context Shift
+inv: (self.operators->size() >= 1 and self.operators->size() <= 1) and (self.operators->size() < 1)
+
+-- #85 String Contains Substring (UNSAT) in Machine
+-- Difficulty: medium
+-- Type: UNSAT
+context Machine
+inv: not(self.manufacturer.indexOf('value') >= 0)
+
+-- #86 Collect (Map) Operation (UNSAT) in Machine
+-- Difficulty: medium
+-- Type: UNSAT
+context Machine
+inv: not(self.maintenanceTasks->collect(x | x.isDone)->notEmpty())
+
+-- #87 Attribute Not Null (Simple) (UNSAT) in Plant
+-- Difficulty: easy
+-- Type: UNSAT
+context Plant
+inv: not(self.name <> null)
+
+-- #88 Symmetric Difference (UNSAT) in ProductionLine
+-- Difficulty: easy
+-- Type: UNSAT
+context ProductionLine
+inv: not(self.workOrders->symmetricDifference(self.workOrders)->isEmpty())
+
+-- #89 Collection Excluding Element (UNSAT) in Shipment
+-- Difficulty: medium
+-- Type: UNSAT
+context Shipment
+inv: not(self.items->excluding(self.items->any(true))->size() < self.items->size())
+
+-- #90 Sum Operation (UNSAT) in Technician
+-- Difficulty: medium
+-- Type: UNSAT
+context Technician
+inv: not(self.tasks->select(x | x.isDone)->size() = 93)
+
+-- #91 String Contains Substring (UNSAT) in Supplier
+-- Difficulty: medium
+-- Type: UNSAT
+context Supplier
+inv: not(self.supplierId.indexOf('value') >= 0)
+
+-- #92 Collect (Map) Operation (UNSAT) in Workstation
+-- Difficulty: medium
+-- Type: UNSAT
+context Workstation
+inv: not(self.machines->collect(x | x.status)->notEmpty())
+
+-- #93 Range Constraint (UNSAT) in DefectReport
+-- Difficulty: medium
+-- Type: UNSAT
+context DefectReport
+inv: (self.severity >= 18 and self.severity <= 60) and (self.severity < 18)
+
+-- #94 Collection Unique Attribute Values (UNSAT) in Plant
+-- Difficulty: easy
+-- Type: UNSAT
+context Plant
+inv: not(self.workshops->isUnique(x | x.name))
+
+-- #95 Collection Maximum Size (UNSAT) in Supplier
+-- Difficulty: medium
+-- Type: UNSAT
+context Supplier
+inv: (self.shipments->size() <= 3) and (self.shipments->size() > 3)
+
+-- #96 String Exact Length (UNSAT) in MaintenanceTask
+-- Difficulty: easy
+-- Type: UNSAT
+context MaintenanceTask
+inv: not(self.scheduledAt.size() = 24)
+
+-- #97 String Maximum Length (UNSAT) in Supplier
+-- Difficulty: medium
+-- Type: UNSAT
+context Supplier
+inv: not(self.name.size() <= 13)
+
+-- #98 Collection First Element (UNSAT) in WorkOrder
+-- Difficulty: medium
+-- Type: UNSAT
+context WorkOrder
+inv: (self.qualityChecks->notEmpty() implies self.qualityChecks->first().passed <> null) and (self.qualityChecks->isEmpty())
+
+-- #99 Bi-directional Implication (UNSAT) in Product
+-- Difficulty: easy
+-- Type: UNSAT
+context Product
+inv: not((self.name <> null) = (self.sku <> null))
+
+-- #100 Attribute Must Be Null (UNSAT) in Workshop
+-- Difficulty: trivial
+-- Type: UNSAT
+context Workshop
+inv: not(self.name = null)
+

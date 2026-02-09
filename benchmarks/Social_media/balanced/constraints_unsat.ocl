@@ -1,0 +1,95 @@
+-- Benchmark: Social_media / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:34:28.752195
+-- Count: 15
+
+-- #1 Collection Maximum Size (UNSAT) in Conversation
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Conversation
+inv: (self.messages->size() <= 1) and (self.messages->size() > 1)
+
+-- #2 Collection Size Constraint (UNSAT) in Group
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Group
+inv: (self.memberships->size() > 1) and (self.memberships->size() < -4)
+
+-- #3 Association Exists (UNSAT) in Profile
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Profile
+inv: not(self.user <> null)
+
+-- #4 Association Exists (UNSAT) in Follow
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Follow
+inv: not(self.followee <> null)
+
+-- #5 Collection Size in Range (UNSAT) in Post
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Post
+inv: (self.reactions->size() >= 1 and self.reactions->size() <= 3) and (self.reactions->size() < 1)
+
+-- #6 String Exact Length (UNSAT) in User
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context User
+inv: not(self.createdAt.size() = 11)
+
+-- #7 Simple Implication (UNSAT) in User
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context User
+inv: not(self.username <> null implies self.email <> null)
+
+-- #8 Collection As Sequence Conversion (UNSAT) in User
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context User
+inv: not(self.notifications->asSequence()->notEmpty())
+
+-- #9 Collect (Map) Operation (UNSAT) in Post
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Post
+inv: not(self.reactions->collect(x | x.type)->notEmpty())
+
+-- #10 Collection As Set Conversion (UNSAT) in User
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context User
+inv: not(self.posts->asSet()->size() <= self.posts->size())
+
+-- #11 Sum Operation (UNSAT) in User
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context User
+inv: not(self.posts->select(x | x.isPublic)->size() >= 49)
+
+-- #12 String Minimum Length (UNSAT) in Post
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Post
+inv: not(self.createdAt.size() >= 3)
+
+-- #13 String Maximum Length (UNSAT) in User
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context User
+inv: not(self.createdAt.size() <= 44)
+
+-- #14 Type Check (UNSAT) in Media
+-- Difficulty: medium
+-- Mutation Strategy: type_contradiction
+context Media
+inv: (self.post.oclIsTypeOf(Post)) and (post.oclIsTypeOf(Tag))
+
+-- #15 Collection Must Be Empty (UNSAT) in Post
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Post
+inv: not(self.media->isEmpty())
+

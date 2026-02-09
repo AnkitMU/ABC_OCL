@@ -1,0 +1,2947 @@
+{
+  "metadata": {
+    "suite": "OCL-Benchmark-Balanced",
+    "model": "CarRentalSystem",
+    "profile": "balanced",
+    "generated_at": "2026-02-04T23:39:01.395628",
+    "seed": 42,
+    "complexity": "standard",
+    "framework_version": "2.0",
+    "git_commit": null,
+    "constraint_count": 85,
+    "research_features_enabled": true
+  },
+  "constraints": [
+    {
+      "ocl": "context Rental\ninv: self.mileageEnd <> self.mileageStart",
+      "pattern_id": "two_attributes_not_equal",
+      "pattern_name": "Two Attributes Not Equal",
+      "context": "Rental",
+      "parameters": {
+        "first_attribute": "mileageEnd",
+        "second_attribute": "mileageStart"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:16.620089",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 1,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: self.dateTo <> null and self.createdAt <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "Reservation",
+      "parameters": {
+        "first_attribute": "dateTo",
+        "second_attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:16.687295",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 2,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Company\ninv: self.branches->size() <= 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "Company",
+      "parameters": {
+        "collection": "branches",
+        "operator": "<=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:16.824427",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context License\ninv: self.isValid = true",
+      "pattern_id": "boolean_is_true",
+      "pattern_name": "Boolean Is True",
+      "context": "License",
+      "parameters": {
+        "boolean_attribute": "isValid"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.133239",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.rentals->excludingAll(self.rentals)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Customer",
+      "parameters": {
+        "collection1": "rentals",
+        "collection2": "rentals"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.337573",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 6,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.isProcessed = false",
+      "pattern_id": "boolean_is_false",
+      "pattern_name": "Boolean Is False",
+      "context": "Payment",
+      "parameters": {
+        "boolean_attribute": "isProcessed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.604918",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.isCompleted <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Rental",
+      "parameters": {
+        "attribute": "isCompleted"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.736350",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.rentals->size() >= 1",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "Customer",
+      "parameters": {
+        "collection": "rentals",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.806801",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 4,
+        "implies": [
+          "numeric_non_negative_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.branch <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Rental",
+      "parameters": {
+        "association": "branch"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.885142",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental",
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.license <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Customer",
+      "parameters": {
+        "association": "license"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.904335",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": [
+          "numeric_non_negative_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: self.customer <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Reservation",
+      "parameters": {
+        "association": "customer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.967792",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 18,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.payment <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Rental",
+      "parameters": {
+        "association": "payment"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:17.976845",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 19,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental",
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.rental <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Payment",
+      "parameters": {
+        "association": "rental"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.167136",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 27,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.mileageStart >= 0",
+      "pattern_id": "numeric_non_negative",
+      "pattern_name": "Numeric Attribute Non-Negative",
+      "context": "Rental",
+      "parameters": {
+        "numeric_attribute": "mileageStart"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.367152",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 28,
+        "operators_used": [
+          "=",
+          ">",
+          ">="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "two_attributes_not_equal_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.seats > 0",
+      "pattern_id": "numeric_positive",
+      "pattern_name": "Numeric Attribute Positive",
+      "context": "Vehicle",
+      "parameters": {
+        "numeric_attribute": "seats"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.504743",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 29,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.mileageStart > 0",
+      "pattern_id": "numeric_positive",
+      "pattern_name": "Numeric Attribute Positive",
+      "context": "Rental",
+      "parameters": {
+        "numeric_attribute": "mileageStart"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.565737",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 30,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 0,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.name.size() <= 68",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Customer",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 68
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.630690",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 32,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.name.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Customer",
+      "parameters": {
+        "string_attribute": "name",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.646272",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 33,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.name.size() = 9",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Branch",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 9
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.659476",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 34,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.rentals->collect(x | x.endDate)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Vehicle",
+      "parameters": {
+        "collection": "rentals",
+        "iterator": "x",
+        "attribute": "endDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.660459",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 36,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.reservations->isUnique(x | x.dateTo)",
+      "pattern_id": "uniqueness_constraint",
+      "pattern_name": "Uniqueness Constraint",
+      "context": "Branch",
+      "parameters": {
+        "collection": "reservations",
+        "iterator": "x",
+        "attribute": "dateTo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.662231",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.name.size() >= 10 implies self.name.substring(1, 10) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Branch",
+      "parameters": {
+        "string_attribute": "name",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.662615",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 41,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: self.vehicle <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Reservation",
+      "parameters": {
+        "association": "vehicle"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.663176",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 42,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.seats div 95 = 0",
+      "pattern_id": "division_modulo",
+      "pattern_name": "Division and Modulo",
+      "context": "Vehicle",
+      "parameters": {
+        "attr1": "seats",
+        "operation": "div",
+        "value": 95
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.663688",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "=",
+          "div"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.isAvailable = true",
+      "pattern_id": "boolean_is_true",
+      "pattern_name": "Boolean Is True",
+      "context": "Vehicle",
+      "parameters": {
+        "boolean_attribute": "isAvailable"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.664546",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 45,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Company\ninv: self.branches->excludingAll(self.branches)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Company",
+      "parameters": {
+        "collection1": "branches",
+        "collection2": "branches"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.664949",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.endDate.size() >= 18",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Rental",
+      "parameters": {
+        "string_attribute": "endDate",
+        "min_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.665681",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 47,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.mileage mod 2 = 1",
+      "pattern_id": "numeric_odd",
+      "pattern_name": "Numeric Is Odd",
+      "context": "Vehicle",
+      "parameters": {
+        "numeric_attribute": "mileage"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.667208",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 50,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.rentals->size() > 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "Customer",
+      "parameters": {
+        "collection": "rentals",
+        "operator": ">",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.669267",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 55,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 4,
+        "implies": [
+          "collection_min_size_Customer",
+          "numeric_non_negative_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.timestamp.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Payment",
+      "parameters": {
+        "string_attribute": "timestamp",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.670060",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 57,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: (self.dateTo <> null and self.dateFrom <> null) or (self.dateTo = null and self.dateFrom = null)",
+      "pattern_id": "both_defined_or_both_null",
+      "pattern_name": "Both Defined Or Both Null",
+      "context": "Reservation",
+      "parameters": {
+        "first_attribute": "dateTo",
+        "second_attribute": "dateFrom"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.670432",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 58,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">",
+          "and",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.mileageStart * self.mileageEnd > 87",
+      "pattern_id": "numeric_product_constraint",
+      "pattern_name": "Numeric Product Constraint",
+      "context": "Rental",
+      "parameters": {
+        "first_numeric": "mileageStart",
+        "second_numeric": "mileageEnd",
+        "threshold": 87
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.671060",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 59,
+        "operators_used": [
+          "*",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental",
+          "range_constraint_Rental",
+          "numeric_greater_than_value_unsat_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.capacity >= 79 and self.capacity <= 99",
+      "pattern_id": "range_constraint",
+      "pattern_name": "Range Constraint",
+      "context": "Branch",
+      "parameters": {
+        "attribute": "capacity",
+        "min_value": 79,
+        "max_value": 99
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.671619",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 60,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.endDate.concat(self.startDate).size() >= 13",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Rental",
+      "parameters": {
+        "first_string": "endDate",
+        "second_string": "startDate",
+        "min_length": 13
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.672108",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 61,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: if self.isOpen then self.capacity <> null else self.name <> null endif",
+      "pattern_id": "conditional_if_then_else",
+      "pattern_name": "Conditional Expression",
+      "context": "Branch",
+      "parameters": {
+        "boolean_attribute": "isOpen",
+        "then_attribute": "capacity",
+        "else_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.672546",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 62,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "else",
+          "endif",
+          "if",
+          "then"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.endDate.size() = 40",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Rental",
+      "parameters": {
+        "string_attribute": "endDate",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.674042",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 65,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.reservations->size() >= 2 and self.reservations->size() <= 2",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Vehicle",
+      "parameters": {
+        "collection": "reservations",
+        "min_size": 2,
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.674453",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 66,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 8,
+        "implies": [
+          "collection_first_Vehicle"
+        ]
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.age >= 18 and self.age <= 20",
+      "pattern_id": "numeric_bounded",
+      "pattern_name": "Numeric Attribute Bounded",
+      "context": "Customer",
+      "parameters": {
+        "numeric_attribute": "age",
+        "min_value": 18,
+        "max_value": 20
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.675442",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 68,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 12,
+        "implies": [
+          "numeric_non_negative_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.timestamp.size() >= 5 implies self.timestamp.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Payment",
+      "parameters": {
+        "string_attribute": "timestamp",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.676150",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: self.createdAt.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Reservation",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.677376",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 71,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.isPremium = false",
+      "pattern_id": "boolean_is_false",
+      "pattern_name": "Boolean Is False",
+      "context": "Customer",
+      "parameters": {
+        "boolean_attribute": "isPremium"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.678202",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 73,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": [
+          "numeric_non_negative_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.rentals->asSet()->size() <= self.rentals->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Branch",
+      "parameters": {
+        "collection": "rentals"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.678571",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 74,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.mileageStart.abs() <= 1",
+      "pattern_id": "numeric_abs_bounded",
+      "pattern_name": "Numeric Absolute Value Bounded",
+      "context": "Rental",
+      "parameters": {
+        "numeric_attribute": "mileageStart",
+        "max_abs": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.679392",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 76,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "abs"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.age >= 0",
+      "pattern_id": "numeric_non_negative",
+      "pattern_name": "Numeric Attribute Non-Negative",
+      "context": "Customer",
+      "parameters": {
+        "numeric_attribute": "age"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.680322",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 78,
+        "operators_used": [
+          "=",
+          ">",
+          ">="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.branch.oclIsTypeOf(Branch)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Vehicle",
+      "parameters": {
+        "attribute": "branch",
+        "type": "Branch"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.681143",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 80,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.reservations->excluding(self.reservations->any(true))->size() < self.reservations->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Branch",
+      "parameters": {
+        "collection": "reservations",
+        "element": "company"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.681497",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 81,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.vehicles->isUnique(x | x.status)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Branch",
+      "parameters": {
+        "collection": "vehicles",
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.682361",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 83,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.vehicles->collect(x | x.reservations)->size() >= 1",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Branch",
+      "parameters": {
+        "collection": "vehicles",
+        "nested_collection": "reservations",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.682846",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 84,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.reservations->notEmpty() implies self.reservations->first().isConfirmed <> null",
+      "pattern_id": "collection_first",
+      "pattern_name": "Collection First Element",
+      "context": "Vehicle",
+      "parameters": {
+        "collection": "reservations",
+        "attribute": "isConfirmed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.683351",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 85,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Company\ninv: self.branches->collect(x | x.vehicles)->size() >= 3",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Company",
+      "parameters": {
+        "collection": "branches",
+        "nested_collection": "vehicles",
+        "min_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.683797",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 86,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.category <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Vehicle",
+      "parameters": {
+        "attribute": "category"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.684173",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 87,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.endDate.size() >= 3",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Rental",
+      "parameters": {
+        "string_attribute": "endDate",
+        "min_length": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.684596",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 88,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Company\ninv: self.name.size() <= 88",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Company",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 88
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.685214",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 89,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: self.dateTo.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Reservation",
+      "parameters": {
+        "string_attribute": "dateTo",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.685566",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 90,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.category.size() <= 51",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Vehicle",
+      "parameters": {
+        "string_attribute": "category",
+        "max_length": 51
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.685935",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 91,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.mileageEnd >= 24 and self.mileageEnd <= 63",
+      "pattern_id": "range_constraint",
+      "pattern_name": "Range Constraint",
+      "context": "Rental",
+      "parameters": {
+        "attribute": "mileageEnd",
+        "min_value": 24,
+        "max_value": 63
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.686813",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 93,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.vehicles->size() <= 1",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Branch",
+      "parameters": {
+        "collection": "vehicles",
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.687283",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 94,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: self.vin.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Vehicle",
+      "parameters": {
+        "string_attribute": "vin",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.689328",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 98,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.isOpen <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Branch",
+      "parameters": {
+        "attribute": "isOpen"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.689876",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 99,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Company\ninv: self.name <> '' and self.name.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Company",
+      "parameters": {
+        "string_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.690990",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 101,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.endDate <> null implies self.startDate <> null",
+      "pattern_id": "implies_reverse",
+      "pattern_name": "Reverse Implication",
+      "context": "Rental",
+      "parameters": {
+        "first_attribute": "startDate",
+        "second_attribute": "endDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.691546",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 102,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.name <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Branch",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.692007",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 103,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: self.totalAmount > 29",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Rental",
+      "parameters": {
+        "numeric_attribute": "totalAmount",
+        "value": 29
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.692887",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 104,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 15,
+        "implies": [
+          "two_attributes_not_equal_Rental",
+          "numeric_non_negative_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.name.size() = 24",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Customer",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.693347",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 105,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.reservations->notEmpty() implies self.reservations->last().dateTo <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Customer",
+      "parameters": {
+        "collection": "reservations",
+        "attribute": "dateTo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.694628",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 107,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.capacity < 83",
+      "pattern_id": "numeric_less_than_value",
+      "pattern_name": "Numeric Less Than Value",
+      "context": "Branch",
+      "parameters": {
+        "numeric_attribute": "capacity",
+        "value": 83
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.695049",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 108,
+        "operators_used": [
+          "<"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: self.createdAt.size() <= 42",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Reservation",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "max_length": 42
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.696174",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 110,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Company\ninv: self.branches->notEmpty() implies self.branches->sortedBy(x | x.capacity)->first().capacity <= self.branches->sortedBy(x | x.capacity)->last().capacity",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Company",
+      "parameters": {
+        "collection": "branches",
+        "attribute": "capacity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.696826",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 111,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: not(self.isOpen <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "attribute": "isOpen"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.737864",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: not(self.branch <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Vehicle",
+      "parameters": {
+        "association": "branch"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.737887",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 11,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: not(self.company <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "association": "company"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.737902",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 13,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: (self.tankLevel >= 0) and (self.tankLevel < 0)",
+      "pattern_id": "numeric_non_negative_unsat",
+      "pattern_name": "Numeric Attribute Non-Negative (UNSAT)",
+      "context": "Vehicle",
+      "parameters": {
+        "numeric_attribute": "tankLevel"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.738248",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "=",
+          ">",
+          ">="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: not(self.dateTo <> null and self.createdAt <> null)",
+      "pattern_id": "all_attributes_defined_unsat",
+      "pattern_name": "All Attributes Defined (UNSAT)",
+      "context": "Reservation",
+      "parameters": {
+        "first_attribute": "dateTo",
+        "second_attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.738276",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: not(self.dateTo.size() >= 14)",
+      "pattern_id": "string_min_length_unsat",
+      "pattern_name": "String Minimum Length (UNSAT)",
+      "context": "Reservation",
+      "parameters": {
+        "string_attribute": "dateTo",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.738507",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 48,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: not(self.reservations->asSet()->size() <= self.reservations->size())",
+      "pattern_id": "collection_asSet_unsat",
+      "pattern_name": "Collection As Set Conversion (UNSAT)",
+      "context": "Vehicle",
+      "parameters": {
+        "collection": "reservations"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739014",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 52,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: (self.mileageEnd > 87) and (self.mileageEnd < 82)",
+      "pattern_id": "numeric_greater_than_value_unsat",
+      "pattern_name": "Numeric Greater Than Value (UNSAT)",
+      "context": "Rental",
+      "parameters": {
+        "numeric_attribute": "mileageEnd",
+        "value": 87
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739037",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 53,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": [
+          "numeric_product_constraint_Rental",
+          "range_constraint_Rental"
+        ]
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: (self.mileageEnd mod 71 = 0) and (71 <> 0)",
+      "pattern_id": "division_modulo_unsat",
+      "pattern_name": "Division and Modulo (UNSAT)",
+      "context": "Rental",
+      "parameters": {
+        "attr1": "mileageEnd",
+        "operation": "mod",
+        "value": 71
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739201",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 54,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: not((self.mileageStart <> null) = (self.mileageEnd <> null))",
+      "pattern_id": "bi_implication_unsat",
+      "pattern_name": "Bi-directional Implication (UNSAT)",
+      "context": "Rental",
+      "parameters": {
+        "first_attribute": "mileageStart",
+        "second_attribute": "mileageEnd"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739223",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 56,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: (self.rentals->size() > 0) and (self.rentals->size() < -5)",
+      "pattern_id": "collection_not_empty_check_unsat",
+      "pattern_name": "Collection Not Empty Check (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "collection": "rentals"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739322",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reservation\ninv: not(self.isConfirmed <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Reservation",
+      "parameters": {
+        "attribute": "isConfirmed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739338",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.reservations->excludingAll(self.reservations)->isEmpty())",
+      "pattern_id": "difference_operation_unsat",
+      "pattern_name": "Set Difference (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "collection1": "reservations",
+        "collection2": "reservations"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739352",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 72,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: not(self.rentals->collect(x | x.mileageEnd)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Vehicle",
+      "parameters": {
+        "collection": "rentals",
+        "iterator": "x",
+        "attribute": "mileageEnd"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739621",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 75,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Vehicle\ninv: (self.mileage >= 3 and self.mileage <= 80) and (self.mileage < 3)",
+      "pattern_id": "range_constraint_unsat",
+      "pattern_name": "Range Constraint (UNSAT)",
+      "context": "Vehicle",
+      "parameters": {
+        "attribute": "mileage",
+        "min_value": 3,
+        "max_value": 80
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739641",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 82,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Rental\ninv: not((self.mileageStart <> null and self.mileageEnd <> null) or (self.mileageStart = null and self.mileageEnd = null))",
+      "pattern_id": "both_defined_or_both_null_unsat",
+      "pattern_name": "Both Defined Or Both Null (UNSAT)",
+      "context": "Rental",
+      "parameters": {
+        "first_attribute": "mileageStart",
+        "second_attribute": "mileageEnd"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739661",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 96,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">",
+          "and",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: not(self.name.size() = 49)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 49
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-04T23:38:18.739879",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 109,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    }
+  ],
+  "verification": {
+    "enabled": true,
+    "results": [
+      {
+        "constraint_id": "two_attributes_not_equal_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "all_attributes_defined_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "size_constraint_Company",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "boolean_is_true_License",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "difference_operation_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "boolean_is_false_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_min_size_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "association_exists_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "association_exists_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "association_exists_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "association_exists_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "association_exists_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_non_negative_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_positive_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_positive_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_max_length_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_contains_substring_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_exact_length_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collect_operation_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "uniqueness_constraint_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_starts_with_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "association_exists_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "division_modulo_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "boolean_is_true_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "difference_operation_Company",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_min_length_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_odd_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "size_constraint_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_exact_length_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "both_defined_or_both_null_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_product_constraint_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "range_constraint_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_concat_check_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "conditional_if_then_else_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_exact_length_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_size_range_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_bounded_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_starts_with_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_contains_substring_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "boolean_is_false_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_asSet_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_abs_bounded_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_non_negative_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "type_check_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_excluding_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_isUnique_attr_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_collectNested_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_first_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_collectNested_Company",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_min_length_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_max_length_Company",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_contains_substring_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_max_length_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "range_constraint_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_max_size_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_contains_substring_Vehicle",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_not_empty_Company",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "implies_reverse_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_Rental",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_exact_length_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "collection_last_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "numeric_less_than_value_Branch",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "string_max_length_Reservation",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      },
+      {
+        "constraint_id": "sortedBy_Company",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0014211465330684885
+      }
+    ]
+  }
+}

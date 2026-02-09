@@ -1,0 +1,95 @@
+-- Benchmark: Flight_booking / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:30:42.355782
+-- Count: 15
+
+-- #1 Collection Size Constraint (UNSAT) in Flight
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Flight
+inv: (self.bookings->size() = 1) and (self.bookings->size() <> 1)
+
+-- #2 Attribute Not Null (Simple) (UNSAT) in Ticket
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Ticket
+inv: not(self.issuedAt <> null)
+
+-- #3 Not Both Defined (UNSAT) in BoardingPass
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context BoardingPass
+inv: not(not(self.boardingTime <> null and self.gate <> null))
+
+-- #4 Collection Size in Range (UNSAT) in Airport
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Airport
+inv: (self.departingFlights->size() >= 1 and self.departingFlights->size() <= 3) and (self.departingFlights->size() < 1)
+
+-- #5 Numeric Attribute Positive (UNSAT) in Payment
+-- Difficulty: trivial
+-- Mutation Strategy: contradictory_bounds
+context Payment
+inv: (self.amount > 0) and (self.amount < -5)
+
+-- #6 String Exact Length (UNSAT) in Passenger
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Passenger
+inv: not(self.email.size() = 24)
+
+-- #7 Attribute Not Null (Simple) (UNSAT) in Booking
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Booking
+inv: not(self.createdAt <> null)
+
+-- #8 Type Check (UNSAT) in Booking
+-- Difficulty: medium
+-- Mutation Strategy: type_contradiction
+context Booking
+inv: (self.flight.oclIsTypeOf(Flight)) and (flight.oclIsTypeOf(Payment))
+
+-- #9 String Exact Length (UNSAT) in CheckIn
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context CheckIn
+inv: not(self.checkInTime.size() = 40)
+
+-- #10 Numeric Greater Than Value (UNSAT) in Baggage
+-- Difficulty: trivial
+-- Mutation Strategy: contradictory_bounds
+context Baggage
+inv: (self.weightKg > 61) and (self.weightKg < 56)
+
+-- #11 Type Check (UNSAT) in Ticket
+-- Difficulty: medium
+-- Mutation Strategy: type_contradiction
+context Ticket
+inv: (self.booking.oclIsTypeOf(Booking)) and (booking.oclIsTypeOf(CheckIn))
+
+-- #12 String Contains Substring (UNSAT) in Flight
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Flight
+inv: not(self.departureTime.indexOf('value') >= 0)
+
+-- #13 String Maximum Length (UNSAT) in Passenger
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Passenger
+inv: not(self.email.size() <= 44)
+
+-- #14 String Contains Substring (UNSAT) in Seat
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Seat
+inv: not(self.seatNo.indexOf('value') >= 0)
+
+-- #15 All Attributes Defined (UNSAT) in Flight
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Flight
+inv: not(self.departureTime <> null and self.arrivalTime <> null)
+

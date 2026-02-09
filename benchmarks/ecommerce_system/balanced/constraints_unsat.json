@@ -1,0 +1,540 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "ecommerce_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:01:54.910317",
+    "constraint_count": 17
+  },
+  "constraints": [
+    {
+      "ocl": "context Order\ninv: (self.items->size() <= 1) and (self.items->size() > 1)",
+      "pattern_id": "size_constraint_unsat",
+      "pattern_name": "Collection Size Constraint (UNSAT)",
+      "context": "Order",
+      "parameters": {
+        "collection": "items",
+        "operator": "<=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677225",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: not(self.orders->including(self.orders)->size() > self.orders->size())",
+      "pattern_id": "collection_including_unsat",
+      "pattern_name": "Collection Including Element (UNSAT)",
+      "context": "Coupon",
+      "parameters": {
+        "collection": "orders",
+        "element": "orders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677400",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 5,
+        "operators_used": [
+          "-",
+          ">",
+          "including",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductVariant\ninv: not(self.product <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "ProductVariant",
+      "parameters": {
+        "association": "product"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677422",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CartItem\ninv: not(self.cart <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "CartItem",
+      "parameters": {
+        "association": "cart"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677435",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 11,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: not(self.categories->collect(x | x.title)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Store",
+      "parameters": {
+        "collection": "categories",
+        "iterator": "x",
+        "attribute": "title"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677535",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 29,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: not(self.country.size() >= 10 implies self.country.substring(1, 10) = 'value')",
+      "pattern_id": "string_starts_with_unsat",
+      "pattern_name": "String Starts With (UNSAT)",
+      "context": "Address",
+      "parameters": {
+        "string_attribute": "country",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677617",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 35,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: not(self.validUntil <> null implies self.code <> null)",
+      "pattern_id": "implies_reverse_unsat",
+      "pattern_name": "Reverse Implication (UNSAT)",
+      "context": "Coupon",
+      "parameters": {
+        "first_attribute": "code",
+        "second_attribute": "validUntil"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677633",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 42,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: not(self.quantity = null)",
+      "pattern_id": "attribute_null_check_unsat",
+      "pattern_name": "Attribute Must Be Null (UNSAT)",
+      "context": "InventoryItem",
+      "parameters": {
+        "attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677650",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 52,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: not(self.name.size() = 40)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "Product",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677675",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 56,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: (self.coupons->size() >= 2 and self.coupons->size() <= 2) and (self.coupons->size() < 2)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Store",
+      "parameters": {
+        "collection": "coupons",
+        "min_size": 2,
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677688",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_size_range_Store"
+        ]
+      }
+    },
+    {
+      "ocl": "context Order\ninv: not(self.placedAt.size() <= 53)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "Order",
+      "parameters": {
+        "string_attribute": "placedAt",
+        "max_length": 53
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677721",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: not(self.reviews->isUnique(x | x.rating))",
+      "pattern_id": "collection_isUnique_attr_unsat",
+      "pattern_name": "Collection Unique Attribute Values (UNSAT)",
+      "context": "Product",
+      "parameters": {
+        "collection": "reviews",
+        "attribute": "rating"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677734",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 65,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: not((self.country <> null) = (self.postalCode <> null))",
+      "pattern_id": "bi_implication_unsat",
+      "pattern_name": "Bi-directional Implication (UNSAT)",
+      "context": "Address",
+      "parameters": {
+        "first_attribute": "country",
+        "second_attribute": "postalCode"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677748",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 70,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ReturnRequest\ninv: not(self.requestedAt.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "ReturnRequest",
+      "parameters": {
+        "string_attribute": "requestedAt",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677794",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 74,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: not(self.items->asSet()->size() <= self.items->size())",
+      "pattern_id": "collection_asSet_unsat",
+      "pattern_name": "Collection As Set Conversion (UNSAT)",
+      "context": "Order",
+      "parameters": {
+        "collection": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677815",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 77,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.customerId <> self.email)",
+      "pattern_id": "two_attributes_not_equal_unsat",
+      "pattern_name": "Two Attributes Not Equal (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "first_attribute": "customerId",
+        "second_attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677828",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 78,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: not(self.trackingNo <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Shipment",
+      "parameters": {
+        "attribute": "trackingNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677845",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 87,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    }
+  ]
+}

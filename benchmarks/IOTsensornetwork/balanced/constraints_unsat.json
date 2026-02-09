@@ -1,0 +1,602 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "IOTsensornetwork",
+    "profile": "balanced",
+    "generated_at": "2026-02-09T10:39:59.703323",
+    "constraint_count": 18
+  },
+  "constraints": [
+    {
+      "ocl": "context IoTPlatform\ninv: (self.networks->size() <= 1) and (self.networks->size() > 1)",
+      "pattern_id": "collection_max_size_unsat",
+      "pattern_name": "Collection Maximum Size (UNSAT)",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection": "networks",
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.127986",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 1,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ActuatorNode\ninv: not(self.actuatorType <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "ActuatorNode",
+      "parameters": {
+        "attribute": "actuatorType"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128011",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 23,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context OTAUpdate\ninv: not(self.targetDevice <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "OTAUpdate",
+      "parameters": {
+        "association": "targetDevice"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128027",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 11,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CommunicationLink\ninv: not(self.stream <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "CommunicationLink",
+      "parameters": {
+        "association": "stream"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128040",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 15,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Network\ninv: not(self.platform <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Network",
+      "parameters": {
+        "association": "platform"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128066",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 20,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Firmware\ninv: (self.devices->size() >= 1 and self.devices->size() <= 1) and (self.devices->size() < 1)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Firmware",
+      "parameters": {
+        "collection": "devices",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128081",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 26,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AlertRule\ninv: not(self.ruleId.size() <= 41)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "AlertRule",
+      "parameters": {
+        "string_attribute": "ruleId",
+        "max_length": 41
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128120",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 30,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 21,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: (self.roles->notEmpty() implies self.roles->sortedBy(x | x.roleName)->first().roleName <= self.roles->sortedBy(x | x.roleName)->last().roleName) and (self.roles->isEmpty())",
+      "pattern_id": "sortedBy_unsat",
+      "pattern_name": "SortedBy Operation (UNSAT)",
+      "context": "AccessPolicy",
+      "parameters": {
+        "collection": "roles",
+        "attribute": "roleName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128207",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 34,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_size_range_AccessPolicy",
+          "sortedBy_AccessPolicy",
+          "collection_last_unsat_AccessPolicy"
+        ]
+      }
+    },
+    {
+      "ocl": "context Device\ninv: not(self.deviceId <> self.name)",
+      "pattern_id": "two_attributes_not_equal_unsat",
+      "pattern_name": "Two Attributes Not Equal (UNSAT)",
+      "context": "Device",
+      "parameters": {
+        "first_attribute": "deviceId",
+        "second_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128221",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 36,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: (self.alertRules->notEmpty() implies self.alertRules->sortedBy(x | x.condition)->first().condition <= self.alertRules->sortedBy(x | x.condition)->last().condition) and (self.alertRules->isEmpty())",
+      "pattern_id": "sortedBy_unsat",
+      "pattern_name": "SortedBy Operation (UNSAT)",
+      "context": "DataStream",
+      "parameters": {
+        "collection": "alertRules",
+        "attribute": "condition"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128237",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 39,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_not_empty_check_DataStream"
+        ]
+      }
+    },
+    {
+      "ocl": "context SensorNode\ninv: not(self.metrics->asSet()->size() <= self.metrics->size())",
+      "pattern_id": "collection_asSet_unsat",
+      "pattern_name": "Collection As Set Conversion (UNSAT)",
+      "context": "SensorNode",
+      "parameters": {
+        "collection": "metrics"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128367",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 52,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: not(self.records->includesAll(self.records) or self.records->excludesAll(self.records))",
+      "pattern_id": "includesAll_excludesAll_unsat",
+      "pattern_name": "IncludesAll/ExcludesAll Check (UNSAT)",
+      "context": "DataStream",
+      "parameters": {
+        "collection1": "records",
+        "collection2": "records"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128383",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 56,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 20,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cluster\ninv: not(self.edgeNodes->asSet()->size() <= self.edgeNodes->size())",
+      "pattern_id": "collection_asSet_unsat",
+      "pattern_name": "Collection As Set Conversion (UNSAT)",
+      "context": "Cluster",
+      "parameters": {
+        "collection": "edgeNodes"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128406",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 62,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 24,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Alert\ninv: not(self.alertId <> self.message)",
+      "pattern_id": "two_attributes_not_equal_unsat",
+      "pattern_name": "Two Attributes Not Equal (UNSAT)",
+      "context": "Alert",
+      "parameters": {
+        "first_attribute": "alertId",
+        "second_attribute": "message"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128420",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: not(self.description <> '' and self.description.size() > 0)",
+      "pattern_id": "string_not_empty_unsat",
+      "pattern_name": "String Not Empty (UNSAT)",
+      "context": "AccessPolicy",
+      "parameters": {
+        "string_attribute": "description"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128473",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 77,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Device\ninv: not(self.eventLogs->asSet()->size() <= self.eventLogs->size())",
+      "pattern_id": "collection_asSet_unsat",
+      "pattern_name": "Collection As Set Conversion (UNSAT)",
+      "context": "Device",
+      "parameters": {
+        "collection": "eventLogs"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128496",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 80,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 24,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: (self.roles->notEmpty() implies self.roles->last().roleName <> null) and (self.roles->isEmpty())",
+      "pattern_id": "collection_last_unsat",
+      "pattern_name": "Collection Last Element (UNSAT)",
+      "context": "AccessPolicy",
+      "parameters": {
+        "collection": "roles",
+        "attribute": "roleName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128512",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 89,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 8,
+        "implies": [
+          "collection_size_range_AccessPolicy",
+          "sortedBy_AccessPolicy",
+          "sortedBy_unsat_AccessPolicy"
+        ]
+      }
+    },
+    {
+      "ocl": "context User\ninv: not(self.roles->forAll(x, y | x <> y implies x.roleName <> y.roleName))",
+      "pattern_id": "all_different_unsat",
+      "pattern_name": "All Different (UNSAT)",
+      "context": "User",
+      "parameters": {
+        "collection": "roles",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "roleName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.128654",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 90,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    }
+  ]
+}

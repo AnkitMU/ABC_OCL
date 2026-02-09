@@ -1,0 +1,2111 @@
+{
+  "metadata": {
+    "type": "SAT",
+    "model": "IOTsensornetwork",
+    "profile": "balanced",
+    "generated_at": "2026-02-09T10:39:59.696938",
+    "constraint_count": 71
+  },
+  "constraints": [
+    {
+      "ocl": "context Device\ninv: self.tickets->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "Device",
+      "parameters": {
+        "collection": "tickets"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:15.853491",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "sortedBy_Device"
+        ]
+      }
+    },
+    {
+      "ocl": "context Cluster\ninv: self.edgeNodes->asSequence()->notEmpty()",
+      "pattern_id": "collection_asSequence",
+      "pattern_name": "Collection As Sequence Conversion",
+      "context": "Cluster",
+      "parameters": {
+        "collection": "edgeNodes"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:19.682158",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 2,
+        "operators_used": [
+          "-",
+          ">",
+          "asSequence",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AlertRule\ninv: self.severity <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "AlertRule",
+      "parameters": {
+        "attribute": "severity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:20.366234",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context EventLog\ninv: self.time <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "EventLog",
+      "parameters": {
+        "attribute": "time"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:20.640491",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTicket\ninv: self.openedAt <> null and self.status <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "MaintenanceTicket",
+      "parameters": {
+        "first_attribute": "openedAt",
+        "second_attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:21.054397",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 6,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context SensorNode\ninv: self.metrics->size() <> 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "SensorNode",
+      "parameters": {
+        "collection": "metrics",
+        "operator": "<>",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:21.332796",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ConnectivityModule\ninv: self.links->excludingAll(self.links)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "ConnectivityModule",
+      "parameters": {
+        "collection1": "links",
+        "collection2": "links"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.111542",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 8,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.alerts->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "User",
+      "parameters": {
+        "collection": "alerts"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.391833",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Role\ninv: self.platform <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Role",
+      "parameters": {
+        "association": "platform"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.429749",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_Role"
+        ]
+      }
+    },
+    {
+      "ocl": "context Alert\ninv: self.rule <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Alert",
+      "parameters": {
+        "association": "rule"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.529070",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Gateway\ninv: self.cluster <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Gateway",
+      "parameters": {
+        "association": "cluster"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.686184",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 13,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context PowerSource\ninv: self.device <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "PowerSource",
+      "parameters": {
+        "association": "device"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.725061",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 14,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Metric\ninv: self.sensor <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Metric",
+      "parameters": {
+        "association": "sensor"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.873023",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 17,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: self.link <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "DataStream",
+      "parameters": {
+        "association": "link"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:22.946871",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 19,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context APIKey\ninv: self.user <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "APIKey",
+      "parameters": {
+        "association": "user"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:23.141823",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 22,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context SolarPanel\ninv: self.wattPeak mod 6 = 0",
+      "pattern_id": "numeric_multiple_of",
+      "pattern_name": "Numeric Multiple Of",
+      "context": "SolarPanel",
+      "parameters": {
+        "numeric_attribute": "wattPeak",
+        "divisor": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:23.912661",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 25,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Battery\ninv: self.healthPct mod 2 = 1",
+      "pattern_id": "numeric_odd",
+      "pattern_name": "Numeric Is Odd",
+      "context": "Battery",
+      "parameters": {
+        "numeric_attribute": "healthPct"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:24.259770",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 27,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: self.roles->size() >= 1 and self.roles->size() <= 3",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "AccessPolicy",
+      "parameters": {
+        "collection": "roles",
+        "min_size": 1,
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:24.797063",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 29,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 8,
+        "implies": [
+          "sortedBy_AccessPolicy",
+          "sortedBy_unsat_AccessPolicy",
+          "collection_last_unsat_AccessPolicy"
+        ]
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.name.size() >= 20",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Device",
+      "parameters": {
+        "string_attribute": "name",
+        "min_length": 20
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.038734",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context OTAUpdate\ninv: self.tickets->isUnique(x | x.status)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "OTAUpdate",
+      "parameters": {
+        "collection": "tickets",
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.039227",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 32,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: self.description.size() >= 10 implies self.description.substring(1, 10) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "AccessPolicy",
+      "parameters": {
+        "string_attribute": "description",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.040695",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 35,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Role\ninv: self.policies->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Role",
+      "parameters": {
+        "collection": "policies",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.041482",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 37,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Role\ninv: self.users->isUnique(x | x.name)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Role",
+      "parameters": {
+        "collection": "users",
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.041907",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 38,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Alert\ninv: self.acknowledged",
+      "pattern_id": "boolean_guard",
+      "pattern_name": "Boolean Guard",
+      "context": "Alert",
+      "parameters": {
+        "attribute": "acknowledged"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.042964",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 0,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Metric\ninv: self.unit.size() >= 14",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Metric",
+      "parameters": {
+        "string_attribute": "unit",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.043229",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 41,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTicket\ninv: self.status.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "MaintenanceTicket",
+      "parameters": {
+        "string_attribute": "status",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.043697",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 42,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: not(self.streamId <> null and self.topic <> null)",
+      "pattern_id": "not_both_defined",
+      "pattern_name": "Not Both Defined",
+      "context": "DataStream",
+      "parameters": {
+        "first_attribute": "streamId",
+        "second_attribute": "topic"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.045117",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 44,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cluster\ninv: self.edgeNodes->collect(x | x.cpuCores)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Cluster",
+      "parameters": {
+        "collection": "edgeNodes",
+        "iterator": "x",
+        "attribute": "cpuCores"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.045868",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 45,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Firmware\ninv: self.version <> null implies self.checksum <> null",
+      "pattern_id": "implies_simple",
+      "pattern_name": "Simple Implication",
+      "context": "Firmware",
+      "parameters": {
+        "first_attribute": "version",
+        "second_attribute": "checksum"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.046463",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 46,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.deviceId.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Device",
+      "parameters": {
+        "string_attribute": "deviceId",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.046935",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 47,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: (self.name <> null and self.version <> null) or (self.name = null and self.version = null)",
+      "pattern_id": "both_defined_or_both_null",
+      "pattern_name": "Both Defined Or Both Null",
+      "context": "IoTPlatform",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "version"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.047553",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">",
+          "and",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context SensorNode\ninv: self.metrics->size() > 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "SensorNode",
+      "parameters": {
+        "collection": "metrics",
+        "operator": ">",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.048094",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 49,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cluster\ninv: self.edgeNodes->excludingAll(self.edgeNodes)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Cluster",
+      "parameters": {
+        "collection1": "edgeNodes",
+        "collection2": "edgeNodes"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.048390",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 50,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.accessPolicies->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection": "accessPolicies",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.048820",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 51,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Network\ninv: self.links->notEmpty() implies self.links->sortedBy(x | x.linkId)->first().linkId <= self.links->sortedBy(x | x.linkId)->last().linkId",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Network",
+      "parameters": {
+        "collection": "links",
+        "attribute": "linkId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.049841",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 54,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 3,
+        "implies": [
+          "sortedBy_Network",
+          "sortedBy_Network"
+        ]
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.tickets->notEmpty() implies self.tickets->sortedBy(x | x.ticketId)->first().ticketId <= self.tickets->sortedBy(x | x.ticketId)->last().ticketId",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Device",
+      "parameters": {
+        "collection": "tickets",
+        "attribute": "ticketId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.050251",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 55,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_not_empty_simple_Device"
+        ]
+      }
+    },
+    {
+      "ocl": "context User\ninv: (self.userId <> null) = (self.email <> null)",
+      "pattern_id": "bi_implication",
+      "pattern_name": "Bi-directional Implication",
+      "context": "User",
+      "parameters": {
+        "first_attribute": "userId",
+        "second_attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.051213",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 57,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Firmware\ninv: self.devices->size() >= 4 implies self.devices->asSequence()->at(4).deviceId <> null",
+      "pattern_id": "collection_at_index",
+      "pattern_name": "Collection At Index",
+      "context": "Firmware",
+      "parameters": {
+        "collection": "devices",
+        "index": 4,
+        "attribute": "deviceId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.051907",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 59,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 15,
+        "implies": [
+          "collection_size_range_unsat_Firmware"
+        ]
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.dataStreams->includesAll(self.dataStreams) or self.dataStreams->excludesAll(self.dataStreams)",
+      "pattern_id": "includesAll_excludesAll",
+      "pattern_name": "IncludesAll/ExcludesAll Check",
+      "context": "Device",
+      "parameters": {
+        "collection1": "dataStreams",
+        "collection2": "dataStreams"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.052258",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 60,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Location\ninv: self.site <> '' and self.site.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Location",
+      "parameters": {
+        "string_attribute": "site"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.052598",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 61,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.alerts->collect(x | x.alertId)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "User",
+      "parameters": {
+        "collection": "alerts",
+        "iterator": "x",
+        "attribute": "alertId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.053265",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 63,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: self.alertRules->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "DataStream",
+      "parameters": {
+        "collection": "alertRules"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.053759",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Network\ninv: self.links->notEmpty() implies self.links->sortedBy(x | x.bandwidthKbps)->first().bandwidthKbps <= self.links->sortedBy(x | x.bandwidthKbps)->last().bandwidthKbps",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Network",
+      "parameters": {
+        "collection": "links",
+        "attribute": "bandwidthKbps"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.054067",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 65,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 3,
+        "implies": [
+          "sortedBy_Network",
+          "sortedBy_Network"
+        ]
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.dataStreams->forAll(x, y | x <> y implies x.topic <> y.topic)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Device",
+      "parameters": {
+        "collection": "dataStreams",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "topic"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.054641",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 66,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.networks->excludingAll(self.networks)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection1": "networks",
+        "collection2": "networks"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.055028",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 67,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.apiKeys->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "User",
+      "parameters": {
+        "collection": "apiKeys"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.055469",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 68,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cluster\ninv: self.gateways->size() = 1",
+      "pattern_id": "collection_has_size",
+      "pattern_name": "Collection Has Specific Size",
+      "context": "Cluster",
+      "parameters": {
+        "collection": "gateways",
+        "size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.055799",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 69,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.networks->notEmpty() implies self.networks->last().networkId <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection": "networks",
+        "attribute": "networkId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.056969",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 71,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context EventLog\ninv: self.message.size() >= 12",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "EventLog",
+      "parameters": {
+        "string_attribute": "message",
+        "min_length": 12
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.057367",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 72,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context APIKey\ninv: self.value <> '' and self.value.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "APIKey",
+      "parameters": {
+        "string_attribute": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.057722",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 73,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.accessPolicies->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection": "accessPolicies"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.058174",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 74,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 18,
+        "implies": [
+          "collection_max_size_IoTPlatform"
+        ]
+      }
+    },
+    {
+      "ocl": "context Network\ninv: self.name.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Network",
+      "parameters": {
+        "string_attribute": "name",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.058654",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 75,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context OTAUpdate\ninv: self.scheduledAt.size() <= 44",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "OTAUpdate",
+      "parameters": {
+        "string_attribute": "scheduledAt",
+        "max_length": 44
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.058960",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 76,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context OTAUpdate\ninv: self.targetDevice <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "OTAUpdate",
+      "parameters": {
+        "association": "targetDevice"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.059796",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 78,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Role\ninv: self.policies->notEmpty() implies self.policies->sortedBy(x | x.rulesJson)->first().rulesJson <= self.policies->sortedBy(x | x.rulesJson)->last().rulesJson",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Role",
+      "parameters": {
+        "collection": "policies",
+        "attribute": "rulesJson"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.060091",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 79,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.eventLogs->excludingAll(self.eventLogs)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Device",
+      "parameters": {
+        "collection1": "eventLogs",
+        "collection2": "eventLogs"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.061004",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 81,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 20,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Gateway\ninv: self.connectedEdges->collect(x | x.memoryMB)->sum() >= 6",
+      "pattern_id": "collection_sum",
+      "pattern_name": "Collection Sum",
+      "context": "Gateway",
+      "parameters": {
+        "collection": "connectedEdges",
+        "numeric_attribute": "memoryMB",
+        "min_sum": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.061363",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 82,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "sum"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: self.alertRules->size() >= 2",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "DataStream",
+      "parameters": {
+        "collection": "alertRules",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.061698",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 2,
+        "implies": [
+          "collection_not_empty_check_DataStream",
+          "sortedBy_unsat_DataStream"
+        ]
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.email.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "User",
+      "parameters": {
+        "string_attribute": "email",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.062090",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 84,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Gateway\ninv: self.connectedEdges->asSet()->size() <= self.connectedEdges->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Gateway",
+      "parameters": {
+        "collection": "connectedEdges"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.062459",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 85,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: self.roles->notEmpty() implies self.roles->sortedBy(x | x.roleName)->first().roleName <= self.roles->sortedBy(x | x.roleName)->last().roleName",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "AccessPolicy",
+      "parameters": {
+        "collection": "roles",
+        "attribute": "roleName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.063123",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 86,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_size_range_AccessPolicy",
+          "sortedBy_unsat_AccessPolicy",
+          "collection_last_unsat_AccessPolicy"
+        ]
+      }
+    },
+    {
+      "ocl": "context Gateway\ninv: self.connectedEdges->isUnique(x | x.memoryMB)",
+      "pattern_id": "uniqueness_constraint",
+      "pattern_name": "Uniqueness Constraint",
+      "context": "Gateway",
+      "parameters": {
+        "collection": "connectedEdges",
+        "iterator": "x",
+        "attribute": "memoryMB"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.063660",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 87,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DataStream\ninv: self.streamId.size() = 21",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "DataStream",
+      "parameters": {
+        "string_attribute": "streamId",
+        "length": 21
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.063971",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 88,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 21,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.roles->union(self.roles)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection1": "roles",
+        "collection2": "roles"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.065294",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 91,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.roles->excludingAll(self.roles)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "IoTPlatform",
+      "parameters": {
+        "collection1": "roles",
+        "collection2": "roles"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.065952",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 92,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Device\ninv: self.status = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Device",
+      "parameters": {
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.066457",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 93,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Metric\ninv: self.unit.size() <= 13",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Metric",
+      "parameters": {
+        "string_attribute": "unit",
+        "max_length": 13
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.066744",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 94,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: self.description <> null implies self.policyId <> null",
+      "pattern_id": "implies_reverse",
+      "pattern_name": "Reverse Implication",
+      "context": "AccessPolicy",
+      "parameters": {
+        "first_attribute": "policyId",
+        "second_attribute": "description"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.067172",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 95,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 22,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context IoTPlatform\ninv: self.version.size() <= 21",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "IoTPlatform",
+      "parameters": {
+        "string_attribute": "version",
+        "max_length": 21
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.067817",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 97,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccessPolicy\ninv: self.rulesJson <> null and self.description <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "AccessPolicy",
+      "parameters": {
+        "first_attribute": "rulesJson",
+        "second_attribute": "description"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.068464",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 98,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 22,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Network\ninv: not(self.name <> null and self.networkId <> null)",
+      "pattern_id": "not_both_defined",
+      "pattern_name": "Not Both Defined",
+      "context": "Network",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "networkId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-09T10:39:26.068805",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 99,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    }
+  ]
+}

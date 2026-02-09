@@ -1,0 +1,265 @@
+-- Benchmark: library_system / balanced
+-- Generated: 2026-02-07T19:14:22.211577
+-- Seed: 42
+-- Complexity: standard
+-- Count: 43
+-- Research Features: ENABLED
+
+-- #1 Simple Implication in Reservation
+-- Difficulty: easy
+-- Type: SAT
+context Reservation
+inv: self.requestDate <> null implies self.expiryDate <> null
+
+-- #2 Collection Excluding Element in Book
+-- Difficulty: medium
+-- Type: SAT
+context Book
+inv: self.reservations->excluding(self.reservations->any(true))->size() < self.reservations->size()
+
+-- #3 Collection Maximum Size in Member
+-- Difficulty: medium
+-- Type: SAT
+context Member
+inv: self.loans->size() <= 2
+
+-- #4 Collection Not Empty (Simple) in Author
+-- Difficulty: easy
+-- Type: SAT
+context Author
+inv: self.books->notEmpty()
+
+-- #5 Collection Must Be Empty in Library
+-- Difficulty: easy
+-- Type: SAT
+context Library
+inv: self.branches->isEmpty()
+
+-- #6 Collection Not Empty (Simple) in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.reservations->notEmpty()
+
+-- #7 Association Exists in Payment
+-- Difficulty: easy
+-- Type: SAT
+context Payment
+inv: self.member <> null
+
+-- #8 Association Exists in Address
+-- Difficulty: easy
+-- Type: SAT
+context Address
+inv: self.branch <> null
+
+-- #9 Association Exists in Copy
+-- Difficulty: easy
+-- Type: SAT
+context Copy
+inv: self.book <> null
+
+-- #10 Collection Size in Range in Category
+-- Difficulty: medium
+-- Type: SAT
+context Category
+inv: self.books->size() >= 1 and self.books->size() <= 3
+
+-- #11 Numeric Attribute Positive in Fine
+-- Difficulty: trivial
+-- Type: SAT
+context Fine
+inv: self.amount > 0
+
+-- #12 String Contains Substring in Publisher
+-- Difficulty: medium
+-- Type: SAT
+context Publisher
+inv: self.name.indexOf('value') >= 0
+
+-- #13 String Minimum Length in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.phone.size() >= 3
+
+-- #14 Collect (Map) Operation in Book
+-- Difficulty: medium
+-- Type: SAT
+context Book
+inv: self.copies->collect(x | x.barcode)->notEmpty()
+
+-- #15 String Starts With in Member
+-- Difficulty: medium
+-- Type: SAT
+context Member
+inv: self.name.size() >= 6 implies self.name.substring(1, 6) = 'value'
+
+-- #16 Simple Implication in Staff
+-- Difficulty: easy
+-- Type: SAT
+context Staff
+inv: self.email <> null implies self.name <> null
+
+-- #17 String Exact Length in Reservation
+-- Difficulty: easy
+-- Type: SAT
+context Reservation
+inv: self.expiryDate.size() = 12
+
+-- #18 String Not Empty in Address
+-- Difficulty: medium
+-- Type: SAT
+context Address
+inv: self.country <> '' and self.country.size() > 0
+
+-- #19 Collection Size Constraint in Author
+-- Difficulty: medium
+-- Type: SAT
+context Author
+inv: self.books->size() <= 1
+
+-- #20 Set Intersection in Library
+-- Difficulty: easy
+-- Type: SAT
+context Library
+inv: self.books->intersection(self.books)->notEmpty()
+
+-- #21 Collection As Sequence Conversion in Author
+-- Difficulty: easy
+-- Type: SAT
+context Author
+inv: self.books->asSequence()->notEmpty()
+
+-- #22 String Contains Substring in Fine
+-- Difficulty: medium
+-- Type: SAT
+context Fine
+inv: self.reason.indexOf('value') >= 0
+
+-- #23 String Equality in Loan
+-- Difficulty: trivial
+-- Type: SAT
+context Loan
+inv: self.returnDate = self.startDate
+
+-- #24 String Contains Substring in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.code.indexOf('value') >= 0
+
+-- #25 Set Union in Member
+-- Difficulty: easy
+-- Type: SAT
+context Member
+inv: self.reservations->union(self.reservations)->notEmpty()
+
+-- #26 String Starts With in Address
+-- Difficulty: medium
+-- Type: SAT
+context Address
+inv: self.city.size() >= 10 implies self.city.substring(1, 10) = 'value'
+
+-- #27 Set Union in Member
+-- Difficulty: easy
+-- Type: SAT
+context Member
+inv: self.loans->union(self.loans)->notEmpty()
+
+-- #28 IncludesAll/ExcludesAll Check in Book
+-- Difficulty: medium
+-- Type: SAT
+context Book
+inv: self.reservations->includesAll(self.reservations) or self.reservations->excludesAll(self.reservations)
+
+-- #29 String Minimum Length in Loan
+-- Difficulty: medium
+-- Type: SAT
+context Loan
+inv: self.dueDate.size() >= 18
+
+-- #30 String Maximum Length in Loan
+-- Difficulty: medium
+-- Type: SAT
+context Loan
+inv: self.returnDate.size() <= 24
+
+-- #31 String Maximum Length in Author
+-- Difficulty: medium
+-- Type: SAT
+context Author
+inv: self.name.size() <= 89
+
+-- #32 Symmetric Difference in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.reservations->symmetricDifference(self.reservations)->isEmpty()
+
+-- #33 String Exact Length in Fine
+-- Difficulty: easy
+-- Type: SAT
+context Fine
+inv: self.reason.size() = 37
+
+-- #34 Attribute Must Be Null (UNSAT) in Loan
+-- Difficulty: trivial
+-- Type: UNSAT
+context Loan
+inv: not(self.startDate = null)
+
+-- #35 Association Exists (UNSAT) in Librarian
+-- Difficulty: easy
+-- Type: UNSAT
+context Librarian
+inv: not(self.managedBranch <> null)
+
+-- #36 All Different (UNSAT) in Member
+-- Difficulty: medium
+-- Type: UNSAT
+context Member
+inv: not(self.loans->forAll(x, y | x <> y implies x.returnDate <> y.returnDate))
+
+-- #37 Collection Not Empty Check (UNSAT) in Branch
+-- Difficulty: easy
+-- Type: UNSAT
+context Branch
+inv: (self.staff->size() > 0) and (self.staff->size() < -5)
+
+-- #38 Numeric Is Even (UNSAT) in Book
+-- Difficulty: easy
+-- Type: UNSAT
+context Book
+inv: (self.publishYear mod 2 = 0) and (2 <> 0)
+
+-- #39 Collection Maximum Size (UNSAT) in Publisher
+-- Difficulty: medium
+-- Type: UNSAT
+context Publisher
+inv: (self.books->size() <= 3) and (self.books->size() > 3)
+
+-- #40 All Attributes Defined (UNSAT) in Address
+-- Difficulty: easy
+-- Type: UNSAT
+context Address
+inv: not(self.country <> null and self.city <> null)
+
+-- #41 Simple Implication (UNSAT) in Branch
+-- Difficulty: easy
+-- Type: UNSAT
+context Branch
+inv: not(self.name <> null implies self.code <> null)
+
+-- #42 Collect (Map) Operation (UNSAT) in Book
+-- Difficulty: medium
+-- Type: UNSAT
+context Book
+inv: not(self.reservations->collect(x | x.expiryDate)->notEmpty())
+
+-- #43 Collection First Element (UNSAT) in Member
+-- Difficulty: medium
+-- Type: UNSAT
+context Member
+inv: (self.reservations->notEmpty() implies self.reservations->first().expiryDate <> null) and (self.reservations->isEmpty())
+

@@ -1,0 +1,468 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "Flight_booking",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:30:42.355891",
+    "constraint_count": 15
+  },
+  "constraints": [
+    {
+      "ocl": "context Flight\ninv: (self.bookings->size() = 1) and (self.bookings->size() <> 1)",
+      "pattern_id": "size_constraint_unsat",
+      "pattern_name": "Collection Size Constraint (UNSAT)",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "operator": "=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438266",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_Flight",
+          "sortedBy_Flight",
+          "collection_max_size_Flight"
+        ]
+      }
+    },
+    {
+      "ocl": "context Ticket\ninv: not(self.issuedAt <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Ticket",
+      "parameters": {
+        "attribute": "issuedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438289",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BoardingPass\ninv: not(not(self.boardingTime <> null and self.gate <> null))",
+      "pattern_id": "not_both_defined_unsat",
+      "pattern_name": "Not Both Defined (UNSAT)",
+      "context": "BoardingPass",
+      "parameters": {
+        "first_attribute": "boardingTime",
+        "second_attribute": "gate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438303",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 6,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: (self.departingFlights->size() >= 1 and self.departingFlights->size() <= 3) and (self.departingFlights->size() < 1)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Airport",
+      "parameters": {
+        "collection": "departingFlights",
+        "min_size": 1,
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438318",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 11,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: (self.amount > 0) and (self.amount < -5)",
+      "pattern_id": "numeric_positive_unsat",
+      "pattern_name": "Numeric Attribute Positive (UNSAT)",
+      "context": "Payment",
+      "parameters": {
+        "numeric_attribute": "amount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438330",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 14,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 6,
+        "implies": [
+          "numeric_non_negative_Payment"
+        ]
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: not(self.email.size() = 24)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "Passenger",
+      "parameters": {
+        "string_attribute": "email",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438358",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 25,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: not(self.createdAt <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Booking",
+      "parameters": {
+        "attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438372",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 35,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: (self.flight.oclIsTypeOf(Flight)) and (flight.oclIsTypeOf(Payment))",
+      "pattern_id": "type_check_unsat",
+      "pattern_name": "Type Check (UNSAT)",
+      "context": "Booking",
+      "parameters": {
+        "attribute": "flight",
+        "type": "Flight"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438475",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "type_contradiction",
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CheckIn\ninv: not(self.checkInTime.size() = 40)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "CheckIn",
+      "parameters": {
+        "string_attribute": "checkInTime",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438514",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Baggage\ninv: (self.weightKg > 61) and (self.weightKg < 56)",
+      "pattern_id": "numeric_greater_than_value_unsat",
+      "pattern_name": "Numeric Greater Than Value (UNSAT)",
+      "context": "Baggage",
+      "parameters": {
+        "numeric_attribute": "weightKg",
+        "value": 61
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438528",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 54,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ticket\ninv: (self.booking.oclIsTypeOf(Booking)) and (booking.oclIsTypeOf(CheckIn))",
+      "pattern_id": "type_check_unsat",
+      "pattern_name": "Type Check (UNSAT)",
+      "context": "Ticket",
+      "parameters": {
+        "attribute": "booking",
+        "type": "Booking"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438543",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 55,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "type_contradiction",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: not(self.departureTime.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Flight",
+      "parameters": {
+        "string_attribute": "departureTime",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438593",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 61,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: not(self.email.size() <= 44)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "Passenger",
+      "parameters": {
+        "string_attribute": "email",
+        "max_length": 44
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438618",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 62,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Seat\ninv: not(self.seatNo.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Seat",
+      "parameters": {
+        "string_attribute": "seatNo",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438653",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: not(self.departureTime <> null and self.arrivalTime <> null)",
+      "pattern_id": "all_attributes_defined_unsat",
+      "pattern_name": "All Attributes Defined (UNSAT)",
+      "context": "Flight",
+      "parameters": {
+        "first_attribute": "departureTime",
+        "second_attribute": "arrivalTime"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438679",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    }
+  ]
+}

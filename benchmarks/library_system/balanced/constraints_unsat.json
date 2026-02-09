@@ -1,0 +1,320 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "library_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:14:22.219028",
+    "constraint_count": 10
+  },
+  "constraints": [
+    {
+      "ocl": "context Loan\ninv: not(self.startDate = null)",
+      "pattern_id": "attribute_null_check_unsat",
+      "pattern_name": "Attribute Must Be Null (UNSAT)",
+      "context": "Loan",
+      "parameters": {
+        "attribute": "startDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730248",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Librarian\ninv: not(self.managedBranch <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Librarian",
+      "parameters": {
+        "association": "managedBranch"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730269",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Member\ninv: not(self.loans->forAll(x, y | x <> y implies x.returnDate <> y.returnDate))",
+      "pattern_id": "all_different_unsat",
+      "pattern_name": "All Different (UNSAT)",
+      "context": "Member",
+      "parameters": {
+        "collection": "loans",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "returnDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730428",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 18,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: (self.staff->size() > 0) and (self.staff->size() < -5)",
+      "pattern_id": "collection_not_empty_check_unsat",
+      "pattern_name": "Collection Not Empty Check (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "collection": "staff"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730602",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Book\ninv: (self.publishYear mod 2 = 0) and (2 <> 0)",
+      "pattern_id": "numeric_even_unsat",
+      "pattern_name": "Numeric Is Even (UNSAT)",
+      "context": "Book",
+      "parameters": {
+        "numeric_attribute": "publishYear"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730633",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 33,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Publisher\ninv: (self.books->size() <= 3) and (self.books->size() > 3)",
+      "pattern_id": "collection_max_size_unsat",
+      "pattern_name": "Collection Maximum Size (UNSAT)",
+      "context": "Publisher",
+      "parameters": {
+        "collection": "books",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730648",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: not(self.country <> null and self.city <> null)",
+      "pattern_id": "all_attributes_defined_unsat",
+      "pattern_name": "All Attributes Defined (UNSAT)",
+      "context": "Address",
+      "parameters": {
+        "first_attribute": "country",
+        "second_attribute": "city"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730661",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 41,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: not(self.name <> null implies self.code <> null)",
+      "pattern_id": "implies_simple_unsat",
+      "pattern_name": "Simple Implication (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "code"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730673",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Book\ninv: not(self.reservations->collect(x | x.expiryDate)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Book",
+      "parameters": {
+        "collection": "reservations",
+        "iterator": "x",
+        "attribute": "expiryDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730760",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 47,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Member\ninv: (self.reservations->notEmpty() implies self.reservations->first().expiryDate <> null) and (self.reservations->isEmpty())",
+      "pattern_id": "collection_first_unsat",
+      "pattern_name": "Collection First Element (UNSAT)",
+      "context": "Member",
+      "parameters": {
+        "collection": "reservations",
+        "attribute": "expiryDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:14:07.730775",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    }
+  ]
+}

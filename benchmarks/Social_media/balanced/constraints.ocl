@@ -1,0 +1,409 @@
+-- Benchmark: Social_media / balanced
+-- Generated: 2026-02-07T19:34:28.745593
+-- Seed: 42
+-- Complexity: standard
+-- Count: 67
+-- Research Features: ENABLED
+
+-- #1 Attribute Not Null (Simple) in Notification
+-- Difficulty: easy
+-- Type: SAT
+context Notification
+inv: self.type <> null
+
+-- #2 Association Exists in Reaction
+-- Difficulty: easy
+-- Type: SAT
+context Reaction
+inv: self.post <> null
+
+-- #3 Association Exists in Post
+-- Difficulty: easy
+-- Type: SAT
+context Post
+inv: self.author <> null
+
+-- #4 Association Exists in Membership
+-- Difficulty: easy
+-- Type: SAT
+context Membership
+inv: self.group <> null
+
+-- #5 Association Exists in Message
+-- Difficulty: easy
+-- Type: SAT
+context Message
+inv: self.sender <> null
+
+-- #6 Association Exists in FriendRequest
+-- Difficulty: easy
+-- Type: SAT
+context FriendRequest
+inv: self.toUser <> null
+
+-- #7 Collection Size in Range in Tag
+-- Difficulty: medium
+-- Type: SAT
+context Tag
+inv: self.posts->size() >= 1 and self.posts->size() <= 1
+
+-- #8 Collection Size in Range in Conversation
+-- Difficulty: medium
+-- Type: SAT
+context Conversation
+inv: self.messages->size() >= 2 and self.messages->size() <= 2
+
+-- #9 String Maximum Length in Conversation
+-- Difficulty: medium
+-- Type: SAT
+context Conversation
+inv: self.createdAt.size() <= 23
+
+-- #10 String Minimum Length in Group
+-- Difficulty: medium
+-- Type: SAT
+context Group
+inv: self.createdAt.size() >= 5
+
+-- #11 Type Check in Profile
+-- Difficulty: medium
+-- Type: SAT
+context Profile
+inv: self.user.oclIsTypeOf(User)
+
+-- #12 Collection Size Constraint in User
+-- Difficulty: easy
+-- Type: SAT
+context User
+inv: self.notifications->size() > 1
+
+-- #13 Set Intersection in User
+-- Difficulty: easy
+-- Type: SAT
+context User
+inv: self.posts->intersection(self.posts)->notEmpty()
+
+-- #14 String Equality in Comment
+-- Difficulty: trivial
+-- Type: SAT
+context Comment
+inv: self.createdAt = self.text
+
+-- #15 String Contains Substring in Group
+-- Difficulty: medium
+-- Type: SAT
+context Group
+inv: self.createdAt.indexOf('value') >= 0
+
+-- #16 Collect (Map) Operation in User
+-- Difficulty: medium
+-- Type: SAT
+context User
+inv: self.posts->collect(x | x.content)->notEmpty()
+
+-- #17 String Exact Length in User
+-- Difficulty: easy
+-- Type: SAT
+context User
+inv: self.createdAt.size() = 24
+
+-- #18 Collection Excluding Element in Post
+-- Difficulty: medium
+-- Type: SAT
+context Post
+inv: self.media->excluding(self.media->any(true))->size() < self.media->size()
+
+-- #19 String Not Empty in FriendRequest
+-- Difficulty: medium
+-- Type: SAT
+context FriendRequest
+inv: self.createdAt <> '' and self.createdAt.size() > 0
+
+-- #20 Uniqueness Constraint in Conversation
+-- Difficulty: easy
+-- Type: SAT
+context Conversation
+inv: self.participants->isUnique(x | x.createdAt)
+
+-- #21 Collection Last Element in Group
+-- Difficulty: medium
+-- Type: SAT
+context Group
+inv: self.memberships->notEmpty() implies self.memberships->last().joinedAt <> null
+
+-- #22 Collection Maximum Size in User
+-- Difficulty: medium
+-- Type: SAT
+context User
+inv: self.notifications->size() <= 3
+
+-- #23 Collection Unique Attribute Values in User
+-- Difficulty: easy
+-- Type: SAT
+context User
+inv: self.posts->isUnique(x | x.createdAt)
+
+-- #24 String Minimum Length in Profile
+-- Difficulty: medium
+-- Type: SAT
+context Profile
+inv: self.bio.size() >= 18
+
+-- #25 Collection Size Constraint in Post
+-- Difficulty: medium
+-- Type: SAT
+context Post
+inv: self.media->size() <> 1
+
+-- #26 Collection Unique Attribute Values in User
+-- Difficulty: easy
+-- Type: SAT
+context User
+inv: self.notifications->isUnique(x | x.type)
+
+-- #27 Collection As Set Conversion in User
+-- Difficulty: medium
+-- Type: SAT
+context User
+inv: self.notifications->asSet()->size() <= self.notifications->size()
+
+-- #28 Attribute Not Null (Simple) in Message
+-- Difficulty: easy
+-- Type: SAT
+context Message
+inv: self.body <> null
+
+-- #29 Attribute Not Null (Simple) in Media
+-- Difficulty: easy
+-- Type: SAT
+context Media
+inv: self.mediaType <> null
+
+-- #30 String Exact Length in Notification
+-- Difficulty: easy
+-- Type: SAT
+context Notification
+inv: self.message.size() = 37
+
+-- #31 Attribute Must Be Null in Message
+-- Difficulty: trivial
+-- Type: SAT
+context Message
+inv: self.body = null
+
+-- #32 Type Check in Post
+-- Difficulty: medium
+-- Type: SAT
+context Post
+inv: self.author.oclIsTypeOf(User)
+
+-- #33 Sum Operation in User
+-- Difficulty: medium
+-- Type: SAT
+context User
+inv: self.notifications->select(x | x.isSeen)->size() = 93
+
+-- #34 SortedBy Operation in Tag
+-- Difficulty: hard
+-- Type: SAT
+context Tag
+inv: self.posts->notEmpty() implies self.posts->sortedBy(x | x.content)->first().content <= self.posts->sortedBy(x | x.content)->last().content
+
+-- #35 String Starts With in Conversation
+-- Difficulty: medium
+-- Type: SAT
+context Conversation
+inv: self.createdAt.size() >= 5 implies self.createdAt.substring(1, 5) = 'value'
+
+-- #36 Boolean Is True in Notification
+-- Difficulty: trivial
+-- Type: SAT
+context Notification
+inv: self.isSeen = true
+
+-- #37 Attribute Not Null (Simple) in Reaction
+-- Difficulty: easy
+-- Type: SAT
+context Reaction
+inv: self.createdAt <> null
+
+-- #38 String Maximum Length in Notification
+-- Difficulty: medium
+-- Type: SAT
+context Notification
+inv: self.createdAt.size() <= 53
+
+-- #39 Collection Excluding Element in Conversation
+-- Difficulty: medium
+-- Type: SAT
+context Conversation
+inv: self.participants->excluding(self.participants->any(true))->size() < self.participants->size()
+
+-- #40 Collection Nested Collection Flatten in Conversation
+-- Difficulty: medium
+-- Type: SAT
+context Conversation
+inv: self.participants->collect(x | x.notifications)->size() >= 1
+
+-- #41 Collection Last Element in Post
+-- Difficulty: medium
+-- Type: SAT
+context Post
+inv: self.comments->notEmpty() implies self.comments->last().text <> null
+
+-- #42 Collection Not Empty (Simple) in Post
+-- Difficulty: easy
+-- Type: SAT
+context Post
+inv: self.reactions->notEmpty()
+
+-- #43 String Contains Substring in Tag
+-- Difficulty: medium
+-- Type: SAT
+context Tag
+inv: self.label.indexOf('value') >= 0
+
+-- #44 SortedBy Operation in Post
+-- Difficulty: hard
+-- Type: SAT
+context Post
+inv: self.media->notEmpty() implies self.media->sortedBy(x | x.url)->first().url <= self.media->sortedBy(x | x.url)->last().url
+
+-- #45 All Different in Group
+-- Difficulty: medium
+-- Type: SAT
+context Group
+inv: self.memberships->forAll(x, y | x <> y implies x.joinedAt <> y.joinedAt)
+
+-- #46 Collection Maximum Size in Tag
+-- Difficulty: medium
+-- Type: SAT
+context Tag
+inv: self.posts->size() <= 3
+
+-- #47 String Minimum Length in Message
+-- Difficulty: medium
+-- Type: SAT
+context Message
+inv: self.sentAt.size() >= 12
+
+-- #48 Collection As Set Conversion in Post
+-- Difficulty: medium
+-- Type: SAT
+context Post
+inv: self.media->asSet()->size() <= self.media->size()
+
+-- #49 Attribute Not Null (Simple) in Comment
+-- Difficulty: easy
+-- Type: SAT
+context Comment
+inv: self.text <> null
+
+-- #50 All Different in User
+-- Difficulty: medium
+-- Type: SAT
+context User
+inv: self.posts->forAll(x, y | x <> y implies x.isPublic <> y.isPublic)
+
+-- #51 String Exact Length in Membership
+-- Difficulty: easy
+-- Type: SAT
+context Membership
+inv: self.joinedAt.size() = 24
+
+-- #52 Collection At Index in Conversation
+-- Difficulty: hard
+-- Type: SAT
+context Conversation
+inv: self.participants->size() >= 2 implies self.participants->asSequence()->at(2).email <> null
+
+-- #53 Collection Maximum Size (UNSAT) in Conversation
+-- Difficulty: medium
+-- Type: UNSAT
+context Conversation
+inv: (self.messages->size() <= 1) and (self.messages->size() > 1)
+
+-- #54 Collection Size Constraint (UNSAT) in Group
+-- Difficulty: easy
+-- Type: UNSAT
+context Group
+inv: (self.memberships->size() > 1) and (self.memberships->size() < -4)
+
+-- #55 Association Exists (UNSAT) in Profile
+-- Difficulty: easy
+-- Type: UNSAT
+context Profile
+inv: not(self.user <> null)
+
+-- #56 Association Exists (UNSAT) in Follow
+-- Difficulty: easy
+-- Type: UNSAT
+context Follow
+inv: not(self.followee <> null)
+
+-- #57 Collection Size in Range (UNSAT) in Post
+-- Difficulty: medium
+-- Type: UNSAT
+context Post
+inv: (self.reactions->size() >= 1 and self.reactions->size() <= 3) and (self.reactions->size() < 1)
+
+-- #58 String Exact Length (UNSAT) in User
+-- Difficulty: easy
+-- Type: UNSAT
+context User
+inv: not(self.createdAt.size() = 11)
+
+-- #59 Simple Implication (UNSAT) in User
+-- Difficulty: easy
+-- Type: UNSAT
+context User
+inv: not(self.username <> null implies self.email <> null)
+
+-- #60 Collection As Sequence Conversion (UNSAT) in User
+-- Difficulty: easy
+-- Type: UNSAT
+context User
+inv: not(self.notifications->asSequence()->notEmpty())
+
+-- #61 Collect (Map) Operation (UNSAT) in Post
+-- Difficulty: medium
+-- Type: UNSAT
+context Post
+inv: not(self.reactions->collect(x | x.type)->notEmpty())
+
+-- #62 Collection As Set Conversion (UNSAT) in User
+-- Difficulty: medium
+-- Type: UNSAT
+context User
+inv: not(self.posts->asSet()->size() <= self.posts->size())
+
+-- #63 Sum Operation (UNSAT) in User
+-- Difficulty: medium
+-- Type: UNSAT
+context User
+inv: not(self.posts->select(x | x.isPublic)->size() >= 49)
+
+-- #64 String Minimum Length (UNSAT) in Post
+-- Difficulty: medium
+-- Type: UNSAT
+context Post
+inv: not(self.createdAt.size() >= 3)
+
+-- #65 String Maximum Length (UNSAT) in User
+-- Difficulty: medium
+-- Type: UNSAT
+context User
+inv: not(self.createdAt.size() <= 44)
+
+-- #66 Type Check (UNSAT) in Media
+-- Difficulty: medium
+-- Type: UNSAT
+context Media
+inv: (self.post.oclIsTypeOf(Post)) and (post.oclIsTypeOf(Tag))
+
+-- #67 Collection Must Be Empty (UNSAT) in Post
+-- Difficulty: easy
+-- Type: UNSAT
+context Post
+inv: not(self.media->isEmpty())
+

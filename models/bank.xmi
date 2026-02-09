@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="bankingsystem"
+  nsURI="http://example.org/bankingsystem"
+  nsPrefix="bank">
+
+  <!-- ===== ENUMS ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="AccountStatus">
+    <eLiterals name="Active" value="0"/>
+    <eLiterals name="Frozen" value="1"/>
+    <eLiterals name="Closed" value="2"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="LoanStatus">
+    <eLiterals name="Requested" value="0"/>
+    <eLiterals name="Approved" value="1"/>
+    <eLiterals name="Rejected" value="2"/>
+    <eLiterals name="Closed" value="3"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES (17) ===== -->
+
+  <!-- 1) Bank -->
+  <eClassifiers xsi:type="ecore:EClass" name="Bank">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="swiftCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branches"
+      upperBound="-1" containment="true" eType="#//Branch" eOpposite="#//Branch/bank"/>
+  </eClassifiers>
+
+  <!-- 2) Branch -->
+  <eClassifiers xsi:type="ecore:EClass" name="Branch">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="branchCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bank"
+      lowerBound="1" eType="#//Bank" eOpposite="#//Bank/branches"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employees"
+      upperBound="-1" containment="true" eType="#//Employee" eOpposite="#//Employee/branch"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customers"
+      upperBound="-1" eType="#//Customer" eOpposite="#//Customer/branch"/>
+  </eClassifiers>
+
+  <!-- 3) Customer -->
+  <eClassifiers xsi:type="ecore:EClass" name="Customer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="customerId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/customers"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="address"
+      upperBound="1" containment="true" eType="#//Address" eOpposite="#//Address/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="kyc"
+      upperBound="1" containment="true" eType="#//KYCRecord" eOpposite="#//KYCRecord/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accounts"
+      upperBound="-1" containment="true" eType="#//Account" eOpposite="#//Account/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loans"
+      upperBound="-1" containment="true" eType="#//Loan" eOpposite="#//Loan/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cards"
+      upperBound="-1" containment="true" eType="#//CreditCard" eOpposite="#//CreditCard/customer"/>
+  </eClassifiers>
+
+  <!-- 4) Address -->
+  <eClassifiers xsi:type="ecore:EClass" name="Address">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="line1"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="country"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postalCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/address"/>
+  </eClassifiers>
+
+  <!-- 5) Account (abstract) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Account" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accountNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="balance"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//AccountStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/accounts"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transactions"
+      upperBound="-1" containment="true" eType="#//Transaction" eOpposite="#//Transaction/account"/>
+  </eClassifiers>
+
+  <!-- 6) CheckingAccount -->
+  <eClassifiers xsi:type="ecore:EClass" name="CheckingAccount" eSuperTypes="#//Account">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="overdraftLimit"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+
+  <!-- 7) SavingsAccount -->
+  <eClassifiers xsi:type="ecore:EClass" name="SavingsAccount" eSuperTypes="#//Account">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interestRate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+
+  <!-- 8) Loan -->
+  <eClassifiers xsi:type="ecore:EClass" name="Loan">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loanId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="principal"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interestRate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//LoanStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/loans"/>
+  </eClassifiers>
+
+  <!-- 9) CreditCard -->
+  <eClassifiers xsi:type="ecore:EClass" name="CreditCard">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limit"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/cards"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cardTransactions"
+      upperBound="-1" containment="true" eType="#//CardTransaction" eOpposite="#//CardTransaction/card"/>
+  </eClassifiers>
+
+  <!-- 10) Transaction (abstract) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Transaction" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="txnId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payment"
+      upperBound="1" containment="true" eType="#//Payment" eOpposite="#//Payment/transaction"/>
+
+    <!-- optional link back to account -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="account"
+      upperBound="1" eType="#//Account" eOpposite="#//Account/transactions"/>
+  </eClassifiers>
+
+  <!-- 11) CardTransaction -->
+  <eClassifiers xsi:type="ecore:EClass" name="CardTransaction" eSuperTypes="#//Transaction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="merchant"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="card"
+      lowerBound="1" eType="#//CreditCard" eOpposite="#//CreditCard/cardTransactions"/>
+  </eClassifiers>
+
+  <!-- 12) AccountTransaction -->
+  <eClassifiers xsi:type="ecore:EClass" name="AccountTransaction" eSuperTypes="#//Transaction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+
+  <!-- 13) Payment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConfirmed"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transaction"
+      lowerBound="1" eType="#//Transaction" eOpposite="#//Transaction/payment"/>
+  </eClassifiers>
+
+  <!-- 14) Employee (abstract) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Employee" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="employeeId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/employees"/>
+  </eClassifiers>
+
+  <!-- 15) Teller -->
+  <eClassifiers xsi:type="ecore:EClass" name="Teller" eSuperTypes="#//Employee">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="counterNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+
+  <!-- 16) Manager -->
+  <eClassifiers xsi:type="ecore:EClass" name="Manager" eSuperTypes="#//Employee">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+
+  <!-- 17) KYCRecord -->
+  <eClassifiers xsi:type="ecore:EClass" name="KYCRecord">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idNumber"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="verifiedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVerified"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/kyc"/>
+  </eClassifiers>
+
+</ecore:EPackage>

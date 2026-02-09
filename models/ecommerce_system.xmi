@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="ecommercesystem"
+  nsURI="http://example.org/ecommercesystem"
+  nsPrefix="ecom">
+
+  <!-- ===== ENUMS ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="OrderStatus">
+    <eLiterals name="Created" value="0"/>
+    <eLiterals name="Paid" value="1"/>
+    <eLiterals name="Shipped" value="2"/>
+    <eLiterals name="Delivered" value="3"/>
+    <eLiterals name="Cancelled" value="4"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="PaymentStatus">
+    <eLiterals name="Pending" value="0"/>
+    <eLiterals name="Success" value="1"/>
+    <eLiterals name="Failed" value="2"/>
+    <eLiterals name="Refunded" value="3"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES (19) ===== -->
+
+  <!-- 1) Store -->
+  <eClassifiers xsi:type="ecore:EClass" name="Store">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currency"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="categories"
+      upperBound="-1" containment="true" eType="#//Category" eOpposite="#//Category/store"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products"
+      upperBound="-1" containment="true" eType="#//Product" eOpposite="#//Product/store"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coupons"
+      upperBound="-1" containment="true" eType="#//Coupon" eOpposite="#//Coupon/store"/>
+  </eClassifiers>
+
+  <!-- 2) Category -->
+  <eClassifiers xsi:type="ecore:EClass" name="Category">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store"
+      lowerBound="1" eType="#//Store" eOpposite="#//Store/categories"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products"
+      upperBound="-1" eType="#//Product" eOpposite="#//Product/category"/>
+  </eClassifiers>
+
+  <!-- 3) Product -->
+  <eClassifiers xsi:type="ecore:EClass" name="Product">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sku"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePrice"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store"
+      lowerBound="1" eType="#//Store" eOpposite="#//Store/products"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category"
+      lowerBound="1" eType="#//Category" eOpposite="#//Category/products"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variants"
+      upperBound="-1" containment="true" eType="#//ProductVariant" eOpposite="#//ProductVariant/product"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reviews"
+      upperBound="-1" containment="true" eType="#//Review" eOpposite="#//Review/product"/>
+  </eClassifiers>
+
+  <!-- 4) ProductVariant -->
+  <eClassifiers xsi:type="ecore:EClass" name="ProductVariant">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variantId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optionValue"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priceDelta"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="product"
+      lowerBound="1" eType="#//Product" eOpposite="#//Product/variants"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inventory"
+      upperBound="1" containment="true" eType="#//InventoryItem" eOpposite="#//InventoryItem/variant"/>
+  </eClassifiers>
+
+  <!-- 5) InventoryItem -->
+  <eClassifiers xsi:type="ecore:EClass" name="InventoryItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="warehouseCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variant"
+      lowerBound="1" eType="#//ProductVariant" eOpposite="#//ProductVariant/inventory"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier"
+      upperBound="1" eType="#//Supplier" eOpposite="#//Supplier/inventoryItems"/>
+  </eClassifiers>
+
+  <!-- 6) Supplier -->
+  <eClassifiers xsi:type="ecore:EClass" name="Supplier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contactEmail"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inventoryItems"
+      upperBound="-1" eType="#//InventoryItem" eOpposite="#//InventoryItem/supplier"/>
+  </eClassifiers>
+
+  <!-- 7) Customer -->
+  <eClassifiers xsi:type="ecore:EClass" name="Customer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="customerId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="addresses"
+      upperBound="-1" containment="true" eType="#//Address" eOpposite="#//Address/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cart"
+      upperBound="1" containment="true" eType="#//Cart" eOpposite="#//Cart/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orders"
+      upperBound="-1" containment="true" eType="#//Order" eOpposite="#//Order/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tickets"
+      upperBound="-1" containment="true" eType="#//SupportTicket" eOpposite="#//SupportTicket/customer"/>
+  </eClassifiers>
+
+  <!-- 8) Address -->
+  <eClassifiers xsi:type="ecore:EClass" name="Address">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="line1"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="country"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postalCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/addresses"/>
+  </eClassifiers>
+
+  <!-- 9) Cart -->
+  <eClassifiers xsi:type="ecore:EClass" name="Cart">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/cart"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items"
+      upperBound="-1" containment="true" eType="#//CartItem" eOpposite="#//CartItem/cart"/>
+  </eClassifiers>
+
+  <!-- 10) CartItem -->
+  <eClassifiers xsi:type="ecore:EClass" name="CartItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cart"
+      lowerBound="1" eType="#//Cart" eOpposite="#//Cart/items"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variant"
+      lowerBound="1" eType="#//ProductVariant"/>
+  </eClassifiers>
+
+  <!-- 11) Order -->
+  <eClassifiers xsi:type="ecore:EClass" name="Order">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//OrderStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/orders"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items"
+      upperBound="-1" containment="true" eType="#//OrderItem" eOpposite="#//OrderItem/order"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payment"
+      upperBound="1" containment="true" eType="#//Payment" eOpposite="#//Payment/order"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shipment"
+      upperBound="1" containment="true" eType="#//Shipment" eOpposite="#//Shipment/order"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coupon"
+      upperBound="1" eType="#//Coupon" eOpposite="#//Coupon/orders"/>
+  </eClassifiers>
+
+  <!-- 12) OrderItem -->
+  <eClassifiers xsi:type="ecore:EClass" name="OrderItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unitPrice"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order"
+      lowerBound="1" eType="#//Order" eOpposite="#//Order/items"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variant"
+      lowerBound="1" eType="#//ProductVariant"/>
+  </eClassifiers>
+
+  <!-- 13) Payment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paidAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//PaymentStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order"
+      lowerBound="1" eType="#//Order" eOpposite="#//Order/payment"/>
+  </eClassifiers>
+
+  <!-- 14) Shipment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Shipment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="carrier"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trackingNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shippedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order"
+      lowerBound="1" eType="#//Order" eOpposite="#//Order/shipment"/>
+  </eClassifiers>
+
+  <!-- 15) Review -->
+  <eClassifiers xsi:type="ecore:EClass" name="Review">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rating"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="product"
+      lowerBound="1" eType="#//Product" eOpposite="#//Product/reviews"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer"/>
+  </eClassifiers>
+
+  <!-- 16) Coupon -->
+  <eClassifiers xsi:type="ecore:EClass" name="Coupon">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="store"
+      lowerBound="1" eType="#//Store" eOpposite="#//Store/coupons"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule"
+      upperBound="1" containment="true" eType="#//DiscountRule" eOpposite="#//DiscountRule/coupon"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orders"
+      upperBound="-1" eType="#//Order" eOpposite="#//Order/coupon"/>
+  </eClassifiers>
+
+  <!-- 17) DiscountRule -->
+  <eClassifiers xsi:type="ecore:EClass" name="DiscountRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minOrderTotal"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="percentOff"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="coupon"
+      lowerBound="1" eType="#//Coupon" eOpposite="#//Coupon/rule"/>
+  </eClassifiers>
+
+  <!-- 18) ReturnRequest -->
+  <eClassifiers xsi:type="ecore:EClass" name="ReturnRequest">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="order"
+      lowerBound="1" eType="#//Order"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="item"
+      upperBound="1" eType="#//OrderItem"/>
+  </eClassifiers>
+
+  <!-- 19) SupportTicket -->
+  <eClassifiers xsi:type="ecore:EClass" name="SupportTicket">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticketNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subject"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/tickets"/>
+  </eClassifiers>
+
+</ecore:EPackage>

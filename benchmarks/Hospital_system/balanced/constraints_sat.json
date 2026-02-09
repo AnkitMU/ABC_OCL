@@ -1,0 +1,2053 @@
+{
+  "metadata": {
+    "type": "SAT",
+    "model": "Hospital_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:25:07.474707",
+    "constraint_count": 70
+  },
+  "constraints": [
+    {
+      "ocl": "context InsurancePolicy\ninv: self.provider <> self.validUntil",
+      "pattern_id": "two_attributes_not_equal",
+      "pattern_name": "Two Attributes Not Equal",
+      "context": "InsurancePolicy",
+      "parameters": {
+        "first_attribute": "provider",
+        "second_attribute": "validUntil"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:26.964145",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.nurses->asSet()->size() <= self.nurses->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Department",
+      "parameters": {
+        "collection": "nurses"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:27.849002",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 2,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ward\ninv: self.rooms->excluding(self.rooms->any(true))->size() < self.rooms->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Ward",
+      "parameters": {
+        "collection": "rooms",
+        "element": "hospital"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:29.419849",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 4,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.beds->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Room",
+      "parameters": {
+        "collection": "beds",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.219831",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Hospital\ninv: self.departments->size() >= 1",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "Hospital",
+      "parameters": {
+        "collection": "departments",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.413889",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 6,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: self.patient <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "MedicalRecord",
+      "parameters": {
+        "association": "patient"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.594634",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.insurance <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Patient",
+      "parameters": {
+        "association": "insurance"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.637104",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_max_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Diagnosis\ninv: self.record <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Diagnosis",
+      "parameters": {
+        "association": "record"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.657747",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Discharge\ninv: self.admission <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Discharge",
+      "parameters": {
+        "association": "admission"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.724563",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Nurse\ninv: self.department <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Nurse",
+      "parameters": {
+        "association": "department"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.785830",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 14,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.invoice <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Payment",
+      "parameters": {
+        "association": "invoice"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.872647",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 18,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bed\ninv: self.room <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Bed",
+      "parameters": {
+        "association": "room"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.893810",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 19,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Medication\ninv: self.prescription <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Medication",
+      "parameters": {
+        "association": "prescription"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:30.921170",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 20,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Person\ninv: self.fullName.size() >= 19",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Person",
+      "parameters": {
+        "string_attribute": "fullName",
+        "min_length": 19
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.514929",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 21,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Discharge\ninv: self.dischargeDate.size() = 31",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Discharge",
+      "parameters": {
+        "string_attribute": "dischargeDate",
+        "length": 31
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.541935",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 22,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Doctor\ninv: self.appointments->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Doctor",
+      "parameters": {
+        "collection": "appointments"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.542776",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 23,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ward\ninv: self.rooms->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "Ward",
+      "parameters": {
+        "collection": "rooms"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.543210",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 24,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Diagnosis\ninv: self.description.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Diagnosis",
+      "parameters": {
+        "string_attribute": "description",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.543567",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 25,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.beds->collect(x | x.bedNo)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Room",
+      "parameters": {
+        "collection": "beds",
+        "iterator": "x",
+        "attribute": "bedNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.543951",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 26,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Doctor\ninv: self.appointments->size() >= 1",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "Doctor",
+      "parameters": {
+        "collection": "appointments",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.544768",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 28,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_not_empty_check_Doctor"
+        ]
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.appointments->union(self.appointments)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Patient",
+      "parameters": {
+        "collection1": "appointments",
+        "collection2": "appointments"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.545684",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 30,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Appointment\ninv: self.doctor.oclIsTypeOf(Doctor)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Appointment",
+      "parameters": {
+        "attribute": "doctor",
+        "type": "Doctor"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.546119",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 31,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.admissions->size() >= 1",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "Patient",
+      "parameters": {
+        "collection": "admissions",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.546639",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 32,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": [
+          "sortedBy_Patient",
+          "collection_max_size_Patient",
+          "sortedBy_Patient",
+          "collection_max_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Prescription\ninv: self.medications->isUnique(x | x.dose)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Prescription",
+      "parameters": {
+        "collection": "medications",
+        "attribute": "dose"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.548672",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 35,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Hospital\ninv: self.name <> null implies self.address <> null",
+      "pattern_id": "implies_simple",
+      "pattern_name": "Simple Implication",
+      "context": "Hospital",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "address"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.549496",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 36,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Medication\ninv: self.dose.size() >= 18",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Medication",
+      "parameters": {
+        "string_attribute": "dose",
+        "min_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.549943",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 37,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bed\ninv: self.isOccupied",
+      "pattern_id": "boolean_guard",
+      "pattern_name": "Boolean Guard",
+      "context": "Bed",
+      "parameters": {
+        "attribute": "isOccupied"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.550472",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 38,
+        "operators_used": [],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 0,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.patientId.size() >= 14",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Patient",
+      "parameters": {
+        "string_attribute": "patientId",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.550841",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 39,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.patientId.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Patient",
+      "parameters": {
+        "string_attribute": "patientId",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.551483",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 40,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.nurses->collect(x | x.nurseId)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Department",
+      "parameters": {
+        "collection": "nurses",
+        "iterator": "x",
+        "attribute": "nurseId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.552556",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 42,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Invoice\ninv: self.invoiceNo.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Invoice",
+      "parameters": {
+        "string_attribute": "invoiceNo",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.553484",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 43,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Hospital\ninv: not(self.name <> null and self.address <> null)",
+      "pattern_id": "not_both_defined",
+      "pattern_name": "Not Both Defined",
+      "context": "Hospital",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "address"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.554116",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 44,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Invoice\ninv: self.totalAmount = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Invoice",
+      "parameters": {
+        "attribute": "totalAmount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.554940",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 45,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.records->excluding(self.records->any(true))->size() < self.records->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Patient",
+      "parameters": {
+        "collection": "records",
+        "element": "insurance"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.555337",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.admissions->notEmpty() implies self.admissions->sortedBy(x | x.admitDate)->first().admitDate <= self.admissions->sortedBy(x | x.admitDate)->last().admitDate",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Patient",
+      "parameters": {
+        "collection": "admissions",
+        "attribute": "admitDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.557030",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 49,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 11,
+        "implies": [
+          "collection_min_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.isInsured = false",
+      "pattern_id": "boolean_is_false",
+      "pattern_name": "Boolean Is False",
+      "context": "Patient",
+      "parameters": {
+        "boolean_attribute": "isInsured"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.558181",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 51,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 12,
+        "implies": [
+          "collection_max_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Room\ninv: (self.roomNo <> null) = (self.type <> null)",
+      "pattern_id": "bi_implication",
+      "pattern_name": "Bi-directional Implication",
+      "context": "Room",
+      "parameters": {
+        "first_attribute": "roomNo",
+        "second_attribute": "type"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.558782",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 52,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: self.prescriptions->size() >= 4 implies self.prescriptions->asSequence()->at(4).prescriptionNo <> null",
+      "pattern_id": "collection_at_index",
+      "pattern_name": "Collection At Index",
+      "context": "MedicalRecord",
+      "parameters": {
+        "collection": "prescriptions",
+        "index": 4,
+        "attribute": "prescriptionNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.559948",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 54,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Discharge\ninv: self.admission.oclIsTypeOf(Admission)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Discharge",
+      "parameters": {
+        "attribute": "admission",
+        "type": "Admission"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.561888",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 55,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Hospital\ninv: self.wards->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Hospital",
+      "parameters": {
+        "collection": "wards"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.562885",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 56,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.appointments->notEmpty() implies self.appointments->sortedBy(x | x.dateTime)->first().dateTime <= self.appointments->sortedBy(x | x.dateTime)->last().dateTime",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Patient",
+      "parameters": {
+        "collection": "appointments",
+        "attribute": "dateTime"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.563699",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 11,
+        "implies": [
+          "collection_min_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Doctor\ninv: self.appointments->excluding(self.appointments->any(true))->size() < self.appointments->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Doctor",
+      "parameters": {
+        "collection": "appointments",
+        "element": "appointments"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.571658",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 62,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Prescription\ninv: self.issuedAt.size() <= 51",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Prescription",
+      "parameters": {
+        "string_attribute": "issuedAt",
+        "max_length": 51
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.572672",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 63,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Admission\ninv: self.admitDate <> '' and self.admitDate.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Admission",
+      "parameters": {
+        "string_attribute": "admitDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.574607",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.admissions->size() <= 2",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Patient",
+      "parameters": {
+        "collection": "admissions",
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.576993",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 66,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Invoice\ninv: self.issuedAt.size() >= 12",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Invoice",
+      "parameters": {
+        "string_attribute": "issuedAt",
+        "min_length": 12
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.578840",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 67,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ward\ninv: self.floor.abs() <= 1",
+      "pattern_id": "numeric_abs_bounded",
+      "pattern_name": "Numeric Absolute Value Bounded",
+      "context": "Ward",
+      "parameters": {
+        "numeric_attribute": "floor",
+        "max_abs": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.580953",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "abs",
+          "floor"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.doctors->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "Department",
+      "parameters": {
+        "collection": "doctors"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.581414",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.name <> '' and self.name.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Department",
+      "parameters": {
+        "string_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.582559",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 72,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Appointment\ninv: self.appointmentId <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Appointment",
+      "parameters": {
+        "attribute": "appointmentId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.583893",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 73,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Prescription\ninv: self.medications->includesAll(self.medications) or self.medications->excludesAll(self.medications)",
+      "pattern_id": "includesAll_excludesAll",
+      "pattern_name": "IncludesAll/ExcludesAll Check",
+      "context": "Prescription",
+      "parameters": {
+        "collection1": "medications",
+        "collection2": "medications"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.586612",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 75,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: self.beds->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "Room",
+      "parameters": {
+        "collection": "beds"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.587175",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 76,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 2,
+        "implies": [
+          "collection_max_size_Room"
+        ]
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.isInsured <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Patient",
+      "parameters": {
+        "attribute": "isInsured"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.587606",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 77,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_max_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.patientId.size() <= 13",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Patient",
+      "parameters": {
+        "string_attribute": "patientId",
+        "max_length": 13
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.588824",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 78,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: self.prescriptions->includesAll(self.prescriptions) or self.prescriptions->excludesAll(self.prescriptions)",
+      "pattern_id": "includesAll_excludesAll",
+      "pattern_name": "IncludesAll/ExcludesAll Check",
+      "context": "MedicalRecord",
+      "parameters": {
+        "collection1": "prescriptions",
+        "collection2": "prescriptions"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.589757",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 80,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Invoice\ninv: self.totalAmount >= 37 and self.totalAmount <= 85",
+      "pattern_id": "numeric_bounded",
+      "pattern_name": "Numeric Attribute Bounded",
+      "context": "Invoice",
+      "parameters": {
+        "numeric_attribute": "totalAmount",
+        "min_value": 37,
+        "max_value": 85
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.591134",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 82,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Person\ninv: self.fullName <> null implies self.phone <> null",
+      "pattern_id": "implies_simple",
+      "pattern_name": "Simple Implication",
+      "context": "Person",
+      "parameters": {
+        "first_attribute": "fullName",
+        "second_attribute": "phone"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.591605",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 83,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: self.appointments->size() >= 2",
+      "pattern_id": "collection_min_size",
+      "pattern_name": "Collection Minimum Size",
+      "context": "Patient",
+      "parameters": {
+        "collection": "appointments",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.593999",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 85,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": [
+          "sortedBy_Patient",
+          "collection_max_size_Patient",
+          "sortedBy_Patient",
+          "collection_max_size_Patient"
+        ]
+      }
+    },
+    {
+      "ocl": "context Appointment\ninv: self.dateTime.size() = 5",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Appointment",
+      "parameters": {
+        "string_attribute": "dateTime",
+        "length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.595316",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 87,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.doctors->asSet()->size() <= self.doctors->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Department",
+      "parameters": {
+        "collection": "doctors"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.595694",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 88,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InsurancePolicy\ninv: self.provider.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "InsurancePolicy",
+      "parameters": {
+        "string_attribute": "provider",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.596301",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 89,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Admission\ninv: self.admissionId.size() >= 5 implies self.admissionId.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Admission",
+      "parameters": {
+        "string_attribute": "admissionId",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.596768",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 90,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Appointment\ninv: self.status div 64 = 0",
+      "pattern_id": "division_modulo",
+      "pattern_name": "Division and Modulo",
+      "context": "Appointment",
+      "parameters": {
+        "attr1": "status",
+        "operation": "div",
+        "value": 64
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.597923",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 91,
+        "operators_used": [
+          "=",
+          "div"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ward\ninv: self.name.size() >= 14",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Ward",
+      "parameters": {
+        "string_attribute": "name",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.598801",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 92,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: self.phone <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Department",
+      "parameters": {
+        "attribute": "phone"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.599256",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 93,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Doctor\ninv: self.doctorId <> null implies self.specialty <> null",
+      "pattern_id": "implies_reverse",
+      "pattern_name": "Reverse Implication",
+      "context": "Doctor",
+      "parameters": {
+        "first_attribute": "specialty",
+        "second_attribute": "doctorId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.599756",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 94,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Prescription\ninv: self.prescriptionNo = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Prescription",
+      "parameters": {
+        "attribute": "prescriptionNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.600638",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 96,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Medication\ninv: self.dose.concat(self.frequency).size() >= 2",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Medication",
+      "parameters": {
+        "first_string": "dose",
+        "second_string": "frequency",
+        "min_length": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.601300",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 97,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 18,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Procedure\ninv: self.performedAt.size() >= 10 implies self.performedAt.substring(1, 10) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Procedure",
+      "parameters": {
+        "string_attribute": "performedAt",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.601945",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 98,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Prescription\ninv: self.medications->excludingAll(self.medications)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Prescription",
+      "parameters": {
+        "collection1": "medications",
+        "collection2": "medications"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.602814",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 99,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,355 @@
+-- Benchmark: Hospital_system / balanced
+-- Type: SAT Constraints Only
+-- Generated: 2026-02-07T19:25:07.474551
+-- Count: 70
+
+-- #1 Two Attributes Not Equal in InsurancePolicy
+-- Difficulty: easy
+context InsurancePolicy
+inv: self.provider <> self.validUntil
+
+-- #2 Collection As Set Conversion in Department
+-- Difficulty: medium
+context Department
+inv: self.nurses->asSet()->size() <= self.nurses->size()
+
+-- #3 Collection Excluding Element in Ward
+-- Difficulty: medium
+context Ward
+inv: self.rooms->excluding(self.rooms->any(true))->size() < self.rooms->size()
+
+-- #4 Collection Maximum Size in Room
+-- Difficulty: medium
+context Room
+inv: self.beds->size() <= 3
+
+-- #5 Collection Minimum Size in Hospital
+-- Difficulty: medium
+context Hospital
+inv: self.departments->size() >= 1
+
+-- #6 Association Exists in MedicalRecord
+-- Difficulty: easy
+context MedicalRecord
+inv: self.patient <> null
+
+-- #7 Association Exists in Patient
+-- Difficulty: easy
+context Patient
+inv: self.insurance <> null
+
+-- #8 Association Exists in Diagnosis
+-- Difficulty: easy
+context Diagnosis
+inv: self.record <> null
+
+-- #9 Association Exists in Discharge
+-- Difficulty: easy
+context Discharge
+inv: self.admission <> null
+
+-- #10 Association Exists in Nurse
+-- Difficulty: easy
+context Nurse
+inv: self.department <> null
+
+-- #11 Association Exists in Payment
+-- Difficulty: easy
+context Payment
+inv: self.invoice <> null
+
+-- #12 Association Exists in Bed
+-- Difficulty: easy
+context Bed
+inv: self.room <> null
+
+-- #13 Association Exists in Medication
+-- Difficulty: easy
+context Medication
+inv: self.prescription <> null
+
+-- #14 String Minimum Length in Person
+-- Difficulty: medium
+context Person
+inv: self.fullName.size() >= 19
+
+-- #15 String Exact Length in Discharge
+-- Difficulty: easy
+context Discharge
+inv: self.dischargeDate.size() = 31
+
+-- #16 Collection Not Empty Check in Doctor
+-- Difficulty: easy
+context Doctor
+inv: self.appointments->size() > 0
+
+-- #17 Collection Must Be Empty in Ward
+-- Difficulty: easy
+context Ward
+inv: self.rooms->isEmpty()
+
+-- #18 String Contains Substring in Diagnosis
+-- Difficulty: medium
+context Diagnosis
+inv: self.description.indexOf('value') >= 0
+
+-- #19 Collect (Map) Operation in Room
+-- Difficulty: medium
+context Room
+inv: self.beds->collect(x | x.bedNo)->notEmpty()
+
+-- #20 Collection Minimum Size in Doctor
+-- Difficulty: medium
+context Doctor
+inv: self.appointments->size() >= 1
+
+-- #21 Set Union in Patient
+-- Difficulty: easy
+context Patient
+inv: self.appointments->union(self.appointments)->notEmpty()
+
+-- #22 Type Check in Appointment
+-- Difficulty: medium
+context Appointment
+inv: self.doctor.oclIsTypeOf(Doctor)
+
+-- #23 Collection Minimum Size in Patient
+-- Difficulty: medium
+context Patient
+inv: self.admissions->size() >= 1
+
+-- #24 Collection Unique Attribute Values in Prescription
+-- Difficulty: easy
+context Prescription
+inv: self.medications->isUnique(x | x.dose)
+
+-- #25 Simple Implication in Hospital
+-- Difficulty: easy
+context Hospital
+inv: self.name <> null implies self.address <> null
+
+-- #26 String Minimum Length in Medication
+-- Difficulty: medium
+context Medication
+inv: self.dose.size() >= 18
+
+-- #27 Boolean Guard in Bed
+-- Difficulty: trivial
+context Bed
+inv: self.isOccupied
+
+-- #28 String Minimum Length in Patient
+-- Difficulty: medium
+context Patient
+inv: self.patientId.size() >= 14
+
+-- #29 String Contains Substring in Patient
+-- Difficulty: medium
+context Patient
+inv: self.patientId.indexOf('value') >= 0
+
+-- #30 Collect (Map) Operation in Department
+-- Difficulty: medium
+context Department
+inv: self.nurses->collect(x | x.nurseId)->notEmpty()
+
+-- #31 String Exact Length in Invoice
+-- Difficulty: easy
+context Invoice
+inv: self.invoiceNo.size() = 37
+
+-- #32 Not Both Defined in Hospital
+-- Difficulty: medium
+context Hospital
+inv: not(self.name <> null and self.address <> null)
+
+-- #33 Attribute Must Be Null in Invoice
+-- Difficulty: trivial
+context Invoice
+inv: self.totalAmount = null
+
+-- #34 Collection Excluding Element in Patient
+-- Difficulty: medium
+context Patient
+inv: self.records->excluding(self.records->any(true))->size() < self.records->size()
+
+-- #35 SortedBy Operation in Patient
+-- Difficulty: hard
+context Patient
+inv: self.admissions->notEmpty() implies self.admissions->sortedBy(x | x.admitDate)->first().admitDate <= self.admissions->sortedBy(x | x.admitDate)->last().admitDate
+
+-- #36 Boolean Is False in Patient
+-- Difficulty: trivial
+context Patient
+inv: self.isInsured = false
+
+-- #37 Bi-directional Implication in Room
+-- Difficulty: easy
+context Room
+inv: (self.roomNo <> null) = (self.type <> null)
+
+-- #38 Collection At Index in MedicalRecord
+-- Difficulty: hard
+context MedicalRecord
+inv: self.prescriptions->size() >= 4 implies self.prescriptions->asSequence()->at(4).prescriptionNo <> null
+
+-- #39 Type Check in Discharge
+-- Difficulty: medium
+context Discharge
+inv: self.admission.oclIsTypeOf(Admission)
+
+-- #40 Collection Not Empty Check in Hospital
+-- Difficulty: easy
+context Hospital
+inv: self.wards->size() > 0
+
+-- #41 SortedBy Operation in Patient
+-- Difficulty: hard
+context Patient
+inv: self.appointments->notEmpty() implies self.appointments->sortedBy(x | x.dateTime)->first().dateTime <= self.appointments->sortedBy(x | x.dateTime)->last().dateTime
+
+-- #42 Collection Excluding Element in Doctor
+-- Difficulty: medium
+context Doctor
+inv: self.appointments->excluding(self.appointments->any(true))->size() < self.appointments->size()
+
+-- #43 String Maximum Length in Prescription
+-- Difficulty: medium
+context Prescription
+inv: self.issuedAt.size() <= 51
+
+-- #44 String Not Empty in Admission
+-- Difficulty: medium
+context Admission
+inv: self.admitDate <> '' and self.admitDate.size() > 0
+
+-- #45 Collection Maximum Size in Patient
+-- Difficulty: medium
+context Patient
+inv: self.admissions->size() <= 2
+
+-- #46 String Minimum Length in Invoice
+-- Difficulty: medium
+context Invoice
+inv: self.issuedAt.size() >= 12
+
+-- #47 Numeric Absolute Value Bounded in Ward
+-- Difficulty: medium
+context Ward
+inv: self.floor.abs() <= 1
+
+-- #48 Collection Not Empty (Simple) in Department
+-- Difficulty: easy
+context Department
+inv: self.doctors->notEmpty()
+
+-- #49 String Not Empty in Department
+-- Difficulty: medium
+context Department
+inv: self.name <> '' and self.name.size() > 0
+
+-- #50 Attribute Not Null (Simple) in Appointment
+-- Difficulty: easy
+context Appointment
+inv: self.appointmentId <> null
+
+-- #51 IncludesAll/ExcludesAll Check in Prescription
+-- Difficulty: medium
+context Prescription
+inv: self.medications->includesAll(self.medications) or self.medications->excludesAll(self.medications)
+
+-- #52 Collection Must Be Empty in Room
+-- Difficulty: easy
+context Room
+inv: self.beds->isEmpty()
+
+-- #53 Attribute Not Null (Simple) in Patient
+-- Difficulty: easy
+context Patient
+inv: self.isInsured <> null
+
+-- #54 String Maximum Length in Patient
+-- Difficulty: medium
+context Patient
+inv: self.patientId.size() <= 13
+
+-- #55 IncludesAll/ExcludesAll Check in MedicalRecord
+-- Difficulty: medium
+context MedicalRecord
+inv: self.prescriptions->includesAll(self.prescriptions) or self.prescriptions->excludesAll(self.prescriptions)
+
+-- #56 Numeric Attribute Bounded in Invoice
+-- Difficulty: medium
+context Invoice
+inv: self.totalAmount >= 37 and self.totalAmount <= 85
+
+-- #57 Simple Implication in Person
+-- Difficulty: easy
+context Person
+inv: self.fullName <> null implies self.phone <> null
+
+-- #58 Collection Minimum Size in Patient
+-- Difficulty: medium
+context Patient
+inv: self.appointments->size() >= 2
+
+-- #59 String Exact Length in Appointment
+-- Difficulty: easy
+context Appointment
+inv: self.dateTime.size() = 5
+
+-- #60 Collection As Set Conversion in Department
+-- Difficulty: medium
+context Department
+inv: self.doctors->asSet()->size() <= self.doctors->size()
+
+-- #61 String Contains Substring in InsurancePolicy
+-- Difficulty: medium
+context InsurancePolicy
+inv: self.provider.indexOf('value') >= 0
+
+-- #62 String Starts With in Admission
+-- Difficulty: medium
+context Admission
+inv: self.admissionId.size() >= 5 implies self.admissionId.substring(1, 5) = 'value'
+
+-- #63 Division and Modulo in Appointment
+-- Difficulty: easy
+context Appointment
+inv: self.status div 64 = 0
+
+-- #64 String Minimum Length in Ward
+-- Difficulty: medium
+context Ward
+inv: self.name.size() >= 14
+
+-- #65 Attribute Not Null (Simple) in Department
+-- Difficulty: easy
+context Department
+inv: self.phone <> null
+
+-- #66 Reverse Implication in Doctor
+-- Difficulty: easy
+context Doctor
+inv: self.doctorId <> null implies self.specialty <> null
+
+-- #67 Attribute Must Be Null in Prescription
+-- Difficulty: trivial
+context Prescription
+inv: self.prescriptionNo = null
+
+-- #68 String Concatenation Check in Medication
+-- Difficulty: medium
+context Medication
+inv: self.dose.concat(self.frequency).size() >= 2
+
+-- #69 String Starts With in Procedure
+-- Difficulty: medium
+context Procedure
+inv: self.performedAt.size() >= 10 implies self.performedAt.substring(1, 10) = 'value'
+
+-- #70 Set Difference in Prescription
+-- Difficulty: easy
+context Prescription
+inv: self.medications->excludingAll(self.medications)->isEmpty()
+

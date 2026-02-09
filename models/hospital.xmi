@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="hospitalsystem"
+  nsURI="http://example.org/hospitalsystem"
+  nsPrefix="hosp">
+
+  <!-- ===== ENUMS ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="Gender">
+    <eLiterals name="Male" value="0"/>
+    <eLiterals name="Female" value="1"/>
+    <eLiterals name="Other" value="2"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="AppointmentStatus">
+    <eLiterals name="Scheduled" value="0"/>
+    <eLiterals name="Completed" value="1"/>
+    <eLiterals name="Cancelled" value="2"/>
+    <eLiterals name="NoShow" value="3"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES (22) ===== -->
+
+  <!-- 1) Hospital -->
+  <eClassifiers xsi:type="ecore:EClass" name="Hospital">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="address"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="departments"
+      upperBound="-1" containment="true" eType="#//Department" eOpposite="#//Department/hospital"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wards"
+      upperBound="-1" containment="true" eType="#//Ward" eOpposite="#//Ward/hospital"/>
+  </eClassifiers>
+
+  <!-- 2) Department -->
+  <eClassifiers xsi:type="ecore:EClass" name="Department">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="phone"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hospital"
+      lowerBound="1" eType="#//Hospital" eOpposite="#//Hospital/departments"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="doctors"
+      upperBound="-1" containment="true" eType="#//Doctor" eOpposite="#//Doctor/department"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nurses"
+      upperBound="-1" containment="true" eType="#//Nurse" eOpposite="#//Nurse/department"/>
+  </eClassifiers>
+
+  <!-- 3) Ward -->
+  <eClassifiers xsi:type="ecore:EClass" name="Ward">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="floor"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hospital"
+      lowerBound="1" eType="#//Hospital" eOpposite="#//Hospital/wards"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rooms"
+      upperBound="-1" containment="true" eType="#//Room" eOpposite="#//Room/ward"/>
+  </eClassifiers>
+
+  <!-- 4) Room -->
+  <eClassifiers xsi:type="ecore:EClass" name="Room">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roomNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ward"
+      lowerBound="1" eType="#//Ward" eOpposite="#//Ward/rooms"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beds"
+      upperBound="-1" containment="true" eType="#//Bed" eOpposite="#//Bed/room"/>
+  </eClassifiers>
+
+  <!-- 5) Bed -->
+  <eClassifiers xsi:type="ecore:EClass" name="Bed">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bedNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOccupied"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="room"
+      lowerBound="1" eType="#//Room" eOpposite="#//Room/beds"/>
+  </eClassifiers>
+
+  <!-- 6) Person (base) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Person" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dob"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gender"
+      eType="#//Gender"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="phone"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+
+  <!-- 7) Patient -->
+  <eClassifiers xsi:type="ecore:EClass" name="Patient" eSuperTypes="#//Person">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="patientId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInsured"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="records"
+      upperBound="-1" containment="true" eType="#//MedicalRecord" eOpposite="#//MedicalRecord/patient"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointments"
+      upperBound="-1" containment="true" eType="#//Appointment" eOpposite="#//Appointment/patient"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="admissions"
+      upperBound="-1" containment="true" eType="#//Admission" eOpposite="#//Admission/patient"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insurance"
+      upperBound="1" containment="true" eType="#//InsurancePolicy" eOpposite="#//InsurancePolicy/patient"/>
+  </eClassifiers>
+
+  <!-- 8) Doctor -->
+  <eClassifiers xsi:type="ecore:EClass" name="Doctor" eSuperTypes="#//Person">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="doctorId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specialty"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="department"
+      lowerBound="1" eType="#//Department" eOpposite="#//Department/doctors"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="appointments"
+      upperBound="-1" eType="#//Appointment" eOpposite="#//Appointment/doctor"/>
+  </eClassifiers>
+
+  <!-- 9) Nurse -->
+  <eClassifiers xsi:type="ecore:EClass" name="Nurse" eSuperTypes="#//Person">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nurseId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shift"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="department"
+      lowerBound="1" eType="#//Department" eOpposite="#//Department/nurses"/>
+  </eClassifiers>
+
+  <!-- 10) Appointment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Appointment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="appointmentId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//AppointmentStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient"
+      lowerBound="1" eType="#//Patient" eOpposite="#//Patient/appointments"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="doctor"
+      lowerBound="1" eType="#//Doctor" eOpposite="#//Doctor/appointments"/>
+  </eClassifiers>
+
+  <!-- 11) Admission -->
+  <eClassifiers xsi:type="ecore:EClass" name="Admission">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="admissionId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="admitDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient"
+      lowerBound="1" eType="#//Patient" eOpposite="#//Patient/admissions"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bed"
+      upperBound="1" eType="#//Bed"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="discharge"
+      upperBound="1" containment="true" eType="#//Discharge" eOpposite="#//Discharge/admission"/>
+  </eClassifiers>
+
+  <!-- 12) Discharge -->
+  <eClassifiers xsi:type="ecore:EClass" name="Discharge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dischargeDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="summary"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="admission"
+      lowerBound="1" eType="#//Admission" eOpposite="#//Admission/discharge"/>
+  </eClassifiers>
+
+  <!-- 13) MedicalRecord -->
+  <eClassifiers xsi:type="ecore:EClass" name="MedicalRecord">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="recordNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient"
+      lowerBound="1" eType="#//Patient" eOpposite="#//Patient/records"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagnoses"
+      upperBound="-1" containment="true" eType="#//Diagnosis" eOpposite="#//Diagnosis/record"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prescriptions"
+      upperBound="-1" containment="true" eType="#//Prescription" eOpposite="#//Prescription/record"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labTests"
+      upperBound="-1" containment="true" eType="#//LabTest" eOpposite="#//LabTest/record"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedures"
+      upperBound="-1" containment="true" eType="#//Procedure" eOpposite="#//Procedure/record"/>
+  </eClassifiers>
+
+  <!-- 14) Diagnosis -->
+  <eClassifiers xsi:type="ecore:EClass" name="Diagnosis">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagnosedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="record"
+      lowerBound="1" eType="#//MedicalRecord" eOpposite="#//MedicalRecord/diagnoses"/>
+  </eClassifiers>
+
+  <!-- 15) Prescription -->
+  <eClassifiers xsi:type="ecore:EClass" name="Prescription">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prescriptionNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="record"
+      lowerBound="1" eType="#//MedicalRecord" eOpposite="#//MedicalRecord/prescriptions"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="medications"
+      upperBound="-1" eType="#//Medication" eOpposite="#//Medication/prescription"/>
+  </eClassifiers>
+
+  <!-- 16) Medication -->
+  <eClassifiers xsi:type="ecore:EClass" name="Medication">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dose"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prescription"
+      lowerBound="1" eType="#//Prescription" eOpposite="#//Prescription/medications"/>
+  </eClassifiers>
+
+  <!-- 17) LabTest -->
+  <eClassifiers xsi:type="ecore:EClass" name="LabTest">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="record"
+      lowerBound="1" eType="#//MedicalRecord" eOpposite="#//MedicalRecord/labTests"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result"
+      upperBound="1" containment="true" eType="#//LabResult" eOpposite="#//LabResult/test"/>
+  </eClassifiers>
+
+  <!-- 18) LabResult -->
+  <eClassifiers xsi:type="ecore:EClass" name="LabResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reportedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test"
+      lowerBound="1" eType="#//LabTest" eOpposite="#//LabTest/result"/>
+  </eClassifiers>
+
+  <!-- 19) Procedure -->
+  <eClassifiers xsi:type="ecore:EClass" name="Procedure">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="performedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="record"
+      lowerBound="1" eType="#//MedicalRecord" eOpposite="#//MedicalRecord/procedures"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="doctor"
+      upperBound="1" eType="#//Doctor"/>
+  </eClassifiers>
+
+  <!-- 20) Invoice -->
+  <eClassifiers xsi:type="ecore:EClass" name="Invoice">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="invoiceNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalAmount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient"
+      lowerBound="1" eType="#//Patient"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payment"
+      upperBound="1" containment="true" eType="#//Payment" eOpposite="#//Payment/invoice"/>
+  </eClassifiers>
+
+  <!-- 21) Payment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paidAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invoice"
+      lowerBound="1" eType="#//Invoice" eOpposite="#//Invoice/payment"/>
+  </eClassifiers>
+
+  <!-- 22) InsurancePolicy -->
+  <eClassifiers xsi:type="ecore:EClass" name="InsurancePolicy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="policyNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="provider"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validUntil"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient"
+      lowerBound="1" eType="#//Patient" eOpposite="#//Patient/insurance"/>
+  </eClassifiers>
+
+</ecore:EPackage>

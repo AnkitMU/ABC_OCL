@@ -1,0 +1,55 @@
+
+suite_name: "OCL-Benchmark-Balanced"   
+version: "1.0"                          
+description: "Balanced OCL constraint benchmark suite for comprehensive model testing"
+
+models:
+ 
+  - xmi: "models/iotsensornetwork.xmi"   # Path to your Ecore/XMI model file (enhanced with boolean attributes)
+    name: "IOTsensornetwork"            # Logical model name (for outputs/reports)
+    profiles:                          
+
+      # --- Balanced Profile: Suitable for general benchmarking ---
+      - name: "balanced"               
+        seed: 42                        # Random seed for reproducibility (change for different variants)
+        constraints: 100             # Target number of constraints to generate
+        complexity_profile: "standard"  # Difficulty preset: easy | standard | advanced
+        
+        # SAT/UNSAT Distribution (must sum to 1.0)
+        sat_ratio: 0.8                  
+        unsat_ratio: 0.2                
+        
+        # Difficulty Mix (must sum to 1.0)
+        difficulty_mix:
+          easy: 0.3                     # 30% easy (simple patterns, single attributes)
+          medium: 0.5                   # 50% medium (navigation, basic quantifiers)
+          hard: 0.2                     # 20% hard (complex quantifiers, multi-hop navigation)
+        
+        # Pattern Family Distribution (must sum to 100)
+        families_pct:
+          cardinality: 20               # Collection size constraints (isEmpty, notEmpty, size())
+          uniqueness: 15                # Uniqueness/duplicate prevention (isUnique, allDifferent)
+          navigation: 25                # Association navigation (single/multi-hop)
+          quantified: 20                # Universal/existential quantifiers (forAll, exists, select)
+          arithmetic: 15                
+          string: 2                    
+          enum: 3                       
+          type_checks: 0                
+        
+        
+        per_class_min: 3                
+        per_class_max: 25              
+        similarity_threshold: 0.80      
+        novelty_boost: true            
+
+verification:
+  enable: true                          
+  implication_use_z3: true             
+  objective: "both"                     
+  per_constraint_timeout_ms: 15000       
+  batch_timeout_ms: 30000               
+  check_global_consistency: true        
+
+output_root: "benchmarks/"              
+framework_version: "2.0"                
+git_commit: null                        

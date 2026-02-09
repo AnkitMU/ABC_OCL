@@ -1,0 +1,89 @@
+-- Benchmark: University_system / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:17:39.920706
+-- Count: 14
+
+-- #1 Collection Must Be Empty (UNSAT) in Department
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Department
+inv: not(self.courses->isEmpty())
+
+-- #2 Association Exists (UNSAT) in Enrollment
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Enrollment
+inv: not(self.grade <> null)
+
+-- #3 Association Exists (UNSAT) in ExamAttempt
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context ExamAttempt
+inv: not(self.student <> null)
+
+-- #4 Association Exists (UNSAT) in Exam
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Exam
+inv: not(self.offering <> null)
+
+-- #5 Numeric Attribute Positive (UNSAT) in GradeRecord
+-- Difficulty: trivial
+-- Mutation Strategy: contradictory_bounds
+context GradeRecord
+inv: (self.points > 0) and (self.points < -5)
+
+-- #6 String Minimum Length (UNSAT) in LibraryAccount
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context LibraryAccount
+inv: not(self.accountId.size() >= 19)
+
+-- #7 Collection As Sequence Conversion (UNSAT) in Course
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Course
+inv: not(self.offerings->asSequence()->notEmpty())
+
+-- #8 String Equality (UNSAT) in Exam
+-- Difficulty: trivial
+-- Mutation Strategy: simple_negation
+context Exam
+inv: not(self.type = self.examDate)
+
+-- #9 Collection Minimum Size (UNSAT) in Course
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Course
+inv: (self.offerings->size() >= 1) and (self.offerings->size() < 1)
+
+-- #10 Symmetric Difference (UNSAT) in Exam
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Exam
+inv: not(self.attempts->symmetricDifference(self.attempts)->isEmpty())
+
+-- #11 Set Union (UNSAT) in Program
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Program
+inv: not(self.students->union(self.students)->notEmpty())
+
+-- #12 String Exact Length (UNSAT) in ExamAttempt
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context ExamAttempt
+inv: not(self.attemptDate.size() = 37)
+
+-- #13 String Exact Length (UNSAT) in LibraryAccount
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context LibraryAccount
+inv: not(self.accountId.size() = 40)
+
+-- #14 Collection Size in Range (UNSAT) in Student
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Student
+inv: (self.scholarships->size() >= 2 and self.scholarships->size() <= 2) and (self.scholarships->size() < 2)
+

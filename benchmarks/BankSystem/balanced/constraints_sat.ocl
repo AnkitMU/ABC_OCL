@@ -1,0 +1,370 @@
+-- Benchmark: BankSystem / balanced
+-- Type: SAT Constraints Only
+-- Generated: 2026-02-07T18:47:29.176427
+-- Count: 73
+
+-- #1 Collection Not Empty (Simple) in Customer
+-- Difficulty: easy
+context Customer
+inv: self.loans->notEmpty()
+
+-- #2 Reverse Implication in Address
+-- Difficulty: easy
+context Address
+inv: self.city <> null implies self.country <> null
+
+-- #3 Attribute Not Null (Simple) in Employee
+-- Difficulty: easy
+context Employee
+inv: self.employeeId <> null
+
+-- #4 Collection Size Constraint in CreditCard
+-- Difficulty: easy
+context CreditCard
+inv: self.cardTransactions->size() < 1
+
+-- #5 Attribute Not Null (Simple) in Payment
+-- Difficulty: easy
+context Payment
+inv: self.isConfirmed <> null
+
+-- #6 Collection Size Constraint in Account
+-- Difficulty: easy
+context Account
+inv: self.transactions->size() < 1
+
+-- #7 Association Exists in Loan
+-- Difficulty: easy
+context Loan
+inv: self.customer <> null
+
+-- #8 Association Exists in Transaction
+-- Difficulty: easy
+context Transaction
+inv: self.account <> null
+
+-- #9 Association Exists in CardTransaction
+-- Difficulty: easy
+context CardTransaction
+inv: self.card <> null
+
+-- #10 Numeric Absolute Value Bounded in Teller
+-- Difficulty: medium
+context Teller
+inv: self.counterNo.abs() <= 6
+
+-- #11 Numeric Is Odd in SavingsAccount
+-- Difficulty: easy
+context SavingsAccount
+inv: self.interestRate mod 2 = 1
+
+-- #12 String Starts With in AccountTransaction
+-- Difficulty: medium
+context AccountTransaction
+inv: self.type.size() >= 2 implies self.type.substring(1, 2) = 'value'
+
+-- #13 String Maximum Length in Manager
+-- Difficulty: medium
+context Manager
+inv: self.level.size() <= 43
+
+-- #14 String Exact Length in Bank
+-- Difficulty: easy
+context Bank
+inv: self.name.size() = 21
+
+-- #15 Numeric Attribute Positive in Transaction
+-- Difficulty: trivial
+context Transaction
+inv: self.amount > 0
+
+-- #16 Uniqueness Constraint in Customer
+-- Difficulty: easy
+context Customer
+inv: self.cards->isUnique(x | x.cardNo)
+
+-- #17 Symmetric Difference in Customer
+-- Difficulty: easy
+context Customer
+inv: self.cards->symmetricDifference(self.cards)->isEmpty()
+
+-- #18 Numeric Less Than Value in Loan
+-- Difficulty: trivial
+context Loan
+inv: self.principal < 1
+
+-- #19 Collection At Index in CreditCard
+-- Difficulty: hard
+context CreditCard
+inv: self.cardTransactions->size() >= 5 implies self.cardTransactions->asSequence()->at(5).merchant <> null
+
+-- #20 String Starts With in Account
+-- Difficulty: medium
+context Account
+inv: self.accountNo.size() >= 10 implies self.accountNo.substring(1, 10) = 'value'
+
+-- #21 Boolean Is True in Payment
+-- Difficulty: trivial
+context Payment
+inv: self.isConfirmed = true
+
+-- #22 Set Difference in Bank
+-- Difficulty: easy
+context Bank
+inv: self.branches->excludingAll(self.branches)->isEmpty()
+
+-- #23 String Maximum Length in Customer
+-- Difficulty: medium
+context Customer
+inv: self.email.size() <= 24
+
+-- #24 String Maximum Length in Account
+-- Difficulty: medium
+context Account
+inv: self.accountNo.size() <= 89
+
+-- #25 Attribute Not Null (Simple) in Customer
+-- Difficulty: easy
+context Customer
+inv: self.email <> null
+
+-- #26 String Exact Length in CreditCard
+-- Difficulty: easy
+context CreditCard
+inv: self.cardNo.size() = 37
+
+-- #27 String Concatenation Check in Customer
+-- Difficulty: medium
+context Customer
+inv: self.email.concat(self.fullName).size() >= 16
+
+-- #28 Type Check in Customer
+-- Difficulty: medium
+context Customer
+inv: self.branch.oclIsTypeOf(Branch)
+
+-- #29 Collection Nested Collection Flatten in Branch
+-- Difficulty: medium
+context Branch
+inv: self.customers->collect(x | x.loans)->size() >= 2
+
+-- #30 String Starts With in Account
+-- Difficulty: medium
+context Account
+inv: self.accountNo.size() >= 5 implies self.accountNo.substring(1, 5) = 'value'
+
+-- #31 Numeric Greater Than Value in Account
+-- Difficulty: trivial
+context Account
+inv: self.balance > 50
+
+-- #32 Association Exists in Branch
+-- Difficulty: easy
+context Branch
+inv: self.bank <> null
+
+-- #33 Set Difference in Branch
+-- Difficulty: easy
+context Branch
+inv: self.customers->excludingAll(self.customers)->isEmpty()
+
+-- #34 Collection As Set Conversion in Bank
+-- Difficulty: medium
+context Bank
+inv: self.branches->asSet()->size() <= self.branches->size()
+
+-- #35 Range Constraint in Account
+-- Difficulty: medium
+context Account
+inv: self.balance >= 18 and self.balance <= 60
+
+-- #36 All Different in Customer
+-- Difficulty: medium
+context Customer
+inv: self.cards->forAll(x, y | x <> y implies x.isActive <> y.isActive)
+
+-- #37 Type Check in Transaction
+-- Difficulty: medium
+context Transaction
+inv: self.account.oclIsTypeOf(Account)
+
+-- #38 Boolean Is True in CreditCard
+-- Difficulty: trivial
+context CreditCard
+inv: self.isActive = true
+
+-- #39 String Concatenation Check in Branch
+-- Difficulty: medium
+context Branch
+inv: self.city.concat(self.branchCode).size() >= 19
+
+-- #40 String Not Empty in Account
+-- Difficulty: medium
+context Account
+inv: self.accountNo <> '' and self.accountNo.size() > 0
+
+-- #41 Collection Excluding Element in Branch
+-- Difficulty: medium
+context Branch
+inv: self.customers->excluding(self.customers->any(true))->size() < self.customers->size()
+
+-- #42 String Maximum Length in Loan
+-- Difficulty: medium
+context Loan
+inv: self.loanId.size() <= 51
+
+-- #43 Collection Unique Attribute Values in CreditCard
+-- Difficulty: easy
+context CreditCard
+inv: self.cardTransactions->isUnique(x | x.merchant)
+
+-- #44 All Different in Branch
+-- Difficulty: medium
+context Branch
+inv: self.customers->forAll(x, y | x <> y implies x.fullName <> y.fullName)
+
+-- #45 Set Difference in CreditCard
+-- Difficulty: easy
+context CreditCard
+inv: self.cardTransactions->excludingAll(self.cardTransactions)->isEmpty()
+
+-- #46 Collection Sum in Customer
+-- Difficulty: medium
+context Customer
+inv: self.loans->collect(x | x.interestRate)->sum() >= 6
+
+-- #47 Attribute Not Null (Simple) in Account
+-- Difficulty: easy
+context Account
+inv: self.status <> null
+
+-- #48 Collect (Map) Operation in Branch
+-- Difficulty: medium
+context Branch
+inv: self.employees->collect(x | x.name)->notEmpty()
+
+-- #49 String Not Empty in Bank
+-- Difficulty: medium
+context Bank
+inv: self.name <> '' and self.name.size() > 0
+
+-- #50 Attribute Not Null (Simple) in Account
+-- Difficulty: easy
+context Account
+inv: self.accountNo <> null
+
+-- #51 String Exact Length in Branch
+-- Difficulty: easy
+context Branch
+inv: self.city.size() = 24
+
+-- #52 Collection Must Be Empty in Customer
+-- Difficulty: easy
+context Customer
+inv: self.cards->isEmpty()
+
+-- #53 Set Union in Customer
+-- Difficulty: easy
+context Customer
+inv: self.loans->union(self.loans)->notEmpty()
+
+-- #54 String Starts With in Branch
+-- Difficulty: medium
+context Branch
+inv: self.branchCode.size() >= 6 implies self.branchCode.substring(1, 6) = 'value'
+
+-- #55 Two Attributes Not Equal in Customer
+-- Difficulty: easy
+context Customer
+inv: self.email <> self.fullName
+
+-- #56 String Exact Length in Address
+-- Difficulty: easy
+context Address
+inv: self.country.size() = 49
+
+-- #57 Attribute Must Be Null in CreditCard
+-- Difficulty: trivial
+context CreditCard
+inv: self.isActive = null
+
+-- #58 SortedBy Operation in Bank
+-- Difficulty: hard
+context Bank
+inv: self.branches->notEmpty() implies self.branches->sortedBy(x | x.city)->first().city <= self.branches->sortedBy(x | x.city)->last().city
+
+-- #59 Numeric Attribute Bounded in CreditCard
+-- Difficulty: medium
+context CreditCard
+inv: self.limit >= 37 and self.limit <= 85
+
+-- #60 Symmetric Difference in CreditCard
+-- Difficulty: easy
+context CreditCard
+inv: self.cardTransactions->symmetricDifference(self.cardTransactions)->isEmpty()
+
+-- #61 Attribute Must Be Null in Transaction
+-- Difficulty: trivial
+context Transaction
+inv: self.amount = null
+
+-- #62 Numeric Greater Than Value in Loan
+-- Difficulty: trivial
+context Loan
+inv: self.interestRate > 32
+
+-- #63 Collection Not Empty Check in Customer
+-- Difficulty: easy
+context Customer
+inv: self.loans->size() > 0
+
+-- #64 Collection Sum in Customer
+-- Difficulty: medium
+context Customer
+inv: self.accounts->collect(x | x.balance)->sum() >= 8
+
+-- #65 Attribute Must Be Null in Transaction
+-- Difficulty: trivial
+context Transaction
+inv: self.txnId = null
+
+-- #66 Not Both Defined in Employee
+-- Difficulty: medium
+context Employee
+inv: not(self.employeeId <> null and self.name <> null)
+
+-- #67 String Concatenation Check in Employee
+-- Difficulty: medium
+context Employee
+inv: self.name.concat(self.employeeId).size() >= 3
+
+-- #68 String Maximum Length in Transaction
+-- Difficulty: medium
+context Transaction
+inv: self.txnId.size() <= 66
+
+-- #69 Collection Not Empty Check in Branch
+-- Difficulty: easy
+context Branch
+inv: self.employees->size() > 0
+
+-- #70 String Minimum Length in Transaction
+-- Difficulty: medium
+context Transaction
+inv: self.timestamp.size() >= 14
+
+-- #71 Attribute Not Null (Simple) in Bank
+-- Difficulty: easy
+context Bank
+inv: self.swiftCode <> null
+
+-- #72 Set Difference in Customer
+-- Difficulty: easy
+context Customer
+inv: self.cards->excludingAll(self.cards)->isEmpty()
+
+-- #73 Sum Operation in Customer
+-- Difficulty: medium
+context Customer
+inv: self.cards->select(x | x.isActive)->size() >= 57
+

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmi:version="2.0"
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="librarysystem"
+  nsURI="http://example.org/librarysystem"
+  nsPrefix="lib">
+
+  <!-- ========================================================= -->
+  <!-- ENUMS                                                     -->
+  <!-- ========================================================= -->
+
+  <!-- Copy.status enum -->
+  <eClassifiers xsi:type="ecore:EEnum" name="CopyStatus">
+    <eLiterals name="Available" value="0"/>
+    <eLiterals name="Loaned" value="1"/>
+    <eLiterals name="Lost" value="2"/>
+  </eClassifiers>
+
+  <!-- ========================================================= -->
+  <!-- CLASSES (15)                                              -->
+  <!-- ========================================================= -->
+
+  <!-- 1) Library -->
+  <eClassifiers xsi:type="ecore:EClass" name="Library">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLoanDays"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branches"
+      upperBound="-1" containment="true" eType="#//Branch" eOpposite="#//Branch/library"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members"
+      upperBound="-1" containment="true" eType="#//Member" eOpposite="#//Member/library"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="books"
+      upperBound="-1" containment="true" eType="#//Book" eOpposite="#//Book/library"/>
+  </eClassifiers>
+
+  <!-- 2) Branch -->
+  <eClassifiers xsi:type="ecore:EClass" name="Branch">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="phone"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="library"
+      lowerBound="1" eType="#//Library" eOpposite="#//Library/branches"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="address"
+      upperBound="1" containment="true" eType="#//Address" eOpposite="#//Address/branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="copies"
+      upperBound="-1" containment="true" eType="#//Copy" eOpposite="#//Copy/branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loans"
+      upperBound="-1" containment="true" eType="#//Loan" eOpposite="#//Loan/branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" containment="true" eType="#//Reservation" eOpposite="#//Reservation/branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staff"
+      upperBound="-1" containment="true" eType="#//Staff" eOpposite="#//Staff/branch"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="manager"
+      upperBound="1" eType="#//Librarian" eOpposite="#//Librarian/managedBranch"/>
+  </eClassifiers>
+
+  <!-- 3) Address -->
+  <eClassifiers xsi:type="ecore:EClass" name="Address">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="line1"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="country"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      upperBound="1" eType="#//Branch" eOpposite="#//Branch/address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member"
+      upperBound="1" eType="#//Member" eOpposite="#//Member/homeAddress"/>
+  </eClassifiers>
+
+  <!-- 4) Staff -->
+  <eClassifiers xsi:type="ecore:EClass" name="Staff">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="staffId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/staff"/>
+  </eClassifiers>
+
+  <!-- 5) Librarian (extends Staff) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Librarian" eSuperTypes="#//Staff">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="level"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="managedBranch"
+      upperBound="1" eType="#//Branch" eOpposite="#//Branch/manager"/>
+  </eClassifiers>
+
+  <!-- 6) Member -->
+  <eClassifiers xsi:type="ecore:EClass" name="Member">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memberId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="library"
+      lowerBound="1" eType="#//Library" eOpposite="#//Library/members"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="homeAddress"
+      upperBound="1" containment="true" eType="#//Address" eOpposite="#//Address/member"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loans"
+      upperBound="-1" eType="#//Loan" eOpposite="#//Loan/member"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" eType="#//Reservation" eOpposite="#//Reservation/member"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fines"
+      upperBound="-1" eType="#//Fine" eOpposite="#//Fine/member"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payments"
+      upperBound="-1" eType="#//Payment" eOpposite="#//Payment/member"/>
+  </eClassifiers>
+
+  <!-- 7) Book -->
+  <eClassifiers xsi:type="ecore:EClass" name="Book">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isbn"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="publishYear"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pages"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="library"
+      lowerBound="1" eType="#//Library" eOpposite="#//Library/books"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="authors"
+      upperBound="-1" eType="#//Author" eOpposite="#//Author/books"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="publisher"
+      upperBound="1" eType="#//Publisher" eOpposite="#//Publisher/books"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category"
+      upperBound="1" eType="#//Category" eOpposite="#//Category/books"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="copies"
+      upperBound="-1" eType="#//Copy" eOpposite="#//Copy/book"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" eType="#//Reservation" eOpposite="#//Reservation/book"/>
+  </eClassifiers>
+
+  <!-- 8) Author -->
+  <eClassifiers xsi:type="ecore:EClass" name="Author">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="books"
+      upperBound="-1" eType="#//Book" eOpposite="#//Book/authors"/>
+  </eClassifiers>
+
+  <!-- 9) Publisher -->
+  <eClassifiers xsi:type="ecore:EClass" name="Publisher">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="books"
+      upperBound="-1" eType="#//Book" eOpposite="#//Book/publisher"/>
+  </eClassifiers>
+
+  <!-- 10) Category -->
+  <eClassifiers xsi:type="ecore:EClass" name="Category">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="books"
+      upperBound="-1" eType="#//Book" eOpposite="#//Book/category"/>
+  </eClassifiers>
+
+  <!-- 11) Copy -->
+  <eClassifiers xsi:type="ecore:EClass" name="Copy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="barcode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//CopyStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/copies"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="book"
+      lowerBound="1" eType="#//Book" eOpposite="#//Book/copies"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loans"
+      upperBound="-1" eType="#//Loan" eOpposite="#//Loan/copy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" eType="#//Reservation" eOpposite="#//Reservation/copy"/>
+  </eClassifiers>
+
+  <!-- 12) Loan -->
+  <eClassifiers xsi:type="ecore:EClass" name="Loan">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/loans"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member"
+      lowerBound="1" eType="#//Member" eOpposite="#//Member/loans"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="copy"
+      lowerBound="1" eType="#//Copy" eOpposite="#//Copy/loans"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fine"
+      upperBound="1" containment="true" eType="#//Fine" eOpposite="#//Fine/loan"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payment"
+      upperBound="1" containment="true" eType="#//Payment" eOpposite="#//Payment/loan"/>
+  </eClassifiers>
+
+  <!-- 13) Reservation -->
+  <eClassifiers xsi:type="ecore:EClass" name="Reservation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requestDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expiryDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/reservations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member"
+      lowerBound="1" eType="#//Member" eOpposite="#//Member/reservations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="book"
+      lowerBound="1" eType="#//Book" eOpposite="#//Book/reservations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="copy"
+      upperBound="1" eType="#//Copy" eOpposite="#//Copy/reservations"/>
+  </eClassifiers>
+
+  <!-- 14) Fine -->
+  <eClassifiers xsi:type="ecore:EClass" name="Fine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member"
+      lowerBound="1" eType="#//Member" eOpposite="#//Member/fines"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loan"
+      lowerBound="1" eType="#//Loan" eOpposite="#//Loan/fine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payments"
+      upperBound="-1" eType="#//Payment" eOpposite="#//Payment/fine"/>
+  </eClassifiers>
+
+  <!-- 15) Payment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isProcessed"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member"
+      lowerBound="1" eType="#//Member" eOpposite="#//Member/payments"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loan"
+      upperBound="1" eType="#//Loan" eOpposite="#//Loan/payment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fine"
+      upperBound="1" eType="#//Fine" eOpposite="#//Fine/payments"/>
+  </eClassifiers>
+
+</ecore:EPackage>

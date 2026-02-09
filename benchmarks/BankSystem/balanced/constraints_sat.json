@@ -1,0 +1,2117 @@
+{
+  "metadata": {
+    "type": "SAT",
+    "model": "BankSystem",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T18:47:29.176570",
+    "constraint_count": 73
+  },
+  "constraints": [
+    {
+      "ocl": "context Customer\ninv: self.loans->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "Customer",
+      "parameters": {
+        "collection": "loans"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:48.458902",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_not_empty_check_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Address\ninv: self.city <> null implies self.country <> null",
+      "pattern_id": "implies_reverse",
+      "pattern_name": "Reverse Implication",
+      "context": "Address",
+      "parameters": {
+        "first_attribute": "country",
+        "second_attribute": "city"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:48.923448",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 2,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Employee\ninv: self.employeeId <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Employee",
+      "parameters": {
+        "attribute": "employeeId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:49.283707",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.cardTransactions->size() < 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "CreditCard",
+      "parameters": {
+        "collection": "cardTransactions",
+        "operator": "<",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:49.461139",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.isConfirmed <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Payment",
+      "parameters": {
+        "attribute": "isConfirmed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:49.636510",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.transactions->size() < 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "Account",
+      "parameters": {
+        "collection": "transactions",
+        "operator": "<",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:49.811934",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 6,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Loan\ninv: self.customer <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Loan",
+      "parameters": {
+        "association": "customer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:50.088069",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.account <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Transaction",
+      "parameters": {
+        "association": "account"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:50.100337",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CardTransaction\ninv: self.card <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "CardTransaction",
+      "parameters": {
+        "association": "card"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:50.147498",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Teller\ninv: self.counterNo.abs() <= 6",
+      "pattern_id": "numeric_abs_bounded",
+      "pattern_name": "Numeric Absolute Value Bounded",
+      "context": "Teller",
+      "parameters": {
+        "numeric_attribute": "counterNo",
+        "max_abs": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:50.604010",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "abs"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context SavingsAccount\ninv: self.interestRate mod 2 = 1",
+      "pattern_id": "numeric_odd",
+      "pattern_name": "Numeric Is Odd",
+      "context": "SavingsAccount",
+      "parameters": {
+        "numeric_attribute": "interestRate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:50.672240",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 13,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context AccountTransaction\ninv: self.type.size() >= 2 implies self.type.substring(1, 2) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "AccountTransaction",
+      "parameters": {
+        "string_attribute": "type",
+        "prefix": "value",
+        "prefix_length": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.007775",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 15,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Manager\ninv: self.level.size() <= 43",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Manager",
+      "parameters": {
+        "string_attribute": "level",
+        "max_length": 43
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.023985",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 16,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: self.name.size() = 21",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Bank",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 21
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.039553",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 17,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.amount > 0",
+      "pattern_id": "numeric_positive",
+      "pattern_name": "Numeric Attribute Positive",
+      "context": "Transaction",
+      "parameters": {
+        "numeric_attribute": "amount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.040738",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 19,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.cards->isUnique(x | x.cardNo)",
+      "pattern_id": "uniqueness_constraint",
+      "pattern_name": "Uniqueness Constraint",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards",
+        "iterator": "x",
+        "attribute": "cardNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.041135",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 20,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.cards->symmetricDifference(self.cards)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "Customer",
+      "parameters": {
+        "collection1": "cards",
+        "collection2": "cards"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.042323",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 22,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Loan\ninv: self.principal < 1",
+      "pattern_id": "numeric_less_than_value",
+      "pattern_name": "Numeric Less Than Value",
+      "context": "Loan",
+      "parameters": {
+        "numeric_attribute": "principal",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.042863",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 23,
+        "operators_used": [
+          "<"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.cardTransactions->size() >= 5 implies self.cardTransactions->asSequence()->at(5).merchant <> null",
+      "pattern_id": "collection_at_index",
+      "pattern_name": "Collection At Index",
+      "context": "CreditCard",
+      "parameters": {
+        "collection": "cardTransactions",
+        "index": 5,
+        "attribute": "merchant"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.043353",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 24,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.accountNo.size() >= 10 implies self.accountNo.substring(1, 10) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Account",
+      "parameters": {
+        "string_attribute": "accountNo",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.043880",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 25,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.isConfirmed = true",
+      "pattern_id": "boolean_is_true",
+      "pattern_name": "Boolean Is True",
+      "context": "Payment",
+      "parameters": {
+        "boolean_attribute": "isConfirmed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.045054",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 26,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: self.branches->excludingAll(self.branches)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Bank",
+      "parameters": {
+        "collection1": "branches",
+        "collection2": "branches"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.045445",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 27,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.email.size() <= 24",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Customer",
+      "parameters": {
+        "string_attribute": "email",
+        "max_length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.047225",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 29,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.accountNo.size() <= 89",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Account",
+      "parameters": {
+        "string_attribute": "accountNo",
+        "max_length": 89
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.047785",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 30,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.email <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Customer",
+      "parameters": {
+        "attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.048257",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.cardNo.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "CreditCard",
+      "parameters": {
+        "string_attribute": "cardNo",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.049802",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 34,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.email.concat(self.fullName).size() >= 16",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Customer",
+      "parameters": {
+        "first_string": "email",
+        "second_string": "fullName",
+        "min_length": 16
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.050916",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 36,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.branch.oclIsTypeOf(Branch)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Customer",
+      "parameters": {
+        "attribute": "branch",
+        "type": "Branch"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.051806",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 37,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.customers->collect(x | x.loans)->size() >= 2",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Branch",
+      "parameters": {
+        "collection": "customers",
+        "nested_collection": "loans",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.053536",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 41,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.accountNo.size() >= 5 implies self.accountNo.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Account",
+      "parameters": {
+        "string_attribute": "accountNo",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.053949",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 42,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.balance > 50",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Account",
+      "parameters": {
+        "numeric_attribute": "balance",
+        "value": 50
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.054522",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 43,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 4,
+        "implies": [
+          "range_constraint_Account"
+        ]
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.bank <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Branch",
+      "parameters": {
+        "association": "bank"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.055043",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.customers->excludingAll(self.customers)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Branch",
+      "parameters": {
+        "collection1": "customers",
+        "collection2": "customers"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.055885",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: self.branches->asSet()->size() <= self.branches->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Bank",
+      "parameters": {
+        "collection": "branches"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.056350",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 47,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.balance >= 18 and self.balance <= 60",
+      "pattern_id": "range_constraint",
+      "pattern_name": "Range Constraint",
+      "context": "Account",
+      "parameters": {
+        "attribute": "balance",
+        "min_value": 18,
+        "max_value": 60
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.057336",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 49,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.cards->forAll(x, y | x <> y implies x.isActive <> y.isActive)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "isActive"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.058044",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 50,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.account.oclIsTypeOf(Account)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Transaction",
+      "parameters": {
+        "attribute": "account",
+        "type": "Account"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.058483",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 51,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.isActive = true",
+      "pattern_id": "boolean_is_true",
+      "pattern_name": "Boolean Is True",
+      "context": "CreditCard",
+      "parameters": {
+        "boolean_attribute": "isActive"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.059912",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 53,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.city.concat(self.branchCode).size() >= 19",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Branch",
+      "parameters": {
+        "first_string": "city",
+        "second_string": "branchCode",
+        "min_length": 19
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.060358",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 54,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.accountNo <> '' and self.accountNo.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Account",
+      "parameters": {
+        "string_attribute": "accountNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.060892",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 55,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.customers->excluding(self.customers->any(true))->size() < self.customers->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Branch",
+      "parameters": {
+        "collection": "customers",
+        "element": "employees"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.061800",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Loan\ninv: self.loanId.size() <= 51",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Loan",
+      "parameters": {
+        "string_attribute": "loanId",
+        "max_length": 51
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.062228",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 58,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.cardTransactions->isUnique(x | x.merchant)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "CreditCard",
+      "parameters": {
+        "collection": "cardTransactions",
+        "attribute": "merchant"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.063243",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 60,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.customers->forAll(x, y | x <> y implies x.fullName <> y.fullName)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Branch",
+      "parameters": {
+        "collection": "customers",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "fullName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.064368",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 62,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.cardTransactions->excludingAll(self.cardTransactions)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "CreditCard",
+      "parameters": {
+        "collection1": "cardTransactions",
+        "collection2": "cardTransactions"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.065425",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 64,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.loans->collect(x | x.interestRate)->sum() >= 6",
+      "pattern_id": "collection_sum",
+      "pattern_name": "Collection Sum",
+      "context": "Customer",
+      "parameters": {
+        "collection": "loans",
+        "numeric_attribute": "interestRate",
+        "min_sum": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.065835",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 65,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "sum"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.status <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Account",
+      "parameters": {
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.066717",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 66,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.employees->collect(x | x.name)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Branch",
+      "parameters": {
+        "collection": "employees",
+        "iterator": "x",
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.067100",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 67,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: self.name <> '' and self.name.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Bank",
+      "parameters": {
+        "string_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.067732",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 68,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: self.accountNo <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Account",
+      "parameters": {
+        "attribute": "accountNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.068472",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 69,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.city.size() = 24",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Branch",
+      "parameters": {
+        "string_attribute": "city",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.069158",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.cards->isEmpty()",
+      "pattern_id": "collection_empty_check",
+      "pattern_name": "Collection Must Be Empty",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.069537",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 71,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.loans->union(self.loans)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Customer",
+      "parameters": {
+        "collection1": "loans",
+        "collection2": "loans"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.069956",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 72,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.branchCode.size() >= 6 implies self.branchCode.substring(1, 6) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Branch",
+      "parameters": {
+        "string_attribute": "branchCode",
+        "prefix": "value",
+        "prefix_length": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.071104",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 74,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.email <> self.fullName",
+      "pattern_id": "two_attributes_not_equal",
+      "pattern_name": "Two Attributes Not Equal",
+      "context": "Customer",
+      "parameters": {
+        "first_attribute": "email",
+        "second_attribute": "fullName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.071598",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 75,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: self.country.size() = 49",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Address",
+      "parameters": {
+        "string_attribute": "country",
+        "length": 49
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.071992",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 76,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.isActive = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "CreditCard",
+      "parameters": {
+        "attribute": "isActive"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.072472",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 77,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: self.branches->notEmpty() implies self.branches->sortedBy(x | x.city)->first().city <= self.branches->sortedBy(x | x.city)->last().city",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Bank",
+      "parameters": {
+        "collection": "branches",
+        "attribute": "city"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.073197",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 78,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 8,
+        "implies": [
+          "collection_size_range_unsat_Bank"
+        ]
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.limit >= 37 and self.limit <= 85",
+      "pattern_id": "numeric_bounded",
+      "pattern_name": "Numeric Attribute Bounded",
+      "context": "CreditCard",
+      "parameters": {
+        "numeric_attribute": "limit",
+        "min_value": 37,
+        "max_value": 85
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.073872",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 79,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: self.cardTransactions->symmetricDifference(self.cardTransactions)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "CreditCard",
+      "parameters": {
+        "collection1": "cardTransactions",
+        "collection2": "cardTransactions"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.074947",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 80,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.amount = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Transaction",
+      "parameters": {
+        "attribute": "amount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.075959",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 82,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Loan\ninv: self.interestRate > 32",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Loan",
+      "parameters": {
+        "numeric_attribute": "interestRate",
+        "value": 32
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.076392",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.loans->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Customer",
+      "parameters": {
+        "collection": "loans"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.076757",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 84,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.accounts->collect(x | x.balance)->sum() >= 8",
+      "pattern_id": "collection_sum",
+      "pattern_name": "Collection Sum",
+      "context": "Customer",
+      "parameters": {
+        "collection": "accounts",
+        "numeric_attribute": "balance",
+        "min_sum": 8
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.077550",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 85,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "sum"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.txnId = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Transaction",
+      "parameters": {
+        "attribute": "txnId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.079039",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 88,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Employee\ninv: not(self.employeeId <> null and self.name <> null)",
+      "pattern_id": "not_both_defined",
+      "pattern_name": "Not Both Defined",
+      "context": "Employee",
+      "parameters": {
+        "first_attribute": "employeeId",
+        "second_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.080131",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 89,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Employee\ninv: self.name.concat(self.employeeId).size() >= 3",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Employee",
+      "parameters": {
+        "first_string": "name",
+        "second_string": "employeeId",
+        "min_length": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.081443",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 91,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 18,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.txnId.size() <= 66",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Transaction",
+      "parameters": {
+        "string_attribute": "txnId",
+        "max_length": 66
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.082177",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 92,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: self.employees->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Branch",
+      "parameters": {
+        "collection": "employees"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.083929",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 95,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Transaction\ninv: self.timestamp.size() >= 14",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Transaction",
+      "parameters": {
+        "string_attribute": "timestamp",
+        "min_length": 14
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.084815",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 97,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: self.swiftCode <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Bank",
+      "parameters": {
+        "attribute": "swiftCode"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.085249",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 98,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 20,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.cards->excludingAll(self.cards)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Customer",
+      "parameters": {
+        "collection1": "cards",
+        "collection2": "cards"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.086965",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 101,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.cards->select(x | x.isActive)->size() >= 57",
+      "pattern_id": "sum_operation",
+      "pattern_name": "Sum Operation",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards",
+        "iterator": "x",
+        "attribute": "isActive",
+        "operator": ">=",
+        "value": 57
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.087957",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 102,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "select",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 21,
+        "implies": []
+      }
+    }
+  ]
+}

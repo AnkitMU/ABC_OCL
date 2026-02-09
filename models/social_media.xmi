@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI
+  xmi:version="2.0"
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+
+  <ecore:EPackage
+    name="socialnetwork"
+    nsURI="http://example.org/socialnetwork"
+    nsPrefix="sn">
+
+    <!-- ===== ENUMS ===== -->
+    <eClassifiers xsi:type="ecore:EEnum" name="ReactionType">
+      <eLiterals name="Like" value="0"/>
+      <eLiterals name="Love" value="1"/>
+      <eLiterals name="Haha" value="2"/>
+      <eLiterals name="Wow" value="3"/>
+      <eLiterals name="Sad" value="4"/>
+      <eLiterals name="Angry" value="5"/>
+    </eClassifiers>
+
+    <eClassifiers xsi:type="ecore:EEnum" name="NotificationType">
+      <eLiterals name="FriendRequest" value="0"/>
+      <eLiterals name="Comment" value="1"/>
+      <eLiterals name="Reaction" value="2"/>
+      <eLiterals name="Follow" value="3"/>
+      <eLiterals name="Message" value="4"/>
+      <eLiterals name="Tag" value="5"/>
+    </eClassifiers>
+
+    <!-- ===== CLASSES (14) ===== -->
+
+    <!-- 1) User -->
+    <eClassifiers xsi:type="ecore:EClass" name="User">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="username"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="profile"
+        upperBound="1" containment="true" eType="#//Profile" eOpposite="#//Profile/user"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="posts"
+        upperBound="-1" containment="true" eType="#//Post" eOpposite="#//Post/author"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="notifications"
+        upperBound="-1" containment="true" eType="#//Notification" eOpposite="#//Notification/recipient"/>
+    </eClassifiers>
+
+    <!-- 2) Profile -->
+    <eClassifiers xsi:type="ecore:EClass" name="Profile">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="bio"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="birthDate"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user"
+        lowerBound="1" eType="#//User" eOpposite="#//User/profile"/>
+    </eClassifiers>
+
+    <!-- 3) Post -->
+    <eClassifiers xsi:type="ecore:EClass" name="Post">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="content"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPublic"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="author"
+        lowerBound="1" eType="#//User" eOpposite="#//User/posts"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="comments"
+        upperBound="-1" containment="true" eType="#//Comment" eOpposite="#//Comment/post"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="reactions"
+        upperBound="-1" containment="true" eType="#//Reaction" eOpposite="#//Reaction/post"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="media"
+        upperBound="-1" containment="true" eType="#//Media" eOpposite="#//Media/post"/>
+    </eClassifiers>
+
+    <!-- 4) Comment -->
+    <eClassifiers xsi:type="ecore:EClass" name="Comment">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="text"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="post"
+        lowerBound="1" eType="#//Post" eOpposite="#//Post/comments"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="author"
+        lowerBound="1" eType="#//User"/>
+    </eClassifiers>
+
+    <!-- 5) Reaction -->
+    <eClassifiers xsi:type="ecore:EClass" name="Reaction">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+        eType="#//ReactionType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="post"
+        lowerBound="1" eType="#//Post" eOpposite="#//Post/reactions"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user"
+        lowerBound="1" eType="#//User"/>
+    </eClassifiers>
+
+    <!-- 6) Message -->
+    <eClassifiers xsi:type="ecore:EClass" name="Message">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="body"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sentAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRead"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conversation"
+        lowerBound="1" eType="#//Conversation" eOpposite="#//Conversation/messages"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sender"
+        lowerBound="1" eType="#//User"/>
+    </eClassifiers>
+
+    <!-- 7) Conversation -->
+    <eClassifiers xsi:type="ecore:EClass" name="Conversation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participants"
+        upperBound="-1" eType="#//User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="messages"
+        upperBound="-1" containment="true" eType="#//Message" eOpposite="#//Message/conversation"/>
+    </eClassifiers>
+
+    <!-- 8) Group -->
+    <eClassifiers xsi:type="ecore:EClass" name="Group">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="memberships"
+        upperBound="-1" containment="true" eType="#//Membership" eOpposite="#//Membership/group"/>
+    </eClassifiers>
+
+    <!-- 9) Membership -->
+    <eClassifiers xsi:type="ecore:EClass" name="Membership">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="role"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="joinedAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="group"
+        lowerBound="1" eType="#//Group" eOpposite="#//Group/memberships"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="user"
+        lowerBound="1" eType="#//User"/>
+    </eClassifiers>
+
+    <!-- 10) FriendRequest -->
+    <eClassifiers xsi:type="ecore:EClass" name="FriendRequest">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAccepted"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="fromUser"
+        lowerBound="1" eType="#//User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="toUser"
+        lowerBound="1" eType="#//User"/>
+    </eClassifiers>
+
+    <!-- 11) Follow -->
+    <eClassifiers xsi:type="ecore:EClass" name="Follow">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="followedAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="follower"
+        lowerBound="1" eType="#//User"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="followee"
+        lowerBound="1" eType="#//User"/>
+    </eClassifiers>
+
+    <!-- 12) Notification -->
+    <eClassifiers xsi:type="ecore:EClass" name="Notification">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+        eType="#//NotificationType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="message"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSeen"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recipient"
+        lowerBound="1" eType="#//User" eOpposite="#//User/notifications"/>
+    </eClassifiers>
+
+    <!-- 13) Media -->
+    <eClassifiers xsi:type="ecore:EClass" name="Media">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="mediaType"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="post"
+        lowerBound="1" eType="#//Post" eOpposite="#//Post/media"/>
+    </eClassifiers>
+
+    <!-- 14) Tag -->
+    <eClassifiers xsi:type="ecore:EClass" name="Tag">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+      <eStructuralFeatures xsi:type="ecore:EReference" name="posts"
+        upperBound="-1" eType="#//Post"/>
+    </eClassifiers>
+
+  </ecore:EPackage>
+</xmi:XMI>

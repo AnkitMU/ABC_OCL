@@ -1,0 +1,431 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "University_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:17:39.920904",
+    "constraint_count": 14
+  },
+  "constraints": [
+    {
+      "ocl": "context Department\ninv: not(self.courses->isEmpty())",
+      "pattern_id": "collection_empty_check_unsat",
+      "pattern_name": "Collection Must Be Empty (UNSAT)",
+      "context": "Department",
+      "parameters": {
+        "collection": "courses"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.801720",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Enrollment\ninv: not(self.grade <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Enrollment",
+      "parameters": {
+        "association": "grade"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.801740",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 6,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ExamAttempt\ninv: not(self.student <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "ExamAttempt",
+      "parameters": {
+        "association": "student"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.801754",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: not(self.offering <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Exam",
+      "parameters": {
+        "association": "offering"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.801767",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 13,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context GradeRecord\ninv: (self.points > 0) and (self.points < -5)",
+      "pattern_id": "numeric_positive_unsat",
+      "pattern_name": "Numeric Attribute Positive (UNSAT)",
+      "context": "GradeRecord",
+      "parameters": {
+        "numeric_attribute": "points"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.801950",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 16,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context LibraryAccount\ninv: not(self.accountId.size() >= 19)",
+      "pattern_id": "string_min_length_unsat",
+      "pattern_name": "String Minimum Length (UNSAT)",
+      "context": "LibraryAccount",
+      "parameters": {
+        "string_attribute": "accountId",
+        "min_length": 19
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.801985",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 17,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Course\ninv: not(self.offerings->asSequence()->notEmpty())",
+      "pattern_id": "collection_asSequence_unsat",
+      "pattern_name": "Collection As Sequence Conversion (UNSAT)",
+      "context": "Course",
+      "parameters": {
+        "collection": "offerings"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802071",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 20,
+        "operators_used": [
+          "-",
+          ">",
+          "asSequence",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: not(self.type = self.examDate)",
+      "pattern_id": "string_equality_unsat",
+      "pattern_name": "String Equality (UNSAT)",
+      "context": "Exam",
+      "parameters": {
+        "attr1": "type",
+        "attr2": "examDate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802085",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 21,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Course\ninv: (self.offerings->size() >= 1) and (self.offerings->size() < 1)",
+      "pattern_id": "collection_min_size_unsat",
+      "pattern_name": "Collection Minimum Size (UNSAT)",
+      "context": "Course",
+      "parameters": {
+        "collection": "offerings",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802098",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 23,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Exam\ninv: not(self.attempts->symmetricDifference(self.attempts)->isEmpty())",
+      "pattern_id": "symmetricDifference_unsat",
+      "pattern_name": "Symmetric Difference (UNSAT)",
+      "context": "Exam",
+      "parameters": {
+        "collection1": "attempts",
+        "collection2": "attempts"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802111",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 24,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Program\ninv: not(self.students->union(self.students)->notEmpty())",
+      "pattern_id": "union_operation_unsat",
+      "pattern_name": "Set Union (UNSAT)",
+      "context": "Program",
+      "parameters": {
+        "collection1": "students",
+        "collection2": "students"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802131",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 29,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ExamAttempt\ninv: not(self.attemptDate.size() = 37)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "ExamAttempt",
+      "parameters": {
+        "string_attribute": "attemptDate",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802172",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 54,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context LibraryAccount\ninv: not(self.accountId.size() = 40)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "LibraryAccount",
+      "parameters": {
+        "string_attribute": "accountId",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802204",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 59,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Student\ninv: (self.scholarships->size() >= 2 and self.scholarships->size() <= 2) and (self.scholarships->size() < 2)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Student",
+      "parameters": {
+        "collection": "scholarships",
+        "min_size": 2,
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:17:16.802216",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 60,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    }
+  ]
+}

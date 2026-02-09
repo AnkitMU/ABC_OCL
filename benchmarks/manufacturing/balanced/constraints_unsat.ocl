@@ -1,0 +1,131 @@
+-- Benchmark: manufacturing / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:38:57.746252
+-- Count: 21
+
+-- #1 Collection Not Empty (Simple) (UNSAT) in Plant
+-- Difficulty: easy
+-- Mutation Strategy: empty_collection
+context Plant
+inv: (self.workshops->notEmpty()) and (self.workshops->isEmpty())
+
+-- #2 Simple Implication (UNSAT) in Technician
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Technician
+inv: not(self.empId <> null implies self.name <> null)
+
+-- #3 All Attributes Defined (UNSAT) in DefectReport
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context DefectReport
+inv: not(self.description <> null and self.defectId <> null)
+
+-- #4 Association Exists (UNSAT) in Machine
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Machine
+inv: not(self.station <> null)
+
+-- #5 Collection Size in Range (UNSAT) in Shift
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Shift
+inv: (self.operators->size() >= 1 and self.operators->size() <= 1) and (self.operators->size() < 1)
+
+-- #6 String Contains Substring (UNSAT) in Machine
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Machine
+inv: not(self.manufacturer.indexOf('value') >= 0)
+
+-- #7 Collect (Map) Operation (UNSAT) in Machine
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Machine
+inv: not(self.maintenanceTasks->collect(x | x.isDone)->notEmpty())
+
+-- #8 Attribute Not Null (Simple) (UNSAT) in Plant
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Plant
+inv: not(self.name <> null)
+
+-- #9 Symmetric Difference (UNSAT) in ProductionLine
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context ProductionLine
+inv: not(self.workOrders->symmetricDifference(self.workOrders)->isEmpty())
+
+-- #10 Collection Excluding Element (UNSAT) in Shipment
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Shipment
+inv: not(self.items->excluding(self.items->any(true))->size() < self.items->size())
+
+-- #11 Sum Operation (UNSAT) in Technician
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Technician
+inv: not(self.tasks->select(x | x.isDone)->size() = 93)
+
+-- #12 String Contains Substring (UNSAT) in Supplier
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Supplier
+inv: not(self.supplierId.indexOf('value') >= 0)
+
+-- #13 Collect (Map) Operation (UNSAT) in Workstation
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Workstation
+inv: not(self.machines->collect(x | x.status)->notEmpty())
+
+-- #14 Range Constraint (UNSAT) in DefectReport
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context DefectReport
+inv: (self.severity >= 18 and self.severity <= 60) and (self.severity < 18)
+
+-- #15 Collection Unique Attribute Values (UNSAT) in Plant
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Plant
+inv: not(self.workshops->isUnique(x | x.name))
+
+-- #16 Collection Maximum Size (UNSAT) in Supplier
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Supplier
+inv: (self.shipments->size() <= 3) and (self.shipments->size() > 3)
+
+-- #17 String Exact Length (UNSAT) in MaintenanceTask
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context MaintenanceTask
+inv: not(self.scheduledAt.size() = 24)
+
+-- #18 String Maximum Length (UNSAT) in Supplier
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Supplier
+inv: not(self.name.size() <= 13)
+
+-- #19 Collection First Element (UNSAT) in WorkOrder
+-- Difficulty: medium
+-- Mutation Strategy: empty_collection
+context WorkOrder
+inv: (self.qualityChecks->notEmpty() implies self.qualityChecks->first().passed <> null) and (self.qualityChecks->isEmpty())
+
+-- #20 Bi-directional Implication (UNSAT) in Product
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Product
+inv: not((self.name <> null) = (self.sku <> null))
+
+-- #21 Attribute Must Be Null (UNSAT) in Workshop
+-- Difficulty: trivial
+-- Mutation Strategy: simple_negation
+context Workshop
+inv: not(self.name = null)
+

@@ -1,0 +1,638 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "Hospital_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:25:07.477378",
+    "constraint_count": 20
+  },
+  "constraints": [
+    {
+      "ocl": "context Prescription\ninv: not(self.medications->isEmpty())",
+      "pattern_id": "collection_empty_check_unsat",
+      "pattern_name": "Collection Must Be Empty (UNSAT)",
+      "context": "Prescription",
+      "parameters": {
+        "collection": "medications"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.646774",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 1,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Admission\ninv: not(self.admissionId <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Admission",
+      "parameters": {
+        "attribute": "admissionId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.646797",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Procedure\ninv: not(self.record <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Procedure",
+      "parameters": {
+        "association": "record"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.646814",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 11,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Doctor\ninv: not(self.department <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Doctor",
+      "parameters": {
+        "association": "department"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.646828",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 13,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context LabResult\ninv: not(self.test <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "LabResult",
+      "parameters": {
+        "association": "test"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.646844",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 15,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Doctor\ninv: not(self.appointments->includesAll(self.appointments) or self.appointments->excludesAll(self.appointments))",
+      "pattern_id": "includesAll_excludesAll_unsat",
+      "pattern_name": "IncludesAll/ExcludesAll Check (UNSAT)",
+      "context": "Doctor",
+      "parameters": {
+        "collection1": "appointments",
+        "collection2": "appointments"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.646865",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 29,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Admission\ninv: not(self.admitDate.size() >= 10 implies self.admitDate.substring(1, 10) = 'value')",
+      "pattern_id": "string_starts_with_unsat",
+      "pattern_name": "String Starts With (UNSAT)",
+      "context": "Admission",
+      "parameters": {
+        "string_attribute": "admitDate",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647113",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 33,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: not(self.beds->isUnique(x | x.bedNo))",
+      "pattern_id": "collection_isUnique_attr_unsat",
+      "pattern_name": "Collection Unique Attribute Values (UNSAT)",
+      "context": "Room",
+      "parameters": {
+        "collection": "beds",
+        "attribute": "bedNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647131",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 41,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: not(self.nurses->excludingAll(self.nurses)->isEmpty())",
+      "pattern_id": "difference_operation_unsat",
+      "pattern_name": "Set Difference (UNSAT)",
+      "context": "Department",
+      "parameters": {
+        "collection1": "nurses",
+        "collection2": "nurses"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647146",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 47,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: not(self.createdAt.size() = 40)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "MedicalRecord",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647179",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 48,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Appointment\ninv: not(self.appointmentId.size() >= 5 implies self.appointmentId.substring(1, 5) = 'value')",
+      "pattern_id": "string_starts_with_unsat",
+      "pattern_name": "String Starts With (UNSAT)",
+      "context": "Appointment",
+      "parameters": {
+        "string_attribute": "appointmentId",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647265",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 50,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Admission\ninv: not(self.admitDate.size() >= 5 implies self.admitDate.substring(1, 5) = 'value')",
+      "pattern_id": "string_starts_with_unsat",
+      "pattern_name": "String Starts With (UNSAT)",
+      "context": "Admission",
+      "parameters": {
+        "string_attribute": "admitDate",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647335",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 58,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: (self.diagnoses->notEmpty() implies self.diagnoses->last().diagnosedAt <> null) and (self.diagnoses->isEmpty())",
+      "pattern_id": "collection_last_unsat",
+      "pattern_name": "Collection Last Element (UNSAT)",
+      "context": "MedicalRecord",
+      "parameters": {
+        "collection": "diagnoses",
+        "attribute": "diagnosedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647420",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 60,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Room\ninv: not(self.roomNo.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Room",
+      "parameters": {
+        "string_attribute": "roomNo",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647458",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 68,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: (self.patient.oclIsTypeOf(Patient)) and (patient.oclIsTypeOf(Room))",
+      "pattern_id": "type_check_unsat",
+      "pattern_name": "Type Check (UNSAT)",
+      "context": "MedicalRecord",
+      "parameters": {
+        "attribute": "patient",
+        "type": "Patient"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647559",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 71,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "type_contradiction",
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Patient\ninv: not(self.admissions->symmetricDifference(self.admissions)->isEmpty())",
+      "pattern_id": "symmetricDifference_unsat",
+      "pattern_name": "Symmetric Difference (UNSAT)",
+      "context": "Patient",
+      "parameters": {
+        "collection1": "admissions",
+        "collection2": "admissions"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647576",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 74,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Prescription\ninv: (self.medications->notEmpty() implies self.medications->first().frequency <> null) and (self.medications->isEmpty())",
+      "pattern_id": "collection_first_unsat",
+      "pattern_name": "Collection First Element (UNSAT)",
+      "context": "Prescription",
+      "parameters": {
+        "collection": "medications",
+        "attribute": "frequency"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647593",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 79,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Department\ninv: (self.nurses->notEmpty() implies self.nurses->sortedBy(x | x.shift)->first().shift <= self.nurses->sortedBy(x | x.shift)->last().shift) and (self.nurses->isEmpty())",
+      "pattern_id": "sortedBy_unsat",
+      "pattern_name": "SortedBy Operation (UNSAT)",
+      "context": "Department",
+      "parameters": {
+        "collection": "nurses",
+        "attribute": "shift"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647608",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 81,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ward\ninv: not(self.rooms->excluding(self.rooms->any(true))->size() < self.rooms->size())",
+      "pattern_id": "collection_excluding_unsat",
+      "pattern_name": "Collection Excluding Element (UNSAT)",
+      "context": "Ward",
+      "parameters": {
+        "collection": "rooms",
+        "element": "hospital"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647735",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 86,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 19,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MedicalRecord\ninv: not(self.diagnoses->isUnique(x | x.diagnosedAt))",
+      "pattern_id": "uniqueness_constraint_unsat",
+      "pattern_name": "Uniqueness Constraint (UNSAT)",
+      "context": "MedicalRecord",
+      "parameters": {
+        "collection": "diagnoses",
+        "iterator": "x",
+        "attribute": "diagnosedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:24:32.647756",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 95,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 20,
+        "implies": []
+      }
+    }
+  ]
+}

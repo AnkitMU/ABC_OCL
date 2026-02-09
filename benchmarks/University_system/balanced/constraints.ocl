@@ -1,0 +1,385 @@
+-- Benchmark: University_system / balanced
+-- Generated: 2026-02-07T19:17:39.915029
+-- Seed: 42
+-- Complexity: standard
+-- Count: 63
+-- Research Features: ENABLED
+
+-- #1 All Attributes Defined in Staff
+-- Difficulty: easy
+-- Type: SAT
+context Staff
+inv: self.name <> null and self.role <> null
+
+-- #2 Collection Size Constraint in CourseOffering
+-- Difficulty: easy
+-- Type: SAT
+context CourseOffering
+inv: self.enrollments->size() = 1
+
+-- #3 Symmetric Difference in Course
+-- Difficulty: easy
+-- Type: SAT
+context Course
+inv: self.offerings->symmetricDifference(self.offerings)->isEmpty()
+
+-- #4 Association Exists in Instructor
+-- Difficulty: easy
+-- Type: SAT
+context Instructor
+inv: self.department <> null
+
+-- #5 Association Exists in Building
+-- Difficulty: easy
+-- Type: SAT
+context Building
+inv: self.university <> null
+
+-- #6 Association Exists in Scholarship
+-- Difficulty: easy
+-- Type: SAT
+context Scholarship
+inv: self.student <> null
+
+-- #7 Association Exists in Room
+-- Difficulty: easy
+-- Type: SAT
+context Room
+inv: self.building <> null
+
+-- #8 Numeric Is Even in Semester
+-- Difficulty: easy
+-- Type: SAT
+context Semester
+inv: self.year mod 2 = 0
+
+-- #9 String Minimum Length in Instructor
+-- Difficulty: medium
+-- Type: SAT
+context Instructor
+inv: self.name.size() >= 14
+
+-- #10 Collection Sum in Exam
+-- Difficulty: medium
+-- Type: SAT
+context Exam
+inv: self.attempts->collect(x | x.marks)->sum() >= 7
+
+-- #11 String Contains Substring in ExamAttempt
+-- Difficulty: medium
+-- Type: SAT
+context ExamAttempt
+inv: self.attemptDate.indexOf('value') >= 0
+
+-- #12 String Equality in Instructor
+-- Difficulty: trivial
+-- Type: SAT
+context Instructor
+inv: self.email = self.staffId
+
+-- #13 Numeric Attribute Positive in Course
+-- Difficulty: trivial
+-- Type: SAT
+context Course
+inv: self.credits > 0
+
+-- #14 Bi-directional Implication in Instructor
+-- Difficulty: easy
+-- Type: SAT
+context Instructor
+inv: (self.email <> null) = (self.staffId <> null)
+
+-- #15 Numeric Greater Than Value in Program
+-- Difficulty: trivial
+-- Type: SAT
+context Program
+inv: self.durationYears > 34
+
+-- #16 Collection Not Empty Check in Department
+-- Difficulty: easy
+-- Type: SAT
+context Department
+inv: self.programs->size() > 0
+
+-- #17 Collection Must Be Empty in University
+-- Difficulty: easy
+-- Type: SAT
+context University
+inv: self.faculties->isEmpty()
+
+-- #18 String Contains Substring in CourseOffering
+-- Difficulty: medium
+-- Type: SAT
+context CourseOffering
+inv: self.section.indexOf('value') >= 0
+
+-- #19 Collect (Map) Operation in Student
+-- Difficulty: medium
+-- Type: SAT
+context Student
+inv: self.enrollments->collect(x | x.enrolledAt)->notEmpty()
+
+-- #20 Collection Minimum Size in Department
+-- Difficulty: medium
+-- Type: SAT
+context Department
+inv: self.programs->size() >= 1
+
+-- #21 Set Union in Room
+-- Difficulty: easy
+-- Type: SAT
+context Room
+inv: self.offerings->union(self.offerings)->notEmpty()
+
+-- #22 SortedBy Operation in Building
+-- Difficulty: hard
+-- Type: SAT
+context Building
+inv: self.rooms->notEmpty() implies self.rooms->sortedBy(x | x.roomNumber)->first().roomNumber <= self.rooms->sortedBy(x | x.roomNumber)->last().roomNumber
+
+-- #23 Collection Maximum Size in Building
+-- Difficulty: medium
+-- Type: SAT
+context Building
+inv: self.rooms->size() <= 3
+
+-- #24 Collection Has Specific Size in Instructor
+-- Difficulty: easy
+-- Type: SAT
+context Instructor
+inv: self.offerings->size() = 2
+
+-- #25 Collect (Map) Operation in Building
+-- Difficulty: medium
+-- Type: SAT
+context Building
+inv: self.rooms->collect(x | x.roomNumber)->notEmpty()
+
+-- #26 Association Exists in CourseOffering
+-- Difficulty: easy
+-- Type: SAT
+context CourseOffering
+inv: self.semester <> null
+
+-- #27 Collection Unique Attribute Values in CourseOffering
+-- Difficulty: easy
+-- Type: SAT
+context CourseOffering
+inv: self.exams->isUnique(x | x.maxMarks)
+
+-- #28 Collection Unique Attribute Values in Student
+-- Difficulty: easy
+-- Type: SAT
+context Student
+inv: self.enrollments->isUnique(x | x.status)
+
+-- #29 Range Constraint in CourseOffering
+-- Difficulty: medium
+-- Type: SAT
+context CourseOffering
+inv: self.capacity >= 23 and self.capacity <= 75
+
+-- #30 String Minimum Length in Room
+-- Difficulty: medium
+-- Type: SAT
+context Room
+inv: self.roomNumber.size() >= 14
+
+-- #31 Numeric Is Odd in Student
+-- Difficulty: easy
+-- Type: SAT
+context Student
+inv: self.yearOfStudy mod 2 = 1
+
+-- #32 Collection Not Empty (Simple) in Exam
+-- Difficulty: easy
+-- Type: SAT
+context Exam
+inv: self.attempts->notEmpty()
+
+-- #33 Not Both Defined in Department
+-- Difficulty: medium
+-- Type: SAT
+context Department
+inv: not(self.name <> null and self.code <> null)
+
+-- #34 Collect (Map) Operation in CourseOffering
+-- Difficulty: medium
+-- Type: SAT
+context CourseOffering
+inv: self.exams->collect(x | x.maxMarks)->notEmpty()
+
+-- #35 Attribute Not Null (Simple) in Exam
+-- Difficulty: easy
+-- Type: SAT
+context Exam
+inv: self.examDate <> null
+
+-- #36 Attribute Not Null (Simple) in Department
+-- Difficulty: easy
+-- Type: SAT
+context Department
+inv: self.code <> null
+
+-- #37 Symmetric Difference in Faculty
+-- Difficulty: easy
+-- Type: SAT
+context Faculty
+inv: self.departments->symmetricDifference(self.departments)->isEmpty()
+
+-- #38 Collection Not Empty Check in Exam
+-- Difficulty: easy
+-- Type: SAT
+context Exam
+inv: self.attempts->size() > 0
+
+-- #39 Collection Nested Collection Flatten in Room
+-- Difficulty: medium
+-- Type: SAT
+context Room
+inv: self.offerings->collect(x | x.exams)->size() >= 1
+
+-- #40 Division and Modulo in Semester
+-- Difficulty: easy
+-- Type: SAT
+context Semester
+inv: self.year div 72 = 0
+
+-- #41 Collection Nested Collection Flatten in Department
+-- Difficulty: medium
+-- Type: SAT
+context Department
+inv: self.instructors->collect(x | x.offerings)->size() >= 2
+
+-- #42 String Starts With in Course
+-- Difficulty: medium
+-- Type: SAT
+context Course
+inv: self.code.size() >= 5 implies self.code.substring(1, 5) = 'value'
+
+-- #43 Numeric Attribute Bounded in GradeRecord
+-- Difficulty: medium
+-- Type: SAT
+context GradeRecord
+inv: self.points >= 8 and self.points <= 27
+
+-- #44 Numeric Greater Than Value in Exam
+-- Difficulty: trivial
+-- Type: SAT
+context Exam
+inv: self.maxMarks > 98
+
+-- #45 Attribute Not Null (Simple) in Scholarship
+-- Difficulty: easy
+-- Type: SAT
+context Scholarship
+inv: self.endYear <> null
+
+-- #46 String Contains Substring in Scholarship
+-- Difficulty: medium
+-- Type: SAT
+context Scholarship
+inv: self.name.indexOf('value') >= 0
+
+-- #47 String Maximum Length in Faculty
+-- Difficulty: medium
+-- Type: SAT
+context Faculty
+inv: self.name.size() <= 53
+
+-- #48 Collection Unique Attribute Values in Program
+-- Difficulty: easy
+-- Type: SAT
+context Program
+inv: self.students->isUnique(x | x.name)
+
+-- #49 String Contains Substring in Building
+-- Difficulty: medium
+-- Type: SAT
+context Building
+inv: self.code.indexOf('value') >= 0
+
+-- #50 Collection Must Be Empty (UNSAT) in Department
+-- Difficulty: easy
+-- Type: UNSAT
+context Department
+inv: not(self.courses->isEmpty())
+
+-- #51 Association Exists (UNSAT) in Enrollment
+-- Difficulty: easy
+-- Type: UNSAT
+context Enrollment
+inv: not(self.grade <> null)
+
+-- #52 Association Exists (UNSAT) in ExamAttempt
+-- Difficulty: easy
+-- Type: UNSAT
+context ExamAttempt
+inv: not(self.student <> null)
+
+-- #53 Association Exists (UNSAT) in Exam
+-- Difficulty: easy
+-- Type: UNSAT
+context Exam
+inv: not(self.offering <> null)
+
+-- #54 Numeric Attribute Positive (UNSAT) in GradeRecord
+-- Difficulty: trivial
+-- Type: UNSAT
+context GradeRecord
+inv: (self.points > 0) and (self.points < -5)
+
+-- #55 String Minimum Length (UNSAT) in LibraryAccount
+-- Difficulty: medium
+-- Type: UNSAT
+context LibraryAccount
+inv: not(self.accountId.size() >= 19)
+
+-- #56 Collection As Sequence Conversion (UNSAT) in Course
+-- Difficulty: easy
+-- Type: UNSAT
+context Course
+inv: not(self.offerings->asSequence()->notEmpty())
+
+-- #57 String Equality (UNSAT) in Exam
+-- Difficulty: trivial
+-- Type: UNSAT
+context Exam
+inv: not(self.type = self.examDate)
+
+-- #58 Collection Minimum Size (UNSAT) in Course
+-- Difficulty: medium
+-- Type: UNSAT
+context Course
+inv: (self.offerings->size() >= 1) and (self.offerings->size() < 1)
+
+-- #59 Symmetric Difference (UNSAT) in Exam
+-- Difficulty: easy
+-- Type: UNSAT
+context Exam
+inv: not(self.attempts->symmetricDifference(self.attempts)->isEmpty())
+
+-- #60 Set Union (UNSAT) in Program
+-- Difficulty: easy
+-- Type: UNSAT
+context Program
+inv: not(self.students->union(self.students)->notEmpty())
+
+-- #61 String Exact Length (UNSAT) in ExamAttempt
+-- Difficulty: easy
+-- Type: UNSAT
+context ExamAttempt
+inv: not(self.attemptDate.size() = 37)
+
+-- #62 String Exact Length (UNSAT) in LibraryAccount
+-- Difficulty: easy
+-- Type: UNSAT
+context LibraryAccount
+inv: not(self.accountId.size() = 40)
+
+-- #63 Collection Size in Range (UNSAT) in Student
+-- Difficulty: medium
+-- Type: UNSAT
+context Student
+inv: (self.scholarships->size() >= 2 and self.scholarships->size() <= 2) and (self.scholarships->size() < 2)
+

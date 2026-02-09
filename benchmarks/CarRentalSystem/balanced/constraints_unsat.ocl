@@ -1,0 +1,107 @@
+-- Benchmark: CarRentalSystem / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-04T23:39:01.405779
+-- Count: 17
+
+-- #1 Attribute Not Null (Simple) (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.isOpen <> null)
+
+-- #2 Association Exists (UNSAT) in Vehicle
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Vehicle
+inv: not(self.branch <> null)
+
+-- #3 Association Exists (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.company <> null)
+
+-- #4 Numeric Attribute Non-Negative (UNSAT) in Vehicle
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Vehicle
+inv: (self.tankLevel >= 0) and (self.tankLevel < 0)
+
+-- #5 All Attributes Defined (UNSAT) in Reservation
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Reservation
+inv: not(self.dateTo <> null and self.createdAt <> null)
+
+-- #6 String Minimum Length (UNSAT) in Reservation
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Reservation
+inv: not(self.dateTo.size() >= 14)
+
+-- #7 Collection As Set Conversion (UNSAT) in Vehicle
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Vehicle
+inv: not(self.reservations->asSet()->size() <= self.reservations->size())
+
+-- #8 Numeric Greater Than Value (UNSAT) in Rental
+-- Difficulty: trivial
+-- Mutation Strategy: contradictory_bounds
+context Rental
+inv: (self.mileageEnd > 87) and (self.mileageEnd < 82)
+
+-- #9 Division and Modulo (UNSAT) in Rental
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Rental
+inv: (self.mileageEnd mod 71 = 0) and (71 <> 0)
+
+-- #10 Bi-directional Implication (UNSAT) in Rental
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Rental
+inv: not((self.mileageStart <> null) = (self.mileageEnd <> null))
+
+-- #11 Collection Not Empty Check (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Branch
+inv: (self.rentals->size() > 0) and (self.rentals->size() < -5)
+
+-- #12 Attribute Not Null (Simple) (UNSAT) in Reservation
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Reservation
+inv: not(self.isConfirmed <> null)
+
+-- #13 Set Difference (UNSAT) in Customer
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Customer
+inv: not(self.reservations->excludingAll(self.reservations)->isEmpty())
+
+-- #14 Collect (Map) Operation (UNSAT) in Vehicle
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Vehicle
+inv: not(self.rentals->collect(x | x.mileageEnd)->notEmpty())
+
+-- #15 Range Constraint (UNSAT) in Vehicle
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Vehicle
+inv: (self.mileage >= 3 and self.mileage <= 80) and (self.mileage < 3)
+
+-- #16 Both Defined Or Both Null (UNSAT) in Rental
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Rental
+inv: not((self.mileageStart <> null and self.mileageEnd <> null) or (self.mileageStart = null and self.mileageEnd = null))
+
+-- #17 String Exact Length (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.name.size() = 49)
+

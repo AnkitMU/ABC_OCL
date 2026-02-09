@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="iotsensornetwork"
+  nsURI="http://example.org/iotsensornetwork"
+  nsPrefix="iot">
+
+  <!-- ===== ENUMS ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="DeviceStatus">
+    <eLiterals name="Online" value="0"/>
+    <eLiterals name="Offline" value="1"/>
+    <eLiterals name="Fault" value="2"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="ProtocolType">
+    <eLiterals name="MQTT" value="0"/>
+    <eLiterals name="CoAP" value="1"/>
+    <eLiterals name="HTTP" value="2"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="Severity">
+    <eLiterals name="Low" value="0"/>
+    <eLiterals name="Medium" value="1"/>
+    <eLiterals name="High" value="2"/>
+    <eLiterals name="Critical" value="3"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES (28) ===== -->
+
+  <!-- 1) IoTPlatform -->
+  <eClassifiers xsi:type="ecore:EClass" name="IoTPlatform">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="networks"
+      upperBound="-1" containment="true" eType="#//Network" eOpposite="#//Network/platform"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users"
+      upperBound="-1" containment="true" eType="#//User" eOpposite="#//User/platform"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles"
+      upperBound="-1" containment="true" eType="#//Role" eOpposite="#//Role/platform"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessPolicies"
+      upperBound="-1" containment="true" eType="#//AccessPolicy" eOpposite="#//AccessPolicy/platform"/>
+  </eClassifiers>
+
+  <!-- 2) Network -->
+  <eClassifiers xsi:type="ecore:EClass" name="Network">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="networkId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="platform"
+      lowerBound="1" eType="#//IoTPlatform" eOpposite="#//IoTPlatform/networks"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clusters"
+      upperBound="-1" containment="true" eType="#//Cluster" eOpposite="#//Cluster/network"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links"
+      upperBound="-1" containment="true" eType="#//CommunicationLink" eOpposite="#//CommunicationLink/network"/>
+  </eClassifiers>
+
+  <!-- 3) Cluster -->
+  <eClassifiers xsi:type="ecore:EClass" name="Cluster">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clusterId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network"
+      lowerBound="1" eType="#//Network" eOpposite="#//Network/clusters"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gateways"
+      upperBound="-1" containment="true" eType="#//Gateway" eOpposite="#//Gateway/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="edgeNodes"
+      upperBound="-1" containment="true" eType="#//EdgeNode" eOpposite="#//EdgeNode/cluster"/>
+  </eClassifiers>
+
+  <!-- 6) Device (abstract base type) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Device" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deviceId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//DeviceStatus"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firmware"
+      upperBound="1" containment="true" eType="#//Firmware" eOpposite="#//Firmware/devices"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="config"
+      upperBound="1" containment="true" eType="#//ConfigurationProfile" eOpposite="#//ConfigurationProfile/device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location"
+      upperBound="1" containment="true" eType="#//Location" eOpposite="#//Location/device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="powerSource"
+      upperBound="1" containment="true" eType="#//PowerSource" eOpposite="#//PowerSource/device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectivity"
+      upperBound="1" containment="true" eType="#//ConnectivityModule" eOpposite="#//ConnectivityModule/device"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataStreams"
+      upperBound="-1" containment="true" eType="#//DataStream" eOpposite="#//DataStream/device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventLogs"
+      upperBound="-1" containment="true" eType="#//EventLog" eOpposite="#//EventLog/device"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tickets"
+      upperBound="-1" containment="true" eType="#//MaintenanceTicket" eOpposite="#//MaintenanceTicket/device"/>
+
+    <!-- OTAUpdate is not contained by Device, it targets a Device -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="otaUpdates"
+      upperBound="-1" eType="#//OTAUpdate" eOpposite="#//OTAUpdate/targetDevice"/>
+  </eClassifiers>
+
+  <!-- 4) Gateway (extends Device) -->
+  <eClassifiers xsi:type="ecore:EClass" name="Gateway">
+    <eSuperTypes href="#//Device"/>
+
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ipAddress"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPrimary"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster"
+      lowerBound="1" eType="#//Cluster" eOpposite="#//Cluster/gateways"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectedEdges"
+      upperBound="-1" eType="#//EdgeNode" eOpposite="#//EdgeNode/gateway"/>
+  </eClassifiers>
+
+  <!-- 5) EdgeNode (extends Device) -->
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeNode">
+    <eSuperTypes href="#//Device"/>
+
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuCores"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memoryMB"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster"
+      lowerBound="1" eType="#//Cluster" eOpposite="#//Cluster/edgeNodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gateway"
+      upperBound="1" eType="#//Gateway" eOpposite="#//Gateway/connectedEdges"/>
+  </eClassifiers>
+
+  <!-- 7) SensorNode (extends Device) -->
+  <eClassifiers xsi:type="ecore:EClass" name="SensorNode">
+    <eSuperTypes href="#//Device"/>
+
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorType"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleRateHz"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metrics"
+      upperBound="-1" containment="true" eType="#//Metric" eOpposite="#//Metric/sensor"/>
+  </eClassifiers>
+
+  <!-- 8) ActuatorNode (extends Device) -->
+  <eClassifiers xsi:type="ecore:EClass" name="ActuatorNode">
+    <eSuperTypes href="#//Device"/>
+
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actuatorType"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLoad"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+
+  <!-- 9) Firmware -->
+  <eClassifiers xsi:type="ecore:EClass" name="Firmware">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="checksum"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devices"
+      upperBound="-1" eType="#//Device" eOpposite="#//Device/firmware"/>
+  </eClassifiers>
+
+  <!-- 10) ConfigurationProfile -->
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationProfile">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updatedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/config"/>
+  </eClassifiers>
+
+  <!-- 11) Location -->
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="latitude"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="longitude"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="site"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/location"/>
+  </eClassifiers>
+
+  <!-- 12) PowerSource (abstract) -->
+  <eClassifiers xsi:type="ecore:EClass" name="PowerSource" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/powerSource"/>
+  </eClassifiers>
+
+  <!-- 13) Battery -->
+  <eClassifiers xsi:type="ecore:EClass" name="Battery">
+    <eSuperTypes href="#//PowerSource"/>
+
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="healthPct"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+
+  <!-- 14) SolarPanel -->
+  <eClassifiers xsi:type="ecore:EClass" name="SolarPanel">
+    <eSuperTypes href="#//PowerSource"/>
+
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wattPeak"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+
+  <!-- 15) ConnectivityModule -->
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectivityModule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="macAddress"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocol"
+      eType="#//ProtocolType"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/connectivity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links"
+      upperBound="-1" eType="#//CommunicationLink" eOpposite="#//CommunicationLink/module"/>
+  </eClassifiers>
+
+  <!-- 16) CommunicationLink -->
+  <eClassifiers xsi:type="ecore:EClass" name="CommunicationLink">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="linkId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bandwidthKbps"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSecure"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network"
+      lowerBound="1" eType="#//Network" eOpposite="#//Network/links"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module"
+      lowerBound="1" eType="#//ConnectivityModule" eOpposite="#//ConnectivityModule/links"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stream"
+      upperBound="1" eType="#//DataStream" eOpposite="#//DataStream/link"/>
+  </eClassifiers>
+
+  <!-- 17) DataStream -->
+  <eClassifiers xsi:type="ecore:EClass" name="DataStream">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="streamId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="topic"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/dataStreams"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="link"
+      upperBound="1" eType="#//CommunicationLink" eOpposite="#//CommunicationLink/stream"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="records"
+      upperBound="-1" containment="true" eType="#//TelemetryRecord" eOpposite="#//TelemetryRecord/stream"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alertRules"
+      upperBound="-1" containment="true" eType="#//AlertRule" eOpposite="#//AlertRule/stream"/>
+  </eClassifiers>
+
+  <!-- 18) TelemetryRecord -->
+  <eClassifiers xsi:type="ecore:EClass" name="TelemetryRecord">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="payload"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stream"
+      lowerBound="1" eType="#//DataStream" eOpposite="#//DataStream/records"/>
+  </eClassifiers>
+
+  <!-- 19) Metric -->
+  <eClassifiers xsi:type="ecore:EClass" name="Metric">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastValue"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensor"
+      lowerBound="1" eType="#//SensorNode" eOpposite="#//SensorNode/metrics"/>
+  </eClassifiers>
+
+  <!-- 20) AlertRule -->
+  <eClassifiers xsi:type="ecore:EClass" name="AlertRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ruleId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity"
+      eType="#//Severity"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stream"
+      lowerBound="1" eType="#//DataStream" eOpposite="#//DataStream/alertRules"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alerts"
+      upperBound="-1" containment="true" eType="#//Alert" eOpposite="#//Alert/rule"/>
+  </eClassifiers>
+
+  <!-- 21) Alert -->
+  <eClassifiers xsi:type="ecore:EClass" name="Alert">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alertId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="acknowledged"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule"
+      lowerBound="1" eType="#//AlertRule" eOpposite="#//AlertRule/alerts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo"
+      upperBound="1" eType="#//User" eOpposite="#//User/alerts"/>
+  </eClassifiers>
+
+  <!-- 22) EventLog -->
+  <eClassifiers xsi:type="ecore:EClass" name="EventLog">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/eventLogs"/>
+  </eClassifiers>
+
+  <!-- 23) User -->
+  <eClassifiers xsi:type="ecore:EClass" name="User">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="userId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="platform"
+      lowerBound="1" eType="#//IoTPlatform" eOpposite="#//IoTPlatform/users"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles"
+      upperBound="-1" eType="#//Role" eOpposite="#//Role/users"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="apiKeys"
+      upperBound="-1" containment="true" eType="#//APIKey" eOpposite="#//APIKey/user"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alerts"
+      upperBound="-1" eType="#//Alert" eOpposite="#//Alert/assignedTo"/>
+  </eClassifiers>
+
+  <!-- 24) Role -->
+  <eClassifiers xsi:type="ecore:EClass" name="Role">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="platform"
+      lowerBound="1" eType="#//IoTPlatform" eOpposite="#//IoTPlatform/roles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users"
+      upperBound="-1" eType="#//User" eOpposite="#//User/roles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="policies"
+      upperBound="-1" eType="#//AccessPolicy" eOpposite="#//AccessPolicy/roles"/>
+  </eClassifiers>
+
+  <!-- 25) AccessPolicy -->
+  <eClassifiers xsi:type="ecore:EClass" name="AccessPolicy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="policyId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rulesJson"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="platform"
+      lowerBound="1" eType="#//IoTPlatform" eOpposite="#//IoTPlatform/accessPolicies"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles"
+      upperBound="-1" eType="#//Role" eOpposite="#//Role/policies"/>
+  </eClassifiers>
+
+  <!-- 26) APIKey -->
+  <eClassifiers xsi:type="ecore:EClass" name="APIKey">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keyId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="user"
+      lowerBound="1" eType="#//User" eOpposite="#//User/apiKeys"/>
+  </eClassifiers>
+
+  <!-- 27) MaintenanceTicket -->
+  <eClassifiers xsi:type="ecore:EClass" name="MaintenanceTicket">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticketId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="openedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="device"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/tickets"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo"
+      upperBound="1" eType="#//User"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="otaUpdate"
+      upperBound="1" eType="#//OTAUpdate" eOpposite="#//OTAUpdate/tickets"/>
+  </eClassifiers>
+
+  <!-- 28) OTAUpdate -->
+  <eClassifiers xsi:type="ecore:EClass" name="OTAUpdate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scheduledAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="applied"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetDevice"
+      lowerBound="1" eType="#//Device" eOpposite="#//Device/otaUpdates"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tickets"
+      upperBound="-1" eType="#//MaintenanceTicket" eOpposite="#//MaintenanceTicket/otaUpdate"/>
+  </eClassifiers>
+
+</ecore:EPackage>

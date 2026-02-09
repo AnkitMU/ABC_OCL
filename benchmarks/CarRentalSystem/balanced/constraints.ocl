@@ -1,0 +1,517 @@
+-- Benchmark: CarRentalSystem / balanced
+-- Generated: 2026-02-04T23:39:01.395405
+-- Seed: 42
+-- Complexity: standard
+-- Count: 85
+-- Research Features: ENABLED
+
+-- #1 Two Attributes Not Equal in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.mileageEnd <> self.mileageStart
+
+-- #2 All Attributes Defined in Reservation
+-- Difficulty: easy
+-- Type: SAT
+context Reservation
+inv: self.dateTo <> null and self.createdAt <> null
+
+-- #3 Collection Size Constraint in Company
+-- Difficulty: medium
+-- Type: SAT
+context Company
+inv: self.branches->size() <= 1
+
+-- #4 Boolean Is True in License
+-- Difficulty: trivial
+-- Type: SAT
+context License
+inv: self.isValid = true
+
+-- #5 Set Difference in Customer
+-- Difficulty: easy
+-- Type: SAT
+context Customer
+inv: self.rentals->excludingAll(self.rentals)->isEmpty()
+
+-- #6 Boolean Is False in Payment
+-- Difficulty: trivial
+-- Type: SAT
+context Payment
+inv: self.isProcessed = false
+
+-- #7 Attribute Not Null (Simple) in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.isCompleted <> null
+
+-- #8 Collection Minimum Size in Customer
+-- Difficulty: medium
+-- Type: SAT
+context Customer
+inv: self.rentals->size() >= 1
+
+-- #9 Association Exists in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.branch <> null
+
+-- #10 Association Exists in Customer
+-- Difficulty: easy
+-- Type: SAT
+context Customer
+inv: self.license <> null
+
+-- #11 Association Exists in Reservation
+-- Difficulty: easy
+-- Type: SAT
+context Reservation
+inv: self.customer <> null
+
+-- #12 Association Exists in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.payment <> null
+
+-- #13 Association Exists in Payment
+-- Difficulty: easy
+-- Type: SAT
+context Payment
+inv: self.rental <> null
+
+-- #14 Numeric Attribute Non-Negative in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.mileageStart >= 0
+
+-- #15 Numeric Attribute Positive in Vehicle
+-- Difficulty: trivial
+-- Type: SAT
+context Vehicle
+inv: self.seats > 0
+
+-- #16 Numeric Attribute Positive in Rental
+-- Difficulty: trivial
+-- Type: SAT
+context Rental
+inv: self.mileageStart > 0
+
+-- #17 String Maximum Length in Customer
+-- Difficulty: medium
+-- Type: SAT
+context Customer
+inv: self.name.size() <= 68
+
+-- #18 String Contains Substring in Customer
+-- Difficulty: medium
+-- Type: SAT
+context Customer
+inv: self.name.indexOf('value') >= 0
+
+-- #19 String Exact Length in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.name.size() = 9
+
+-- #20 Collect (Map) Operation in Vehicle
+-- Difficulty: medium
+-- Type: SAT
+context Vehicle
+inv: self.rentals->collect(x | x.endDate)->notEmpty()
+
+-- #21 Uniqueness Constraint in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.reservations->isUnique(x | x.dateTo)
+
+-- #22 String Starts With in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.name.size() >= 10 implies self.name.substring(1, 10) = 'value'
+
+-- #23 Association Exists in Reservation
+-- Difficulty: easy
+-- Type: SAT
+context Reservation
+inv: self.vehicle <> null
+
+-- #24 Division and Modulo in Vehicle
+-- Difficulty: easy
+-- Type: SAT
+context Vehicle
+inv: self.seats div 95 = 0
+
+-- #25 Boolean Is True in Vehicle
+-- Difficulty: trivial
+-- Type: SAT
+context Vehicle
+inv: self.isAvailable = true
+
+-- #26 Set Difference in Company
+-- Difficulty: easy
+-- Type: SAT
+context Company
+inv: self.branches->excludingAll(self.branches)->isEmpty()
+
+-- #27 String Minimum Length in Rental
+-- Difficulty: medium
+-- Type: SAT
+context Rental
+inv: self.endDate.size() >= 18
+
+-- #28 Numeric Is Odd in Vehicle
+-- Difficulty: easy
+-- Type: SAT
+context Vehicle
+inv: self.mileage mod 2 = 1
+
+-- #29 Collection Size Constraint in Customer
+-- Difficulty: easy
+-- Type: SAT
+context Customer
+inv: self.rentals->size() > 1
+
+-- #30 String Exact Length in Payment
+-- Difficulty: easy
+-- Type: SAT
+context Payment
+inv: self.timestamp.size() = 37
+
+-- #31 Both Defined Or Both Null in Reservation
+-- Difficulty: medium
+-- Type: SAT
+context Reservation
+inv: (self.dateTo <> null and self.dateFrom <> null) or (self.dateTo = null and self.dateFrom = null)
+
+-- #32 Numeric Product Constraint in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.mileageStart * self.mileageEnd > 87
+
+-- #33 Range Constraint in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.capacity >= 79 and self.capacity <= 99
+
+-- #34 String Concatenation Check in Rental
+-- Difficulty: medium
+-- Type: SAT
+context Rental
+inv: self.endDate.concat(self.startDate).size() >= 13
+
+-- #35 Conditional Expression in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: if self.isOpen then self.capacity <> null else self.name <> null endif
+
+-- #36 String Exact Length in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.endDate.size() = 40
+
+-- #37 Collection Size in Range in Vehicle
+-- Difficulty: medium
+-- Type: SAT
+context Vehicle
+inv: self.reservations->size() >= 2 and self.reservations->size() <= 2
+
+-- #38 Numeric Attribute Bounded in Customer
+-- Difficulty: medium
+-- Type: SAT
+context Customer
+inv: self.age >= 18 and self.age <= 20
+
+-- #39 String Starts With in Payment
+-- Difficulty: medium
+-- Type: SAT
+context Payment
+inv: self.timestamp.size() >= 5 implies self.timestamp.substring(1, 5) = 'value'
+
+-- #40 String Contains Substring in Reservation
+-- Difficulty: medium
+-- Type: SAT
+context Reservation
+inv: self.createdAt.indexOf('value') >= 0
+
+-- #41 Boolean Is False in Customer
+-- Difficulty: trivial
+-- Type: SAT
+context Customer
+inv: self.isPremium = false
+
+-- #42 Collection As Set Conversion in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.rentals->asSet()->size() <= self.rentals->size()
+
+-- #43 Numeric Absolute Value Bounded in Rental
+-- Difficulty: medium
+-- Type: SAT
+context Rental
+inv: self.mileageStart.abs() <= 1
+
+-- #44 Numeric Attribute Non-Negative in Customer
+-- Difficulty: easy
+-- Type: SAT
+context Customer
+inv: self.age >= 0
+
+-- #45 Type Check in Vehicle
+-- Difficulty: medium
+-- Type: SAT
+context Vehicle
+inv: self.branch.oclIsTypeOf(Branch)
+
+-- #46 Collection Excluding Element in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.reservations->excluding(self.reservations->any(true))->size() < self.reservations->size()
+
+-- #47 Collection Unique Attribute Values in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.vehicles->isUnique(x | x.status)
+
+-- #48 Collection Nested Collection Flatten in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.vehicles->collect(x | x.reservations)->size() >= 1
+
+-- #49 Collection First Element in Vehicle
+-- Difficulty: medium
+-- Type: SAT
+context Vehicle
+inv: self.reservations->notEmpty() implies self.reservations->first().isConfirmed <> null
+
+-- #50 Collection Nested Collection Flatten in Company
+-- Difficulty: medium
+-- Type: SAT
+context Company
+inv: self.branches->collect(x | x.vehicles)->size() >= 3
+
+-- #51 Attribute Not Null (Simple) in Vehicle
+-- Difficulty: easy
+-- Type: SAT
+context Vehicle
+inv: self.category <> null
+
+-- #52 String Minimum Length in Rental
+-- Difficulty: medium
+-- Type: SAT
+context Rental
+inv: self.endDate.size() >= 3
+
+-- #53 String Maximum Length in Company
+-- Difficulty: medium
+-- Type: SAT
+context Company
+inv: self.name.size() <= 88
+
+-- #54 String Contains Substring in Reservation
+-- Difficulty: medium
+-- Type: SAT
+context Reservation
+inv: self.dateTo.indexOf('value') >= 0
+
+-- #55 String Maximum Length in Vehicle
+-- Difficulty: medium
+-- Type: SAT
+context Vehicle
+inv: self.category.size() <= 51
+
+-- #56 Range Constraint in Rental
+-- Difficulty: medium
+-- Type: SAT
+context Rental
+inv: self.mileageEnd >= 24 and self.mileageEnd <= 63
+
+-- #57 Collection Maximum Size in Branch
+-- Difficulty: medium
+-- Type: SAT
+context Branch
+inv: self.vehicles->size() <= 1
+
+-- #58 String Contains Substring in Vehicle
+-- Difficulty: medium
+-- Type: SAT
+context Vehicle
+inv: self.vin.indexOf('value') >= 0
+
+-- #59 Attribute Not Null (Simple) in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.isOpen <> null
+
+-- #60 String Not Empty in Company
+-- Difficulty: medium
+-- Type: SAT
+context Company
+inv: self.name <> '' and self.name.size() > 0
+
+-- #61 Reverse Implication in Rental
+-- Difficulty: easy
+-- Type: SAT
+context Rental
+inv: self.endDate <> null implies self.startDate <> null
+
+-- #62 Attribute Not Null (Simple) in Branch
+-- Difficulty: easy
+-- Type: SAT
+context Branch
+inv: self.name <> null
+
+-- #63 Numeric Greater Than Value in Rental
+-- Difficulty: trivial
+-- Type: SAT
+context Rental
+inv: self.totalAmount > 29
+
+-- #64 String Exact Length in Customer
+-- Difficulty: easy
+-- Type: SAT
+context Customer
+inv: self.name.size() = 24
+
+-- #65 Collection Last Element in Customer
+-- Difficulty: medium
+-- Type: SAT
+context Customer
+inv: self.reservations->notEmpty() implies self.reservations->last().dateTo <> null
+
+-- #66 Numeric Less Than Value in Branch
+-- Difficulty: trivial
+-- Type: SAT
+context Branch
+inv: self.capacity < 83
+
+-- #67 String Maximum Length in Reservation
+-- Difficulty: medium
+-- Type: SAT
+context Reservation
+inv: self.createdAt.size() <= 42
+
+-- #68 SortedBy Operation in Company
+-- Difficulty: hard
+-- Type: SAT
+context Company
+inv: self.branches->notEmpty() implies self.branches->sortedBy(x | x.capacity)->first().capacity <= self.branches->sortedBy(x | x.capacity)->last().capacity
+
+-- #69 Attribute Not Null (Simple) (UNSAT) in Branch
+-- Difficulty: easy
+-- Type: UNSAT
+context Branch
+inv: not(self.isOpen <> null)
+
+-- #70 Association Exists (UNSAT) in Vehicle
+-- Difficulty: easy
+-- Type: UNSAT
+context Vehicle
+inv: not(self.branch <> null)
+
+-- #71 Association Exists (UNSAT) in Branch
+-- Difficulty: easy
+-- Type: UNSAT
+context Branch
+inv: not(self.company <> null)
+
+-- #72 Numeric Attribute Non-Negative (UNSAT) in Vehicle
+-- Difficulty: easy
+-- Type: UNSAT
+context Vehicle
+inv: (self.tankLevel >= 0) and (self.tankLevel < 0)
+
+-- #73 All Attributes Defined (UNSAT) in Reservation
+-- Difficulty: easy
+-- Type: UNSAT
+context Reservation
+inv: not(self.dateTo <> null and self.createdAt <> null)
+
+-- #74 String Minimum Length (UNSAT) in Reservation
+-- Difficulty: medium
+-- Type: UNSAT
+context Reservation
+inv: not(self.dateTo.size() >= 14)
+
+-- #75 Collection As Set Conversion (UNSAT) in Vehicle
+-- Difficulty: medium
+-- Type: UNSAT
+context Vehicle
+inv: not(self.reservations->asSet()->size() <= self.reservations->size())
+
+-- #76 Numeric Greater Than Value (UNSAT) in Rental
+-- Difficulty: trivial
+-- Type: UNSAT
+context Rental
+inv: (self.mileageEnd > 87) and (self.mileageEnd < 82)
+
+-- #77 Division and Modulo (UNSAT) in Rental
+-- Difficulty: easy
+-- Type: UNSAT
+context Rental
+inv: (self.mileageEnd mod 71 = 0) and (71 <> 0)
+
+-- #78 Bi-directional Implication (UNSAT) in Rental
+-- Difficulty: easy
+-- Type: UNSAT
+context Rental
+inv: not((self.mileageStart <> null) = (self.mileageEnd <> null))
+
+-- #79 Collection Not Empty Check (UNSAT) in Branch
+-- Difficulty: easy
+-- Type: UNSAT
+context Branch
+inv: (self.rentals->size() > 0) and (self.rentals->size() < -5)
+
+-- #80 Attribute Not Null (Simple) (UNSAT) in Reservation
+-- Difficulty: easy
+-- Type: UNSAT
+context Reservation
+inv: not(self.isConfirmed <> null)
+
+-- #81 Set Difference (UNSAT) in Customer
+-- Difficulty: easy
+-- Type: UNSAT
+context Customer
+inv: not(self.reservations->excludingAll(self.reservations)->isEmpty())
+
+-- #82 Collect (Map) Operation (UNSAT) in Vehicle
+-- Difficulty: medium
+-- Type: UNSAT
+context Vehicle
+inv: not(self.rentals->collect(x | x.mileageEnd)->notEmpty())
+
+-- #83 Range Constraint (UNSAT) in Vehicle
+-- Difficulty: medium
+-- Type: UNSAT
+context Vehicle
+inv: (self.mileage >= 3 and self.mileage <= 80) and (self.mileage < 3)
+
+-- #84 Both Defined Or Both Null (UNSAT) in Rental
+-- Difficulty: medium
+-- Type: UNSAT
+context Rental
+inv: not((self.mileageStart <> null and self.mileageEnd <> null) or (self.mileageStart = null and self.mileageEnd = null))
+
+-- #85 String Exact Length (UNSAT) in Branch
+-- Difficulty: easy
+-- Type: UNSAT
+context Branch
+inv: not(self.name.size() = 49)
+

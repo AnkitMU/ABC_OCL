@@ -1,0 +1,14 @@
+{
+  "name": "balanced",
+  "seed": 42,
+  "constraints": 70,
+  "complexity_profile": "standard",
+  "sat_ratio": 0.8,
+  "unsat_ratio": 0.2,
+  "difficulty_mix": {
+    "easy": 0.6,
+    "medium": 0.2,
+    "hard": 0.2
+  },
+  "research_features_enabled": true
+}

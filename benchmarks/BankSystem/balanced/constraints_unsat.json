@@ -1,0 +1,656 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "BankSystem",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T18:47:29.179246",
+    "constraint_count": 20
+  },
+  "constraints": [
+    {
+      "ocl": "context Branch\ninv: not(self.employees->asSequence()->notEmpty())",
+      "pattern_id": "collection_asSequence_unsat",
+      "pattern_name": "Collection As Sequence Conversion (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "collection": "employees"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144594",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 1,
+        "operators_used": [
+          "-",
+          ">",
+          "asSequence",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context KYCRecord\ninv: not(self.customer <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "KYCRecord",
+      "parameters": {
+        "association": "customer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144618",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Bank\ninv: (self.branches->size() >= 1 and self.branches->size() <= 1) and (self.branches->size() < 1)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Bank",
+      "parameters": {
+        "collection": "branches",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144789",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 11,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 8,
+        "implies": [
+          "sortedBy_Bank"
+        ]
+      }
+    },
+    {
+      "ocl": "context CheckingAccount\ninv: (self.overdraftLimit mod 2 = 1) and (2 <> 1)",
+      "pattern_id": "numeric_odd_unsat",
+      "pattern_name": "Numeric Is Odd (UNSAT)",
+      "context": "CheckingAccount",
+      "parameters": {
+        "numeric_attribute": "overdraftLimit"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144825",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 14,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 22,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: not((self.country <> null and self.postalCode = null) or (self.country = null and self.postalCode <> null))",
+      "pattern_id": "xor_condition_unsat",
+      "pattern_name": "XOR Condition (UNSAT)",
+      "context": "Address",
+      "parameters": {
+        "first_attribute": "country",
+        "second_attribute": "postalCode"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144843",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 18,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">",
+          "and",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 23,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: (self.customers->size() = 3) and (self.customers->size() <> 3)",
+      "pattern_id": "collection_has_size_unsat",
+      "pattern_name": "Collection Has Specific Size (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "collection": "customers",
+        "size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144856",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 21,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 10,
+        "implies": [
+          "collection_last_unsat_Branch"
+        ]
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.fullName.size() >= 18)",
+      "pattern_id": "string_min_length_unsat",
+      "pattern_name": "String Minimum Length (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "string_attribute": "fullName",
+        "min_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144888",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 28,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CreditCard\ninv: not(self.cardNo <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "CreditCard",
+      "parameters": {
+        "attribute": "cardNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144901",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 32,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: not(self.city <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "attribute": "city"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144912",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 33,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.cards->isUnique(x | x.isActive))",
+      "pattern_id": "collection_isUnique_attr_unsat",
+      "pattern_name": "Collection Unique Attribute Values (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards",
+        "attribute": "isActive"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144925",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 38,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: (self.cards->size() >= 2 implies self.cards->asSequence()->at(2).limit <> null) and (self.cards->size() < 2)",
+      "pattern_id": "collection_at_index_unsat",
+      "pattern_name": "Collection At Index (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards",
+        "index": 2,
+        "attribute": "limit"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144938",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 45,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 5,
+        "implies": [
+          "sortedBy_unsat_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Account\ninv: not(self.accountNo.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Account",
+      "parameters": {
+        "string_attribute": "accountNo",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.144977",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 24,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: not(self.transactions->excluding(self.transactions->any(true))->size() < self.transactions->size())",
+      "pattern_id": "collection_excluding_unsat",
+      "pattern_name": "Collection Excluding Element (UNSAT)",
+      "context": "Account",
+      "parameters": {
+        "collection": "transactions",
+        "element": "customer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145215",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 52,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: (self.cards->notEmpty() implies self.cards->sortedBy(x | x.cardNo)->first().cardNo <= self.cards->sortedBy(x | x.cardNo)->last().cardNo) and (self.cards->isEmpty())",
+      "pattern_id": "sortedBy_unsat",
+      "pattern_name": "SortedBy Operation (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "collection": "cards",
+        "attribute": "cardNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145234",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 61,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.accounts->collect(x | x.transactions)->size() >= 2)",
+      "pattern_id": "collection_collectNested_unsat",
+      "pattern_name": "Collection Nested Collection Flatten (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "collection": "accounts",
+        "nested_collection": "transactions",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145274",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 63,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 16,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: (self.customers->notEmpty() implies self.customers->last().email <> null) and (self.customers->isEmpty())",
+      "pattern_id": "collection_last_unsat",
+      "pattern_name": "Collection Last Element (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "collection": "customers",
+        "attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145291",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 73,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Account\ninv: not(self.accountNo.size() >= 5 implies self.accountNo.substring(1, 5) = 'value')",
+      "pattern_id": "string_starts_with_unsat",
+      "pattern_name": "String Starts With (UNSAT)",
+      "context": "Account",
+      "parameters": {
+        "string_attribute": "accountNo",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145359",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 90,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: (self.accounts->notEmpty() implies self.accounts->first().balance <> null) and (self.accounts->isEmpty())",
+      "pattern_id": "collection_first_unsat",
+      "pattern_name": "Collection First Element (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "collection": "accounts",
+        "attribute": "balance"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145374",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 96,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Branch\ninv: not(self.branchCode <> null implies self.city <> null)",
+      "pattern_id": "implies_reverse_unsat",
+      "pattern_name": "Reverse Implication (UNSAT)",
+      "context": "Branch",
+      "parameters": {
+        "first_attribute": "city",
+        "second_attribute": "branchCode"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145386",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 99,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Loan\ninv: not(self.interestRate = null)",
+      "pattern_id": "attribute_null_check_unsat",
+      "pattern_name": "Attribute Must Be Null (UNSAT)",
+      "context": "Loan",
+      "parameters": {
+        "attribute": "interestRate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T18:46:51.145399",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 100,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    }
+  ]
+}

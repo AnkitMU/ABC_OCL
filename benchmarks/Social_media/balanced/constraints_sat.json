@@ -1,0 +1,1549 @@
+{
+  "metadata": {
+    "type": "SAT",
+    "model": "Social_media",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:34:28.749844",
+    "constraint_count": 52
+  },
+  "constraints": [
+    {
+      "ocl": "context Notification\ninv: self.type <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Notification",
+      "parameters": {
+        "attribute": "type"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.141199",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reaction\ninv: self.post <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Reaction",
+      "parameters": {
+        "association": "post"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.152408",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.author <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Post",
+      "parameters": {
+        "association": "author"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.164550",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Membership\ninv: self.group <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Membership",
+      "parameters": {
+        "association": "group"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.187310",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Message\ninv: self.sender <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Message",
+      "parameters": {
+        "association": "sender"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.198079",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context FriendRequest\ninv: self.toUser <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "FriendRequest",
+      "parameters": {
+        "association": "toUser"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.255340",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 11,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Tag\ninv: self.posts->size() >= 1 and self.posts->size() <= 1",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Tag",
+      "parameters": {
+        "collection": "posts",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.418854",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 13,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 1,
+        "implies": [
+          "sortedBy_Tag",
+          "collection_max_size_Tag"
+        ]
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.messages->size() >= 2 and self.messages->size() <= 2",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Conversation",
+      "parameters": {
+        "collection": "messages",
+        "min_size": 2,
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.683062",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 15,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.createdAt.size() <= 23",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Conversation",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "max_length": 23
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.763833",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 16,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Group\ninv: self.createdAt.size() >= 5",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Group",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "min_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.778176",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 17,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Profile\ninv: self.user.oclIsTypeOf(User)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Profile",
+      "parameters": {
+        "attribute": "user",
+        "type": "User"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.779364",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 19,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.notifications->size() > 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "User",
+      "parameters": {
+        "collection": "notifications",
+        "operator": ">",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.780246",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 21,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_User"
+        ]
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.posts->intersection(self.posts)->notEmpty()",
+      "pattern_id": "intersection_operation",
+      "pattern_name": "Set Intersection",
+      "context": "User",
+      "parameters": {
+        "collection1": "posts",
+        "collection2": "posts"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.781071",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 23,
+        "operators_used": [
+          "-",
+          ">",
+          "intersection",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Comment\ninv: self.createdAt = self.text",
+      "pattern_id": "string_equality",
+      "pattern_name": "String Equality",
+      "context": "Comment",
+      "parameters": {
+        "attr1": "createdAt",
+        "attr2": "text"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.781472",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 24,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Group\ninv: self.createdAt.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Group",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.782622",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 25,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.posts->collect(x | x.content)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "User",
+      "parameters": {
+        "collection": "posts",
+        "iterator": "x",
+        "attribute": "content"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.783004",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 26,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.createdAt.size() = 24",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "User",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.783448",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 27,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.media->excluding(self.media->any(true))->size() < self.media->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Post",
+      "parameters": {
+        "collection": "media",
+        "element": "reactions"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.783997",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 28,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context FriendRequest\ninv: self.createdAt <> '' and self.createdAt.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "FriendRequest",
+      "parameters": {
+        "string_attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.784838",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 29,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.participants->isUnique(x | x.createdAt)",
+      "pattern_id": "uniqueness_constraint",
+      "pattern_name": "Uniqueness Constraint",
+      "context": "Conversation",
+      "parameters": {
+        "collection": "participants",
+        "iterator": "x",
+        "attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.785964",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Group\ninv: self.memberships->notEmpty() implies self.memberships->last().joinedAt <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Group",
+      "parameters": {
+        "collection": "memberships",
+        "attribute": "joinedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.786599",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 32,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.notifications->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "User",
+      "parameters": {
+        "collection": "notifications",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.787022",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 33,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.posts->isUnique(x | x.createdAt)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "User",
+      "parameters": {
+        "collection": "posts",
+        "attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.787612",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 34,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Profile\ninv: self.bio.size() >= 18",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Profile",
+      "parameters": {
+        "string_attribute": "bio",
+        "min_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.788464",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 35,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.media->size() <> 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "Post",
+      "parameters": {
+        "collection": "media",
+        "operator": "<>",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.789490",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 37,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.notifications->isUnique(x | x.type)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "User",
+      "parameters": {
+        "collection": "notifications",
+        "attribute": "type"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.790354",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 39,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.notifications->asSet()->size() <= self.notifications->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "User",
+      "parameters": {
+        "collection": "notifications"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.790732",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 40,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Message\ninv: self.body <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Message",
+      "parameters": {
+        "attribute": "body"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.791441",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 41,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Media\ninv: self.mediaType <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Media",
+      "parameters": {
+        "attribute": "mediaType"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.791803",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 42,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Notification\ninv: self.message.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Notification",
+      "parameters": {
+        "string_attribute": "message",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.792293",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 43,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Message\ninv: self.body = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Message",
+      "parameters": {
+        "attribute": "body"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.793163",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.author.oclIsTypeOf(User)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Post",
+      "parameters": {
+        "attribute": "author",
+        "type": "User"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.793740",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 45,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.notifications->select(x | x.isSeen)->size() = 93",
+      "pattern_id": "sum_operation",
+      "pattern_name": "Sum Operation",
+      "context": "User",
+      "parameters": {
+        "collection": "notifications",
+        "iterator": "x",
+        "attribute": "isSeen",
+        "operator": "=",
+        "value": 93
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.794126",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "select",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Tag\ninv: self.posts->notEmpty() implies self.posts->sortedBy(x | x.content)->first().content <= self.posts->sortedBy(x | x.content)->last().content",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Tag",
+      "parameters": {
+        "collection": "posts",
+        "attribute": "content"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.794729",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 47,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 3,
+        "implies": [
+          "collection_size_range_Tag"
+        ]
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.createdAt.size() >= 5 implies self.createdAt.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Conversation",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.795349",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Notification\ninv: self.isSeen = true",
+      "pattern_id": "boolean_is_true",
+      "pattern_name": "Boolean Is True",
+      "context": "Notification",
+      "parameters": {
+        "boolean_attribute": "isSeen"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.796119",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 49,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Reaction\ninv: self.createdAt <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Reaction",
+      "parameters": {
+        "attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.796491",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 50,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Notification\ninv: self.createdAt.size() <= 53",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Notification",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "max_length": 53
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.797378",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 52,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.participants->excluding(self.participants->any(true))->size() < self.participants->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Conversation",
+      "parameters": {
+        "collection": "participants",
+        "element": "participants"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.799194",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 55,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.participants->collect(x | x.notifications)->size() >= 1",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Conversation",
+      "parameters": {
+        "collection": "participants",
+        "nested_collection": "notifications",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.800254",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.comments->notEmpty() implies self.comments->last().text <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Post",
+      "parameters": {
+        "collection": "comments",
+        "attribute": "text"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.801087",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 58,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.reactions->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "Post",
+      "parameters": {
+        "collection": "reactions"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.802121",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 60,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 11,
+        "implies": [
+          "collection_size_range_unsat_Post"
+        ]
+      }
+    },
+    {
+      "ocl": "context Tag\ninv: self.label.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Tag",
+      "parameters": {
+        "string_attribute": "label",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.802640",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 61,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.media->notEmpty() implies self.media->sortedBy(x | x.url)->first().url <= self.media->sortedBy(x | x.url)->last().url",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Post",
+      "parameters": {
+        "collection": "media",
+        "attribute": "url"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.804575",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 64,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Group\ninv: self.memberships->forAll(x, y | x <> y implies x.joinedAt <> y.joinedAt)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Group",
+      "parameters": {
+        "collection": "memberships",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "joinedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.805052",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 65,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Tag\ninv: self.posts->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Tag",
+      "parameters": {
+        "collection": "posts",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.805489",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 66,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Message\ninv: self.sentAt.size() >= 12",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Message",
+      "parameters": {
+        "string_attribute": "sentAt",
+        "min_length": 12
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.806382",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 67,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Post\ninv: self.media->asSet()->size() <= self.media->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Post",
+      "parameters": {
+        "collection": "media"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.807482",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Comment\ninv: self.text <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Comment",
+      "parameters": {
+        "attribute": "text"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.808045",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context User\ninv: self.posts->forAll(x, y | x <> y implies x.isPublic <> y.isPublic)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "User",
+      "parameters": {
+        "collection": "posts",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "isPublic"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.809552",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 73,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Membership\ninv: self.joinedAt.size() = 24",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Membership",
+      "parameters": {
+        "string_attribute": "joinedAt",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.810152",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 74,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Conversation\ninv: self.participants->size() >= 2 implies self.participants->asSequence()->at(2).email <> null",
+      "pattern_id": "collection_at_index",
+      "pattern_name": "Collection At Index",
+      "context": "Conversation",
+      "parameters": {
+        "collection": "participants",
+        "index": 2,
+        "attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:34:07.810902",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 76,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    }
+  ]
+}

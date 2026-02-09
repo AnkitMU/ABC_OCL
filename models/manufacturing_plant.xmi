@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="manufacturingplant"
+  nsURI="http://example.org/manufacturingplant"
+  nsPrefix="mfg">
+
+  <!-- ===== ENUMS ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="MachineStatus">
+    <eLiterals name="Idle" value="0"/>
+    <eLiterals name="Running" value="1"/>
+    <eLiterals name="Maintenance" value="2"/>
+    <eLiterals name="Breakdown" value="3"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="WorkOrderStatus">
+    <eLiterals name="Planned" value="0"/>
+    <eLiterals name="InProgress" value="1"/>
+    <eLiterals name="Completed" value="2"/>
+    <eLiterals name="Cancelled" value="3"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES (20) ===== -->
+
+  <!-- 1) Plant -->
+  <eClassifiers xsi:type="ecore:EClass" name="Plant">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workshops"
+      upperBound="-1" containment="true" eType="#//Workshop" eOpposite="#//Workshop/plant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inventory"
+      upperBound="-1" containment="true" eType="#//InventoryItem" eOpposite="#//InventoryItem/plant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suppliers"
+      upperBound="-1" eType="#//Supplier"/>
+  </eClassifiers>
+
+  <!-- 2) Workshop -->
+  <eClassifiers xsi:type="ecore:EClass" name="Workshop">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plant"
+      lowerBound="1" eType="#//Plant" eOpposite="#//Plant/workshops"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lines"
+      upperBound="-1" containment="true" eType="#//ProductionLine" eOpposite="#//ProductionLine/workshop"/>
+  </eClassifiers>
+
+  <!-- 3) ProductionLine -->
+  <eClassifiers xsi:type="ecore:EClass" name="ProductionLine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workshop"
+      lowerBound="1" eType="#//Workshop" eOpposite="#//Workshop/lines"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stations"
+      upperBound="-1" containment="true" eType="#//Workstation" eOpposite="#//Workstation/line"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workOrders"
+      upperBound="-1" eType="#//WorkOrder" eOpposite="#//WorkOrder/line"/>
+  </eClassifiers>
+
+  <!-- 4) Workstation -->
+  <eClassifiers xsi:type="ecore:EClass" name="Workstation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stationId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="line"
+      lowerBound="1" eType="#//ProductionLine" eOpposite="#//ProductionLine/stations"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="machines"
+      upperBound="-1" containment="true" eType="#//Machine" eOpposite="#//Machine/station"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedOperator"
+      upperBound="1" eType="#//Operator"/>
+  </eClassifiers>
+
+  <!-- 5) Machine -->
+  <eClassifiers xsi:type="ecore:EClass" name="Machine">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serialNumber"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//MachineStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="manufacturer"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="station"
+      lowerBound="1" eType="#//Workstation" eOpposite="#//Workstation/machines"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sensors"
+      upperBound="-1" containment="true" eType="#//Sensor" eOpposite="#//Sensor/machine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maintenanceTasks"
+      upperBound="-1" containment="true" eType="#//MaintenanceTask" eOpposite="#//MaintenanceTask/machine"/>
+  </eClassifiers>
+
+  <!-- 6) Robot -->
+  <eClassifiers xsi:type="ecore:EClass" name="Robot">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="robotId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="model"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCalibrated"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <!-- Robot is a kind of machine (inheritance) -->
+    <eSuperTypes href="#//Machine"/>
+  </eClassifiers>
+
+  <!-- 7) Sensor -->
+  <eClassifiers xsi:type="ecore:EClass" name="Sensor">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastReading"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="machine"
+      lowerBound="1" eType="#//Machine" eOpposite="#//Machine/sensors"/>
+  </eClassifiers>
+
+  <!-- 8) MaintenanceTask -->
+  <eClassifiers xsi:type="ecore:EClass" name="MaintenanceTask">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="taskId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scheduledAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDone"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="machine"
+      lowerBound="1" eType="#//Machine" eOpposite="#//Machine/maintenanceTasks"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedTo"
+      upperBound="1" eType="#//Technician" eOpposite="#//Technician/tasks"/>
+  </eClassifiers>
+
+  <!-- 9) Technician -->
+  <eClassifiers xsi:type="ecore:EClass" name="Technician">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="empId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks"
+      upperBound="-1" eType="#//MaintenanceTask" eOpposite="#//MaintenanceTask/assignedTo"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shift"
+      upperBound="1" eType="#//Shift"/>
+  </eClassifiers>
+
+  <!-- 10) Shift -->
+  <eClassifiers xsi:type="ecore:EClass" name="Shift">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shiftName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators"
+      upperBound="-1" eType="#//Operator" eOpposite="#//Operator/shift"/>
+  </eClassifiers>
+
+  <!-- 11) Operator -->
+  <eClassifiers xsi:type="ecore:EClass" name="Operator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="empId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shift"
+      upperBound="1" eType="#//Shift" eOpposite="#//Shift/operators"/>
+  </eClassifiers>
+
+  <!-- 12) Product -->
+  <eClassifiers xsi:type="ecore:EClass" name="Product">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sku"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unitPrice"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bom"
+      upperBound="1" containment="true" eType="#//BillOfMaterials" eOpposite="#//BillOfMaterials/product"/>
+  </eClassifiers>
+
+  <!-- 13) WorkOrder -->
+  <eClassifiers xsi:type="ecore:EClass" name="WorkOrder">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//WorkOrderStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="plannedQuantity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="line"
+      lowerBound="1" eType="#//ProductionLine" eOpposite="#//ProductionLine/workOrders"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="product"
+      lowerBound="1" eType="#//Product"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualityChecks"
+      upperBound="-1" containment="true" eType="#//QualityCheck" eOpposite="#//QualityCheck/workOrder"/>
+  </eClassifiers>
+
+  <!-- 14) BillOfMaterials -->
+  <eClassifiers xsi:type="ecore:EClass" name="BillOfMaterials">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bomId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="product"
+      lowerBound="1" eType="#//Product" eOpposite="#//Product/bom"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items"
+      upperBound="-1" containment="true" eType="#//BOMItem" eOpposite="#//BOMItem/bom"/>
+  </eClassifiers>
+
+  <!-- 15) BOMItem -->
+  <eClassifiers xsi:type="ecore:EClass" name="BOMItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredQty"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bom"
+      lowerBound="1" eType="#//BillOfMaterials" eOpposite="#//BillOfMaterials/items"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inventoryItem"
+      upperBound="1" eType="#//InventoryItem"/>
+  </eClassifiers>
+
+  <!-- 16) InventoryItem -->
+  <eClassifiers xsi:type="ecore:EClass" name="InventoryItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plant"
+      lowerBound="1" eType="#//Plant" eOpposite="#//Plant/inventory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier"
+      upperBound="1" eType="#//Supplier" eOpposite="#//Supplier/items"/>
+  </eClassifiers>
+
+  <!-- 17) Supplier -->
+  <eClassifiers xsi:type="ecore:EClass" name="Supplier">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="supplierId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items"
+      upperBound="-1" eType="#//InventoryItem" eOpposite="#//InventoryItem/supplier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="shipments"
+      upperBound="-1" eType="#//Shipment" eOpposite="#//Shipment/supplier"/>
+  </eClassifiers>
+
+  <!-- 18) QualityCheck -->
+  <eClassifiers xsi:type="ecore:EClass" name="QualityCheck">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="passed"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workOrder"
+      lowerBound="1" eType="#//WorkOrder" eOpposite="#//WorkOrder/qualityChecks"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defects"
+      upperBound="-1" containment="true" eType="#//DefectReport" eOpposite="#//DefectReport/qualityCheck"/>
+  </eClassifiers>
+
+  <!-- 19) DefectReport -->
+  <eClassifiers xsi:type="ecore:EClass" name="DefectReport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defectId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualityCheck"
+      lowerBound="1" eType="#//QualityCheck" eOpposite="#//QualityCheck/defects"/>
+  </eClassifiers>
+
+  <!-- 20) Shipment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Shipment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shipmentId"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shippedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="received"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier"
+      lowerBound="1" eType="#//Supplier" eOpposite="#//Supplier/shipments"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plant"
+      lowerBound="1" eType="#//Plant"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items"
+      upperBound="-1" eType="#//InventoryItem"/>
+  </eClassifiers>
+
+</ecore:EPackage>

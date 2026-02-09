@@ -1,0 +1,2597 @@
+{
+  "metadata": {
+    "suite": "OCL-Benchmark-Balanced",
+    "model": "ecommerce_system",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:01:54.899618",
+    "seed": 42,
+    "complexity": "standard",
+    "framework_version": "2.0",
+    "git_commit": null,
+    "constraint_count": 75,
+    "research_features_enabled": true
+  },
+  "constraints": [
+    {
+      "ocl": "context Customer\ninv: self.addresses->size() = 1",
+      "pattern_id": "collection_has_size",
+      "pattern_name": "Collection Has Specific Size",
+      "context": "Customer",
+      "parameters": {
+        "collection": "addresses",
+        "size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:19.271828",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_max_size_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: self.name = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Supplier",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:19.712510",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 2,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: self.city <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Address",
+      "parameters": {
+        "attribute": "city"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:21.151948",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cart\ninv: self.customer <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Cart",
+      "parameters": {
+        "association": "customer"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.007137",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 6,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: self.order <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Shipment",
+      "parameters": {
+        "association": "order"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.062842",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: self.variant <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "InventoryItem",
+      "parameters": {
+        "association": "variant"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.082301",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DiscountRule\ninv: self.coupon <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "DiscountRule",
+      "parameters": {
+        "association": "coupon"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.184776",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.category <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Product",
+      "parameters": {
+        "association": "category"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.249080",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 14,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Review\ninv: self.rating mod 3 = 0",
+      "pattern_id": "numeric_multiple_of",
+      "pattern_name": "Numeric Multiple Of",
+      "context": "Review",
+      "parameters": {
+        "numeric_attribute": "rating",
+        "divisor": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.563806",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 16,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: self.coupons->size() >= 1 and self.coupons->size() <= 1",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Store",
+      "parameters": {
+        "collection": "coupons",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.741341",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 17,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_max_size_Store",
+          "collection_max_size_Store"
+        ]
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.amount.abs() <= 6",
+      "pattern_id": "numeric_abs_bounded",
+      "pattern_name": "Numeric Absolute Value Bounded",
+      "context": "Payment",
+      "parameters": {
+        "numeric_attribute": "amount",
+        "max_abs": 6
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:22.999211",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 18,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "abs"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: self.products->size() >= 2 and self.products->size() <= 3",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Store",
+      "parameters": {
+        "collection": "products",
+        "min_size": 2,
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.228750",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 19,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_max_size_Store",
+          "collection_max_size_Store"
+        ]
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.orderNo.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Order",
+      "parameters": {
+        "string_attribute": "orderNo",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.438993",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 22,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cart\ninv: self.createdAt.size() <= 18",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Cart",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "max_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.464804",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 23,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.paidAt.size() = 30",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Payment",
+      "parameters": {
+        "string_attribute": "paidAt",
+        "length": 30
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.500074",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 24,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.basePrice > 34",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Product",
+      "parameters": {
+        "numeric_attribute": "basePrice",
+        "value": 34
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.502156",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 25,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": [
+          "numeric_greater_than_value_Product"
+        ]
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.reviews->union(self.reviews)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Product",
+      "parameters": {
+        "collection1": "reviews",
+        "collection2": "reviews"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.502887",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 26,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.reviews->isUnique(x | x.comment)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Product",
+      "parameters": {
+        "collection": "reviews",
+        "attribute": "comment"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.503400",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 27,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: self.validUntil.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Coupon",
+      "parameters": {
+        "string_attribute": "validUntil",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.504050",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 28,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cart\ninv: self.items->notEmpty() implies self.items->sortedBy(x | x.quantity)->first().quantity <= self.items->sortedBy(x | x.quantity)->last().quantity",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Cart",
+      "parameters": {
+        "collection": "items",
+        "attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.507684",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 34,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 6,
+        "implies": [
+          "collection_last_Cart"
+        ]
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.variants->union(self.variants)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Product",
+      "parameters": {
+        "collection1": "variants",
+        "collection2": "variants"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.509574",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 36,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: self.products->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Store",
+      "parameters": {
+        "collection": "products",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.510015",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 37,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: self.country <> null and self.postalCode <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "Address",
+      "parameters": {
+        "first_attribute": "country",
+        "second_attribute": "postalCode"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.510562",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 38,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: self.quantity mod 2 = 0",
+      "pattern_id": "numeric_even",
+      "pattern_name": "Numeric Is Even",
+      "context": "InventoryItem",
+      "parameters": {
+        "numeric_attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.512471",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 39,
+        "operators_used": [
+          "=",
+          "mod"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CartItem\ninv: self.quantity >= 23 and self.quantity <= 75",
+      "pattern_id": "range_constraint",
+      "pattern_name": "Range Constraint",
+      "context": "CartItem",
+      "parameters": {
+        "attribute": "quantity",
+        "min_value": 23,
+        "max_value": 75
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.513053",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 3,
+        "implies": [
+          "numeric_less_than_value_CartItem"
+        ]
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.sku.size() <= 59",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Product",
+      "parameters": {
+        "string_attribute": "sku",
+        "max_length": 59
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.513696",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 41,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.sku.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Product",
+      "parameters": {
+        "string_attribute": "sku",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.514644",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.items->notEmpty()",
+      "pattern_id": "collection_not_empty_simple",
+      "pattern_name": "Collection Not Empty (Simple)",
+      "context": "Order",
+      "parameters": {
+        "collection": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.515027",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.customerId <> null and self.email <> null)",
+      "pattern_id": "not_both_defined",
+      "pattern_name": "Not Both Defined",
+      "context": "Customer",
+      "parameters": {
+        "first_attribute": "customerId",
+        "second_attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.515405",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 45,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.status <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Order",
+      "parameters": {
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.515873",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 46,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DiscountRule\ninv: self.percentOff <> null and self.minOrderTotal <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "DiscountRule",
+      "parameters": {
+        "first_attribute": "percentOff",
+        "second_attribute": "minOrderTotal"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.516289",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 47,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.orderNo <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Order",
+      "parameters": {
+        "attribute": "orderNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.516880",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 48,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.fullName <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Customer",
+      "parameters": {
+        "attribute": "fullName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.517257",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 49,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_Customer"
+        ]
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.orderNo.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Order",
+      "parameters": {
+        "string_attribute": "orderNo",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.517795",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 50,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.items->symmetricDifference(self.items)->isEmpty()",
+      "pattern_id": "symmetricDifference",
+      "pattern_name": "Symmetric Difference",
+      "context": "Order",
+      "parameters": {
+        "collection1": "items",
+        "collection2": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.518312",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 51,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.variants->excluding(self.variants->any(true))->size() < self.variants->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Product",
+      "parameters": {
+        "collection": "variants",
+        "element": "reviews"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.519406",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 53,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: self.orders->excludingAll(self.orders)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Coupon",
+      "parameters": {
+        "collection1": "orders",
+        "collection2": "orders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.519839",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 54,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.addresses->size() <= 2",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Customer",
+      "parameters": {
+        "collection": "addresses",
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.520234",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 55,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: self.orders->collect(x | x.items)->size() >= 2",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Customer",
+      "parameters": {
+        "collection": "orders",
+        "nested_collection": "items",
+        "min_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.521831",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 58,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cart\ninv: self.createdAt.size() >= 5 implies self.createdAt.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Cart",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.522256",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 59,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context OrderItem\ninv: self.unitPrice >= 8 and self.unitPrice <= 27",
+      "pattern_id": "numeric_bounded",
+      "pattern_name": "Numeric Attribute Bounded",
+      "context": "OrderItem",
+      "parameters": {
+        "numeric_attribute": "unitPrice",
+        "min_value": 8,
+        "max_value": 27
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.523192",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 60,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: self.quantity > 98",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "InventoryItem",
+      "parameters": {
+        "numeric_attribute": "quantity",
+        "value": 98
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.523807",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 61,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductVariant\ninv: self.priceDelta <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "ProductVariant",
+      "parameters": {
+        "attribute": "priceDelta"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.524323",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 62,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductVariant\ninv: self.optionValue.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "ProductVariant",
+      "parameters": {
+        "string_attribute": "optionValue",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.524714",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 63,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.variants->forAll(x, y | x <> y implies x.priceDelta <> y.priceDelta)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Product",
+      "parameters": {
+        "collection": "variants",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "priceDelta"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.526283",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 66,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.items->forAll(x, y | x <> y implies x.unitPrice <> y.unitPrice)",
+      "pattern_id": "all_different",
+      "pattern_name": "All Different",
+      "context": "Order",
+      "parameters": {
+        "collection": "items",
+        "iter1": "x",
+        "iter2": "y",
+        "attribute": "unitPrice"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.526965",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 3,
+        "generation_number": 67,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "forAll",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.variants->excludingAll(self.variants)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Product",
+      "parameters": {
+        "collection1": "variants",
+        "collection2": "variants"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.527405",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 68,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: self.items->intersection(self.items)->notEmpty()",
+      "pattern_id": "intersection_operation",
+      "pattern_name": "Set Intersection",
+      "context": "Order",
+      "parameters": {
+        "collection1": "items",
+        "collection2": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.528024",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "-",
+          ">",
+          "intersection",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductVariant\ninv: self.priceDelta.abs() <= 1",
+      "pattern_id": "numeric_abs_bounded",
+      "pattern_name": "Numeric Absolute Value Bounded",
+      "context": "ProductVariant",
+      "parameters": {
+        "numeric_attribute": "priceDelta",
+        "max_abs": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.529168",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 2,
+        "generation_number": 71,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "abs"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.variants->notEmpty() implies self.variants->last().variantId <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Product",
+      "parameters": {
+        "collection": "variants",
+        "attribute": "variantId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.529615",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 72,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: self.validUntil.size() <= 88",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Coupon",
+      "parameters": {
+        "string_attribute": "validUntil",
+        "max_length": 88
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.530465",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 73,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Review\ninv: self.comment.size() <= 51",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Review",
+      "parameters": {
+        "string_attribute": "comment",
+        "max_length": 51
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.531270",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 75,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: self.name.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Supplier",
+      "parameters": {
+        "string_attribute": "name",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.533897",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 79,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: self.code <> '' and self.code.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Coupon",
+      "parameters": {
+        "string_attribute": "code"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.536017",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Cart\ninv: self.items->notEmpty() implies self.items->last().quantity <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Cart",
+      "parameters": {
+        "collection": "items",
+        "attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.536646",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 84,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 6,
+        "implies": [
+          "sortedBy_Cart"
+        ]
+      }
+    },
+    {
+      "ocl": "context Product\ninv: self.basePrice > 100",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Product",
+      "parameters": {
+        "numeric_attribute": "basePrice",
+        "value": 100
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.537220",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 85,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": [
+          "numeric_greater_than_value_Product"
+        ]
+      }
+    },
+    {
+      "ocl": "context CartItem\ninv: self.quantity < 83",
+      "pattern_id": "numeric_less_than_value",
+      "pattern_name": "Numeric Less Than Value",
+      "context": "CartItem",
+      "parameters": {
+        "numeric_attribute": "quantity",
+        "value": 83
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.540130",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 89,
+        "operators_used": [
+          "<"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Category\ninv: self.title.size() = 49",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Category",
+      "parameters": {
+        "string_attribute": "title",
+        "length": 49
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.540732",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 90,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: (self.items->size() <= 1) and (self.items->size() > 1)",
+      "pattern_id": "size_constraint_unsat",
+      "pattern_name": "Collection Size Constraint (UNSAT)",
+      "context": "Order",
+      "parameters": {
+        "collection": "items",
+        "operator": "<=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677225",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: not(self.orders->including(self.orders)->size() > self.orders->size())",
+      "pattern_id": "collection_including_unsat",
+      "pattern_name": "Collection Including Element (UNSAT)",
+      "context": "Coupon",
+      "parameters": {
+        "collection": "orders",
+        "element": "orders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677400",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 5,
+        "operators_used": [
+          "-",
+          ">",
+          "including",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 10,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductVariant\ninv: not(self.product <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "ProductVariant",
+      "parameters": {
+        "association": "product"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677422",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 10,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CartItem\ninv: not(self.cart <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "CartItem",
+      "parameters": {
+        "association": "cart"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677435",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 11,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: not(self.categories->collect(x | x.title)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Store",
+      "parameters": {
+        "collection": "categories",
+        "iterator": "x",
+        "attribute": "title"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677535",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 29,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: not(self.country.size() >= 10 implies self.country.substring(1, 10) = 'value')",
+      "pattern_id": "string_starts_with_unsat",
+      "pattern_name": "String Starts With (UNSAT)",
+      "context": "Address",
+      "parameters": {
+        "string_attribute": "country",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677617",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 35,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Coupon\ninv: not(self.validUntil <> null implies self.code <> null)",
+      "pattern_id": "implies_reverse_unsat",
+      "pattern_name": "Reverse Implication (UNSAT)",
+      "context": "Coupon",
+      "parameters": {
+        "first_attribute": "code",
+        "second_attribute": "validUntil"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677633",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 42,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context InventoryItem\ninv: not(self.quantity = null)",
+      "pattern_id": "attribute_null_check_unsat",
+      "pattern_name": "Attribute Must Be Null (UNSAT)",
+      "context": "InventoryItem",
+      "parameters": {
+        "attribute": "quantity"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677650",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 52,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: not(self.name.size() = 40)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "Product",
+      "parameters": {
+        "string_attribute": "name",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677675",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 56,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Store\ninv: (self.coupons->size() >= 2 and self.coupons->size() <= 2) and (self.coupons->size() < 2)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Store",
+      "parameters": {
+        "collection": "coupons",
+        "min_size": 2,
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677688",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 0,
+        "implies": [
+          "collection_size_range_Store"
+        ]
+      }
+    },
+    {
+      "ocl": "context Order\ninv: not(self.placedAt.size() <= 53)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "Order",
+      "parameters": {
+        "string_attribute": "placedAt",
+        "max_length": 53
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677721",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Product\ninv: not(self.reviews->isUnique(x | x.rating))",
+      "pattern_id": "collection_isUnique_attr_unsat",
+      "pattern_name": "Collection Unique Attribute Values (UNSAT)",
+      "context": "Product",
+      "parameters": {
+        "collection": "reviews",
+        "attribute": "rating"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677734",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 65,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Address\ninv: not((self.country <> null) = (self.postalCode <> null))",
+      "pattern_id": "bi_implication_unsat",
+      "pattern_name": "Bi-directional Implication (UNSAT)",
+      "context": "Address",
+      "parameters": {
+        "first_attribute": "country",
+        "second_attribute": "postalCode"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677748",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 70,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ReturnRequest\ninv: not(self.requestedAt.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "ReturnRequest",
+      "parameters": {
+        "string_attribute": "requestedAt",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677794",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 74,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Order\ninv: not(self.items->asSet()->size() <= self.items->size())",
+      "pattern_id": "collection_asSet_unsat",
+      "pattern_name": "Collection As Set Conversion (UNSAT)",
+      "context": "Order",
+      "parameters": {
+        "collection": "items"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677815",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 77,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Customer\ninv: not(self.customerId <> self.email)",
+      "pattern_id": "two_attributes_not_equal_unsat",
+      "pattern_name": "Two Attributes Not Equal (UNSAT)",
+      "context": "Customer",
+      "parameters": {
+        "first_attribute": "customerId",
+        "second_attribute": "email"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677828",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 78,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 14,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: not(self.trackingNo <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Shipment",
+      "parameters": {
+        "attribute": "trackingNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:01:23.677845",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 87,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    }
+  ],
+  "verification": {
+    "enabled": true,
+    "results": [
+      {
+        "constraint_id": "collection_has_size_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "attribute_null_check_Supplier",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Address",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "association_exists_Cart",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "association_exists_Shipment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "association_exists_InventoryItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "association_exists_DiscountRule",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "association_exists_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_multiple_of_Review",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_size_range_Store",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_abs_bounded_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_size_range_Store",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_contains_substring_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_max_length_Cart",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_exact_length_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "union_operation_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_isUnique_attr_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_contains_substring_Coupon",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "sortedBy_Cart",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "union_operation_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_max_size_Store",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "all_attributes_defined_Address",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_even_InventoryItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "range_constraint_CartItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_max_length_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_contains_substring_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_not_empty_simple_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "not_both_defined_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "all_attributes_defined_DiscountRule",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_exact_length_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "symmetricDifference_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_excluding_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "difference_operation_Coupon",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_max_size_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_collectNested_Customer",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_starts_with_Cart",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_bounded_OrderItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_InventoryItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_ProductVariant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_contains_substring_ProductVariant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "all_different_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "all_different_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "difference_operation_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "intersection_operation_Order",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_abs_bounded_ProductVariant",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_last_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_max_length_Coupon",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_max_length_Review",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_contains_substring_Supplier",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_not_empty_Coupon",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "collection_last_Cart",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_Product",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "numeric_less_than_value_CartItem",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      },
+      {
+        "constraint_id": "string_exact_length_Category",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0020607915417901403
+      }
+    ]
+  }
+}

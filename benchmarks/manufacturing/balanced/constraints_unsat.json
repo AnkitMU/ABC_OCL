@@ -1,0 +1,672 @@
+{
+  "metadata": {
+    "type": "UNSAT",
+    "model": "manufacturing",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:38:57.746446",
+    "constraint_count": 21
+  },
+  "constraints": [
+    {
+      "ocl": "context Plant\ninv: (self.workshops->notEmpty()) and (self.workshops->isEmpty())",
+      "pattern_id": "collection_not_empty_simple_unsat",
+      "pattern_name": "Collection Not Empty (Simple) (UNSAT)",
+      "context": "Plant",
+      "parameters": {
+        "collection": "workshops"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230690",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 3,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: not(self.empId <> null implies self.name <> null)",
+      "pattern_id": "implies_simple_unsat",
+      "pattern_name": "Simple Implication (UNSAT)",
+      "context": "Technician",
+      "parameters": {
+        "first_attribute": "empId",
+        "second_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230710",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 5,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DefectReport\ninv: not(self.description <> null and self.defectId <> null)",
+      "pattern_id": "all_attributes_defined_unsat",
+      "pattern_name": "All Attributes Defined (UNSAT)",
+      "context": "DefectReport",
+      "parameters": {
+        "first_attribute": "description",
+        "second_attribute": "defectId"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230725",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: not(self.station <> null)",
+      "pattern_id": "association_exists_unsat",
+      "pattern_name": "Association Exists (UNSAT)",
+      "context": "Machine",
+      "parameters": {
+        "association": "station"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230739",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 12,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shift\ninv: (self.operators->size() >= 1 and self.operators->size() <= 1) and (self.operators->size() < 1)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Shift",
+      "parameters": {
+        "collection": "operators",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230905",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 18,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 21,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: not(self.manufacturer.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Machine",
+      "parameters": {
+        "string_attribute": "manufacturer",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230954",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 22,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Machine\ninv: not(self.maintenanceTasks->collect(x | x.isDone)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Machine",
+      "parameters": {
+        "collection": "maintenanceTasks",
+        "iterator": "x",
+        "attribute": "isDone"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.230994",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 38,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: not(self.name <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Plant",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231005",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 39,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context ProductionLine\ninv: not(self.workOrders->symmetricDifference(self.workOrders)->isEmpty())",
+      "pattern_id": "symmetricDifference_unsat",
+      "pattern_name": "Symmetric Difference (UNSAT)",
+      "context": "ProductionLine",
+      "parameters": {
+        "collection1": "workOrders",
+        "collection2": "workOrders"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231019",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 3,
+        "generation_number": 42,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty",
+          "symmetricDifference"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Shipment\ninv: not(self.items->excluding(self.items->any(true))->size() < self.items->size())",
+      "pattern_id": "collection_excluding_unsat",
+      "pattern_name": "Collection Excluding Element (UNSAT)",
+      "context": "Shipment",
+      "parameters": {
+        "collection": "items",
+        "element": "plant"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231153",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Technician\ninv: not(self.tasks->select(x | x.isDone)->size() = 93)",
+      "pattern_id": "sum_operation_unsat",
+      "pattern_name": "Sum Operation (UNSAT)",
+      "context": "Technician",
+      "parameters": {
+        "collection": "tasks",
+        "iterator": "x",
+        "attribute": "isDone",
+        "operator": "=",
+        "value": 93
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231183",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 48,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "select",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 22,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: not(self.supplierId.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Supplier",
+      "parameters": {
+        "string_attribute": "supplierId",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231225",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 53,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workstation\ninv: not(self.machines->collect(x | x.status)->notEmpty())",
+      "pattern_id": "collect_operation_unsat",
+      "pattern_name": "Collect (Map) Operation (UNSAT)",
+      "context": "Workstation",
+      "parameters": {
+        "collection": "machines",
+        "iterator": "x",
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231245",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 56,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context DefectReport\ninv: (self.severity >= 18 and self.severity <= 60) and (self.severity < 18)",
+      "pattern_id": "range_constraint_unsat",
+      "pattern_name": "Range Constraint (UNSAT)",
+      "context": "DefectReport",
+      "parameters": {
+        "attribute": "severity",
+        "min_value": 18,
+        "max_value": 60
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231257",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 57,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 17,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Plant\ninv: not(self.workshops->isUnique(x | x.name))",
+      "pattern_id": "collection_isUnique_attr_unsat",
+      "pattern_name": "Collection Unique Attribute Values (UNSAT)",
+      "context": "Plant",
+      "parameters": {
+        "collection": "workshops",
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231274",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 23,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: (self.shipments->size() <= 3) and (self.shipments->size() > 3)",
+      "pattern_id": "collection_max_size_unsat",
+      "pattern_name": "Collection Maximum Size (UNSAT)",
+      "context": "Supplier",
+      "parameters": {
+        "collection": "shipments",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231287",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 74,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 24,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context MaintenanceTask\ninv: not(self.scheduledAt.size() = 24)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "MaintenanceTask",
+      "parameters": {
+        "string_attribute": "scheduledAt",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231324",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Supplier\ninv: not(self.name.size() <= 13)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "Supplier",
+      "parameters": {
+        "string_attribute": "name",
+        "max_length": 13
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231348",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 89,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context WorkOrder\ninv: (self.qualityChecks->notEmpty() implies self.qualityChecks->first().passed <> null) and (self.qualityChecks->isEmpty())",
+      "pattern_id": "collection_first_unsat",
+      "pattern_name": "Collection First Element (UNSAT)",
+      "context": "WorkOrder",
+      "parameters": {
+        "collection": "qualityChecks",
+        "attribute": "passed"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231361",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 90,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "is_unsat": true,
+        "mutation": "empty_collection",
+        "semantic_cluster": 2,
+        "implies": [
+          "sortedBy_WorkOrder"
+        ]
+      }
+    },
+    {
+      "ocl": "context Product\ninv: not((self.name <> null) = (self.sku <> null))",
+      "pattern_id": "bi_implication_unsat",
+      "pattern_name": "Bi-directional Implication (UNSAT)",
+      "context": "Product",
+      "parameters": {
+        "first_attribute": "name",
+        "second_attribute": "sku"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231373",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 92,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Workshop\ninv: not(self.name = null)",
+      "pattern_id": "attribute_null_check_unsat",
+      "pattern_name": "Attribute Must Be Null (UNSAT)",
+      "context": "Workshop",
+      "parameters": {
+        "attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:38:23.231386",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 99,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    }
+  ]
+}

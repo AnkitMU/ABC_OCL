@@ -1,0 +1,125 @@
+-- Benchmark: Hospital_system / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:25:07.477225
+-- Count: 20
+
+-- #1 Collection Must Be Empty (UNSAT) in Prescription
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Prescription
+inv: not(self.medications->isEmpty())
+
+-- #2 Attribute Not Null (Simple) (UNSAT) in Admission
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Admission
+inv: not(self.admissionId <> null)
+
+-- #3 Association Exists (UNSAT) in Procedure
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Procedure
+inv: not(self.record <> null)
+
+-- #4 Association Exists (UNSAT) in Doctor
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Doctor
+inv: not(self.department <> null)
+
+-- #5 Association Exists (UNSAT) in LabResult
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context LabResult
+inv: not(self.test <> null)
+
+-- #6 IncludesAll/ExcludesAll Check (UNSAT) in Doctor
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Doctor
+inv: not(self.appointments->includesAll(self.appointments) or self.appointments->excludesAll(self.appointments))
+
+-- #7 String Starts With (UNSAT) in Admission
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Admission
+inv: not(self.admitDate.size() >= 10 implies self.admitDate.substring(1, 10) = 'value')
+
+-- #8 Collection Unique Attribute Values (UNSAT) in Room
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Room
+inv: not(self.beds->isUnique(x | x.bedNo))
+
+-- #9 Set Difference (UNSAT) in Department
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Department
+inv: not(self.nurses->excludingAll(self.nurses)->isEmpty())
+
+-- #10 String Exact Length (UNSAT) in MedicalRecord
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context MedicalRecord
+inv: not(self.createdAt.size() = 40)
+
+-- #11 String Starts With (UNSAT) in Appointment
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Appointment
+inv: not(self.appointmentId.size() >= 5 implies self.appointmentId.substring(1, 5) = 'value')
+
+-- #12 String Starts With (UNSAT) in Admission
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Admission
+inv: not(self.admitDate.size() >= 5 implies self.admitDate.substring(1, 5) = 'value')
+
+-- #13 Collection Last Element (UNSAT) in MedicalRecord
+-- Difficulty: medium
+-- Mutation Strategy: empty_collection
+context MedicalRecord
+inv: (self.diagnoses->notEmpty() implies self.diagnoses->last().diagnosedAt <> null) and (self.diagnoses->isEmpty())
+
+-- #14 String Contains Substring (UNSAT) in Room
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Room
+inv: not(self.roomNo.indexOf('value') >= 0)
+
+-- #15 Type Check (UNSAT) in MedicalRecord
+-- Difficulty: medium
+-- Mutation Strategy: type_contradiction
+context MedicalRecord
+inv: (self.patient.oclIsTypeOf(Patient)) and (patient.oclIsTypeOf(Room))
+
+-- #16 Symmetric Difference (UNSAT) in Patient
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Patient
+inv: not(self.admissions->symmetricDifference(self.admissions)->isEmpty())
+
+-- #17 Collection First Element (UNSAT) in Prescription
+-- Difficulty: medium
+-- Mutation Strategy: empty_collection
+context Prescription
+inv: (self.medications->notEmpty() implies self.medications->first().frequency <> null) and (self.medications->isEmpty())
+
+-- #18 SortedBy Operation (UNSAT) in Department
+-- Difficulty: hard
+-- Mutation Strategy: empty_collection
+context Department
+inv: (self.nurses->notEmpty() implies self.nurses->sortedBy(x | x.shift)->first().shift <= self.nurses->sortedBy(x | x.shift)->last().shift) and (self.nurses->isEmpty())
+
+-- #19 Collection Excluding Element (UNSAT) in Ward
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Ward
+inv: not(self.rooms->excluding(self.rooms->any(true))->size() < self.rooms->size())
+
+-- #20 Uniqueness Constraint (UNSAT) in MedicalRecord
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context MedicalRecord
+inv: not(self.diagnoses->isUnique(x | x.diagnosedAt))
+

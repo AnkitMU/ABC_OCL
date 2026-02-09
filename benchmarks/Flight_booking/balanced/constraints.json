@@ -1,0 +1,2538 @@
+{
+  "metadata": {
+    "suite": "OCL-Benchmark-Balanced",
+    "model": "Flight_booking",
+    "profile": "balanced",
+    "generated_at": "2026-02-07T19:30:42.348399",
+    "seed": 42,
+    "complexity": "standard",
+    "framework_version": "2.0",
+    "git_commit": null,
+    "constraint_count": 72,
+    "research_features_enabled": true
+  },
+  "constraints": [
+    {
+      "ocl": "context Airline\ninv: self.code <> null implies self.name <> null",
+      "pattern_id": "implies_simple",
+      "pattern_name": "Simple Implication",
+      "context": "Airline",
+      "parameters": {
+        "first_attribute": "code",
+        "second_attribute": "name"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:13.649983",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 1,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.baggages->size() <= 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "Booking",
+      "parameters": {
+        "collection": "baggages",
+        "operator": "<=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:13.824627",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 2,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: self.email <> null implies self.passportNo <> null",
+      "pattern_id": "implies_simple",
+      "pattern_name": "Simple Implication",
+      "context": "Passenger",
+      "parameters": {
+        "first_attribute": "email",
+        "second_attribute": "passportNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:13.916886",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 3,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.seats->size() <= 1",
+      "pattern_id": "size_constraint",
+      "pattern_name": "Collection Size Constraint",
+      "context": "Aircraft",
+      "parameters": {
+        "collection": "seats",
+        "operator": "<=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:14.458566",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 5,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Seat\ninv: self.aircraft <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Seat",
+      "parameters": {
+        "association": "aircraft"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:14.644271",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 7,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CheckIn\ninv: self.boardingPass <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "CheckIn",
+      "parameters": {
+        "association": "boardingPass"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:14.656291",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 8,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.booking <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "Payment",
+      "parameters": {
+        "association": "booking"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:14.667932",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 9,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "numeric_non_negative_Payment"
+        ]
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.seats->size() >= 1 and self.seats->size() <= 3",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Aircraft",
+      "parameters": {
+        "collection": "seats",
+        "min_size": 1,
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.033469",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 12,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_last_Aircraft",
+          "collection_not_empty_check_Aircraft"
+        ]
+      }
+    },
+    {
+      "ocl": "context Airline\ninv: self.aircrafts->size() >= 1 and self.aircrafts->size() <= 2",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Airline",
+      "parameters": {
+        "collection": "aircrafts",
+        "min_size": 1,
+        "max_size": 2
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.072024",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 13,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airline\ninv: self.flights->size() >= 1 and self.flights->size() <= 1",
+      "pattern_id": "collection_size_range",
+      "pattern_name": "Collection Size in Range",
+      "context": "Airline",
+      "parameters": {
+        "collection": "flights",
+        "min_size": 1,
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.325601",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 18,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: self.iataCode.size() <= 61",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Airport",
+      "parameters": {
+        "string_attribute": "iataCode",
+        "max_length": 61
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.342492",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 19,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Seat\ninv: self.seatNo.size() >= 13",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Seat",
+      "parameters": {
+        "string_attribute": "seatNo",
+        "min_length": 13
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.362376",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 20,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->size() <= 1",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "max_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.363671",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 21,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_Flight"
+        ]
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.model = self.registrationNo",
+      "pattern_id": "string_equality",
+      "pattern_name": "String Equality",
+      "context": "Aircraft",
+      "parameters": {
+        "attr1": "model",
+        "attr2": "registrationNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.364451",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 22,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->union(self.bookings)->notEmpty()",
+      "pattern_id": "union_operation",
+      "pattern_name": "Set Union",
+      "context": "Flight",
+      "parameters": {
+        "collection1": "bookings",
+        "collection2": "bookings"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.365916",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 23,
+        "operators_used": [
+          "-",
+          ">",
+          "notEmpty",
+          "union"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: self.name.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Airport",
+      "parameters": {
+        "string_attribute": "name",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.366887",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 24,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.baggages->excluding(self.baggages->any(true))->size() < self.baggages->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Booking",
+      "parameters": {
+        "collection": "baggages",
+        "element": "checkIn"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.368084",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 26,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.model.size() >= 10 implies self.model.substring(1, 10) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Aircraft",
+      "parameters": {
+        "string_attribute": "model",
+        "prefix": "value",
+        "prefix_length": 10
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.370665",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 28,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: self.arrivingFlights->excludingAll(self.arrivingFlights)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Airport",
+      "parameters": {
+        "collection1": "arrivingFlights",
+        "collection2": "arrivingFlights"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.372270",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 30,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.departureTime.size() >= 18",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Flight",
+      "parameters": {
+        "string_attribute": "departureTime",
+        "min_length": 18
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.373054",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 31,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BoardingPass\ninv: self.gate.size() <= 65",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "BoardingPass",
+      "parameters": {
+        "string_attribute": "gate",
+        "max_length": 65
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.373674",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 32,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.arrivalTime.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Flight",
+      "parameters": {
+        "string_attribute": "arrivalTime",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.374541",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 33,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->size() >= 4 implies self.bookings->asSequence()->at(4).bookingRef <> null",
+      "pattern_id": "collection_at_index",
+      "pattern_name": "Collection At Index",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "index": 4,
+        "attribute": "bookingRef"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.374974",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 34,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 1,
+        "implies": [
+          "sortedBy_Flight"
+        ]
+      }
+    },
+    {
+      "ocl": "context BoardingPass\ninv: self.boardingTime <> null and self.gate <> null",
+      "pattern_id": "all_attributes_defined",
+      "pattern_name": "All Attributes Defined",
+      "context": "BoardingPass",
+      "parameters": {
+        "first_attribute": "boardingTime",
+        "second_attribute": "gate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.376149",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 36,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.bookingRef <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Booking",
+      "parameters": {
+        "attribute": "bookingRef"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.377574",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 38,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Baggage\ninv: self.weightKg <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Baggage",
+      "parameters": {
+        "attribute": "weightKg"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.378000",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 39,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.bookingRef.size() = 37",
+      "pattern_id": "string_exact_length",
+      "pattern_name": "String Exact Length",
+      "context": "Booking",
+      "parameters": {
+        "string_attribute": "bookingRef",
+        "length": 37
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.378568",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 40,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: (self.email <> null and self.fullName <> null) or (self.email = null and self.fullName = null)",
+      "pattern_id": "both_defined_or_both_null",
+      "pattern_name": "Both Defined Or Both Null",
+      "context": "Passenger",
+      "parameters": {
+        "first_attribute": "email",
+        "second_attribute": "fullName"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.378983",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 41,
+        "operators_used": [
+          "<",
+          "<>",
+          "=",
+          ">",
+          "and",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 2,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.amount > 92",
+      "pattern_id": "numeric_greater_than_value",
+      "pattern_name": "Numeric Greater Than Value",
+      "context": "Payment",
+      "parameters": {
+        "numeric_attribute": "amount",
+        "value": 92
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.379832",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 42,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 10,
+        "implies": [
+          "numeric_non_negative_Payment",
+          "numeric_positive_unsat_Payment"
+        ]
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->notEmpty() implies self.bookings->sortedBy(x | x.bookingRef)->first().bookingRef <= self.bookings->sortedBy(x | x.bookingRef)->last().bookingRef",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "attribute": "bookingRef"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.381491",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 45,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.baggages->notEmpty() implies self.baggages->sortedBy(x | x.tagNo)->first().tagNo <= self.baggages->sortedBy(x | x.tagNo)->last().tagNo",
+      "pattern_id": "sortedBy",
+      "pattern_name": "SortedBy Operation",
+      "context": "Booking",
+      "parameters": {
+        "collection": "baggages",
+        "attribute": "tagNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.381998",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 46,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "first",
+          "implies",
+          "last",
+          "notEmpty",
+          "sortedBy"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 11,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.registrationNo.size() >= 5 implies self.registrationNo.substring(1, 5) = 'value'",
+      "pattern_id": "string_starts_with",
+      "pattern_name": "String Starts With",
+      "context": "Aircraft",
+      "parameters": {
+        "string_attribute": "registrationNo",
+        "prefix": "value",
+        "prefix_length": 5
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.382559",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 47,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "implies",
+          "size",
+          "substring"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 4,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BoardingPass\ninv: self.seat <> null",
+      "pattern_id": "association_exists",
+      "pattern_name": "Association Exists",
+      "context": "BoardingPass",
+      "parameters": {
+        "association": "seat"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.383390",
+      "metadata": {
+        "category": "navigation",
+        "complexity": 1,
+        "generation_number": 48,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.baggages->size() >= 4 implies self.baggages->asSequence()->at(4).tagNo <> null",
+      "pattern_id": "collection_at_index",
+      "pattern_name": "Collection At Index",
+      "context": "Booking",
+      "parameters": {
+        "collection": "baggages",
+        "index": 4,
+        "attribute": "tagNo"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.383841",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 49,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          "=",
+          ">",
+          ">=",
+          "asSequence",
+          "at",
+          "implies",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "hard",
+        "operator_count": 10,
+        "semantic_cluster": 1,
+        "implies": [
+          "sortedBy_Booking"
+        ]
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.baggages->includesAll(self.baggages) or self.baggages->excludesAll(self.baggages)",
+      "pattern_id": "includesAll_excludesAll",
+      "pattern_name": "IncludesAll/ExcludesAll Check",
+      "context": "Booking",
+      "parameters": {
+        "collection1": "baggages",
+        "collection2": "baggages"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.384364",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 50,
+        "operators_used": [
+          "-",
+          ">",
+          "excludesAll",
+          "includesAll",
+          "or"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 7,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.departureTime <> '' and self.departureTime.size() > 0",
+      "pattern_id": "string_not_empty",
+      "pattern_name": "String Not Empty",
+      "context": "Flight",
+      "parameters": {
+        "string_attribute": "departureTime"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.384823",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 51,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: self.arrivingFlights->asSet()->size() <= self.arrivingFlights->size()",
+      "pattern_id": "collection_asSet",
+      "pattern_name": "Collection As Set Conversion",
+      "context": "Airport",
+      "parameters": {
+        "collection": "arrivingFlights"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.385254",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 52,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "asSet",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.model.indexOf('value') >= 0",
+      "pattern_id": "string_contains_substring",
+      "pattern_name": "String Contains Substring",
+      "context": "Aircraft",
+      "parameters": {
+        "string_attribute": "model",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.385746",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 53,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.seats->excluding(self.seats->any(true))->size() < self.seats->size()",
+      "pattern_id": "collection_excluding",
+      "pattern_name": "Collection Excluding Element",
+      "context": "Aircraft",
+      "parameters": {
+        "collection": "seats",
+        "element": "airline"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.387404",
+      "metadata": {
+        "category": "collection",
+        "complexity": 3,
+        "generation_number": 56,
+        "operators_used": [
+          "-",
+          "<",
+          ">",
+          "any",
+          "excluding",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airline\ninv: self.flights->isUnique(x | x.departureTime)",
+      "pattern_id": "collection_isUnique_attr",
+      "pattern_name": "Collection Unique Attribute Values",
+      "context": "Airline",
+      "parameters": {
+        "collection": "flights",
+        "attribute": "departureTime"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.387963",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 57,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 12,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airline\ninv: self.flights->collect(x | x.bookings)->size() >= 1",
+      "pattern_id": "collection_collectNested",
+      "pattern_name": "Collection Nested Collection Flatten",
+      "context": "Airline",
+      "parameters": {
+        "collection": "flights",
+        "nested_collection": "bookings",
+        "min_size": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.388468",
+      "metadata": {
+        "category": "collection",
+        "complexity": 4,
+        "generation_number": 58,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          ">=",
+          "collect",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: self.city.concat(self.name).size() >= 20",
+      "pattern_id": "string_concat_check",
+      "pattern_name": "String Concatenation Check",
+      "context": "Airport",
+      "parameters": {
+        "first_string": "city",
+        "second_string": "name",
+        "min_length": 20
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.389234",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 59,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "concat",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "semantic_cluster": 13,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.createdAt.size() >= 3",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Booking",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "min_length": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.389735",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 60,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.amount >= 0",
+      "pattern_id": "numeric_non_negative",
+      "pattern_name": "Numeric Attribute Non-Negative",
+      "context": "Payment",
+      "parameters": {
+        "numeric_attribute": "amount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.391426",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 63,
+        "operators_used": [
+          "=",
+          ">",
+          ">="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.amount = null",
+      "pattern_id": "attribute_null_check",
+      "pattern_name": "Attribute Must Be Null",
+      "context": "Payment",
+      "parameters": {
+        "attribute": "amount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.391978",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 64,
+        "operators_used": [
+          "="
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "semantic_cluster": 0,
+        "implies": [
+          "numeric_non_negative_Payment"
+        ]
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->size() <= 3",
+      "pattern_id": "collection_max_size",
+      "pattern_name": "Collection Maximum Size",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.392751",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 66,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 6,
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_Flight"
+        ]
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.departureTime <> null implies self.arrivalTime <> null",
+      "pattern_id": "implies_simple",
+      "pattern_name": "Simple Implication",
+      "context": "Flight",
+      "parameters": {
+        "first_attribute": "departureTime",
+        "second_attribute": "arrivalTime"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.393312",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 67,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "implies"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: self.createdAt.size() >= 12",
+      "pattern_id": "string_min_length",
+      "pattern_name": "String Minimum Length",
+      "context": "Booking",
+      "parameters": {
+        "string_attribute": "createdAt",
+        "min_length": 12
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.393952",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 68,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->isUnique(x | x.status)",
+      "pattern_id": "uniqueness_constraint",
+      "pattern_name": "Uniqueness Constraint",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "iterator": "x",
+        "attribute": "status"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.395347",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 70,
+        "operators_used": [
+          "-",
+          ">",
+          "isUnique"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->collect(x | x.bookingRef)->notEmpty()",
+      "pattern_id": "collect_operation",
+      "pattern_name": "Collect (Map) Operation",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "iterator": "x",
+        "attribute": "bookingRef"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.395828",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 71,
+        "operators_used": [
+          "-",
+          ">",
+          "collect",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 1,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Baggage\ninv: self.booking.oclIsTypeOf(Booking)",
+      "pattern_id": "type_check",
+      "pattern_name": "Type Check",
+      "context": "Baggage",
+      "parameters": {
+        "attribute": "booking",
+        "type": "Booking"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.396427",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 72,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.seats->notEmpty() implies self.seats->last().seatClass <> null",
+      "pattern_id": "collection_last",
+      "pattern_name": "Collection Last Element",
+      "context": "Aircraft",
+      "parameters": {
+        "collection": "seats",
+        "attribute": "seatClass"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.396890",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 73,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "implies",
+          "last",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 14,
+        "implies": [
+          "collection_size_range_Aircraft",
+          "collection_not_empty_check_Aircraft"
+        ]
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: self.method <> null",
+      "pattern_id": "attribute_not_null_simple",
+      "pattern_name": "Attribute Not Null (Simple)",
+      "context": "Payment",
+      "parameters": {
+        "attribute": "method"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.397934",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 75,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 0,
+        "implies": [
+          "numeric_non_negative_Payment"
+        ]
+      }
+    },
+    {
+      "ocl": "context Aircraft\ninv: self.seats->size() > 0",
+      "pattern_id": "collection_not_empty_check",
+      "pattern_name": "Collection Not Empty Check",
+      "context": "Aircraft",
+      "parameters": {
+        "collection": "seats"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.398776",
+      "metadata": {
+        "category": "collection",
+        "complexity": 1,
+        "generation_number": 76,
+        "operators_used": [
+          "-",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.bookings->excludingAll(self.bookings)->isEmpty()",
+      "pattern_id": "difference_operation",
+      "pattern_name": "Set Difference",
+      "context": "Flight",
+      "parameters": {
+        "collection1": "bookings",
+        "collection2": "bookings"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.399231",
+      "metadata": {
+        "category": "set_operations",
+        "complexity": 2,
+        "generation_number": 77,
+        "operators_used": [
+          "-",
+          ">",
+          "isEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: self.arrivalTime.size() <= 42",
+      "pattern_id": "string_max_length",
+      "pattern_name": "String Maximum Length",
+      "context": "Flight",
+      "parameters": {
+        "string_attribute": "arrivalTime",
+        "max_length": 42
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.400308",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 79,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: self.bookings->notEmpty() implies self.bookings->first().createdAt <> null",
+      "pattern_id": "collection_first",
+      "pattern_name": "Collection First Element",
+      "context": "Passenger",
+      "parameters": {
+        "collection": "bookings",
+        "attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.400715",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 80,
+        "operators_used": [
+          "-",
+          "<",
+          "<>",
+          ">",
+          "first",
+          "implies",
+          "notEmpty"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 7,
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: (self.bookings->size() = 1) and (self.bookings->size() <> 1)",
+      "pattern_id": "size_constraint_unsat",
+      "pattern_name": "Collection Size Constraint (UNSAT)",
+      "context": "Flight",
+      "parameters": {
+        "collection": "bookings",
+        "operator": "=",
+        "value": 1
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438266",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 0,
+        "operators_used": [
+          "-",
+          "=",
+          ">",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 1,
+        "implies": [
+          "collection_max_size_Flight",
+          "sortedBy_Flight",
+          "collection_max_size_Flight"
+        ]
+      }
+    },
+    {
+      "ocl": "context Ticket\ninv: not(self.issuedAt <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Ticket",
+      "parameters": {
+        "attribute": "issuedAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438289",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 4,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context BoardingPass\ninv: not(not(self.boardingTime <> null and self.gate <> null))",
+      "pattern_id": "not_both_defined_unsat",
+      "pattern_name": "Not Both Defined (UNSAT)",
+      "context": "BoardingPass",
+      "parameters": {
+        "first_attribute": "boardingTime",
+        "second_attribute": "gate"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438303",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 2,
+        "generation_number": 6,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and",
+          "not"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 5,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Airport\ninv: (self.departingFlights->size() >= 1 and self.departingFlights->size() <= 3) and (self.departingFlights->size() < 1)",
+      "pattern_id": "collection_size_range_unsat",
+      "pattern_name": "Collection Size in Range (UNSAT)",
+      "context": "Airport",
+      "parameters": {
+        "collection": "departingFlights",
+        "min_size": 1,
+        "max_size": 3
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438318",
+      "metadata": {
+        "category": "collection",
+        "complexity": 2,
+        "generation_number": 11,
+        "operators_used": [
+          "-",
+          "<",
+          "<=",
+          "=",
+          ">",
+          ">=",
+          "and",
+          "size"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 8,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 1,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Payment\ninv: (self.amount > 0) and (self.amount < -5)",
+      "pattern_id": "numeric_positive_unsat",
+      "pattern_name": "Numeric Attribute Positive (UNSAT)",
+      "context": "Payment",
+      "parameters": {
+        "numeric_attribute": "amount"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438330",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 14,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 6,
+        "implies": [
+          "numeric_non_negative_Payment"
+        ]
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: not(self.email.size() = 24)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "Passenger",
+      "parameters": {
+        "string_attribute": "email",
+        "length": 24
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438358",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 25,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: not(self.createdAt <> null)",
+      "pattern_id": "attribute_not_null_simple_unsat",
+      "pattern_name": "Attribute Not Null (Simple) (UNSAT)",
+      "context": "Booking",
+      "parameters": {
+        "attribute": "createdAt"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438372",
+      "metadata": {
+        "category": "basic",
+        "complexity": 1,
+        "generation_number": 35,
+        "operators_used": [
+          "<",
+          "<>",
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 3,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Booking\ninv: (self.flight.oclIsTypeOf(Flight)) and (flight.oclIsTypeOf(Payment))",
+      "pattern_id": "type_check_unsat",
+      "pattern_name": "Type Check (UNSAT)",
+      "context": "Booking",
+      "parameters": {
+        "attribute": "flight",
+        "type": "Flight"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438475",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 43,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "type_contradiction",
+        "semantic_cluster": 15,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context CheckIn\ninv: not(self.checkInTime.size() = 40)",
+      "pattern_id": "string_exact_length_unsat",
+      "pattern_name": "String Exact Length (UNSAT)",
+      "context": "CheckIn",
+      "parameters": {
+        "string_attribute": "checkInTime",
+        "length": 40
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438514",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 44,
+        "operators_used": [
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 2,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Baggage\ninv: (self.weightKg > 61) and (self.weightKg < 56)",
+      "pattern_id": "numeric_greater_than_value_unsat",
+      "pattern_name": "Numeric Greater Than Value (UNSAT)",
+      "context": "Baggage",
+      "parameters": {
+        "numeric_attribute": "weightKg",
+        "value": 61
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438528",
+      "metadata": {
+        "category": "arithmetic",
+        "complexity": 1,
+        "generation_number": 54,
+        "operators_used": [
+          ">"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "trivial",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "contradictory_bounds",
+        "semantic_cluster": 9,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Ticket\ninv: (self.booking.oclIsTypeOf(Booking)) and (booking.oclIsTypeOf(CheckIn))",
+      "pattern_id": "type_check_unsat",
+      "pattern_name": "Type Check (UNSAT)",
+      "context": "Ticket",
+      "parameters": {
+        "attribute": "booking",
+        "type": "Booking"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438543",
+      "metadata": {
+        "category": "basic",
+        "complexity": 2,
+        "generation_number": 55,
+        "operators_used": [
+          "oclIsTypeOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 1,
+        "is_unsat": true,
+        "mutation": "type_contradiction",
+        "semantic_cluster": 5,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: not(self.departureTime.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Flight",
+      "parameters": {
+        "string_attribute": "departureTime",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438593",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 61,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 3,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Passenger\ninv: not(self.email.size() <= 44)",
+      "pattern_id": "string_max_length_unsat",
+      "pattern_name": "String Maximum Length (UNSAT)",
+      "context": "Passenger",
+      "parameters": {
+        "string_attribute": "email",
+        "max_length": 44
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438618",
+      "metadata": {
+        "category": "string",
+        "complexity": 1,
+        "generation_number": 62,
+        "operators_used": [
+          "<",
+          "<=",
+          "=",
+          "size"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 8,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Seat\ninv: not(self.seatNo.indexOf('value') >= 0)",
+      "pattern_id": "string_contains_substring_unsat",
+      "pattern_name": "String Contains Substring (UNSAT)",
+      "context": "Seat",
+      "parameters": {
+        "string_attribute": "seatNo",
+        "substring": "value"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438653",
+      "metadata": {
+        "category": "string",
+        "complexity": 2,
+        "generation_number": 69,
+        "operators_used": [
+          "=",
+          ">",
+          ">=",
+          "indexOf"
+        ],
+        "navigation_depth": 3,
+        "quantifier_depth": 0,
+        "difficulty": "medium",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 6,
+        "implies": []
+      }
+    },
+    {
+      "ocl": "context Flight\ninv: not(self.departureTime <> null and self.arrivalTime <> null)",
+      "pattern_id": "all_attributes_defined_unsat",
+      "pattern_name": "All Attributes Defined (UNSAT)",
+      "context": "Flight",
+      "parameters": {
+        "first_attribute": "departureTime",
+        "second_attribute": "arrivalTime"
+      },
+      "confidence": 1.0,
+      "timestamp": "2026-02-07T19:30:15.438679",
+      "metadata": {
+        "category": "advanced",
+        "complexity": 1,
+        "generation_number": 83,
+        "operators_used": [
+          "<",
+          "<>",
+          ">",
+          "and"
+        ],
+        "navigation_depth": 2,
+        "quantifier_depth": 0,
+        "difficulty": "easy",
+        "operator_count": 4,
+        "is_unsat": true,
+        "mutation": "simple_negation",
+        "semantic_cluster": 0,
+        "implies": []
+      }
+    }
+  ],
+  "verification": {
+    "enabled": true,
+    "results": [
+      {
+        "constraint_id": "implies_simple_Airline",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "size_constraint_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "implies_simple_Passenger",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "size_constraint_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "association_exists_Seat",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "association_exists_CheckIn",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "association_exists_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_size_range_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_size_range_Airline",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_size_range_Airline",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_max_length_Airport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_min_length_Seat",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_max_size_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_equality_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "union_operation_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_contains_substring_Airport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_excluding_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_starts_with_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "difference_operation_Airport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_min_length_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_max_length_BoardingPass",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_contains_substring_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_at_index_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "all_attributes_defined_BoardingPass",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Baggage",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_exact_length_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "both_defined_or_both_null_Passenger",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "numeric_greater_than_value_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "sortedBy_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "sortedBy_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_starts_with_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "association_exists_BoardingPass",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_at_index_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "includesAll_excludesAll_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_not_empty_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_asSet_Airport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_contains_substring_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_excluding_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_isUnique_attr_Airline",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_collectNested_Airline",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_concat_check_Airport",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_min_length_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "numeric_non_negative_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "attribute_null_check_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_max_size_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "implies_simple_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_min_length_Booking",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "uniqueness_constraint_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collect_operation_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "type_check_Baggage",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_last_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "attribute_not_null_simple_Payment",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_not_empty_check_Aircraft",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "difference_operation_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "string_max_length_Flight",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      },
+      {
+        "constraint_id": "collection_first_Passenger",
+        "is_valid": true,
+        "solver_result": "sat",
+        "execution_time": 0.0015532803117183217
+      }
+    ]
+  }
+}

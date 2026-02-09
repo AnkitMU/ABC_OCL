@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="flightbookingsystem"
+  nsURI="http://example.org/flightbookingsystem"
+  nsPrefix="fb">
+
+  <!-- ===== ENUMS ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="BookingStatus">
+    <eLiterals name="Pending" value="0"/>
+    <eLiterals name="Confirmed" value="1"/>
+    <eLiterals name="Cancelled" value="2"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EEnum" name="SeatClass">
+    <eLiterals name="Economy" value="0"/>
+    <eLiterals name="PremiumEconomy" value="1"/>
+    <eLiterals name="Business" value="2"/>
+    <eLiterals name="First" value="3"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES (12) ===== -->
+
+  <!-- 1) Airline -->
+  <eClassifiers xsi:type="ecore:EClass" name="Airline">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="code"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flights"
+      upperBound="-1" containment="true" eType="#//Flight" eOpposite="#//Flight/airline"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aircrafts"
+      upperBound="-1" containment="true" eType="#//Aircraft" eOpposite="#//Aircraft/airline"/>
+  </eClassifiers>
+
+  <!-- 2) Airport -->
+  <eClassifiers xsi:type="ecore:EClass" name="Airport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iataCode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="city"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <!-- opposite links from Flight -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="departingFlights"
+      upperBound="-1" eType="#//Flight" eOpposite="#//Flight/departureAirport"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivingFlights"
+      upperBound="-1" eType="#//Flight" eOpposite="#//Flight/arrivalAirport"/>
+  </eClassifiers>
+
+  <!-- 3) Aircraft -->
+  <eClassifiers xsi:type="ecore:EClass" name="Aircraft">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="registrationNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="model"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="airline"
+      lowerBound="1" eType="#//Airline" eOpposite="#//Airline/aircrafts"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seats"
+      upperBound="-1" containment="true" eType="#//Seat" eOpposite="#//Seat/aircraft"/>
+  </eClassifiers>
+
+  <!-- 4) Seat -->
+  <eClassifiers xsi:type="ecore:EClass" name="Seat">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seatNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seatClass"
+      eType="#//SeatClass"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aircraft"
+      lowerBound="1" eType="#//Aircraft" eOpposite="#//Aircraft/seats"/>
+  </eClassifiers>
+
+  <!-- 5) Flight -->
+  <eClassifiers xsi:type="ecore:EClass" name="Flight">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flightNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="departureTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arrivalTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="airline"
+      lowerBound="1" eType="#//Airline" eOpposite="#//Airline/flights"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="departureAirport"
+      lowerBound="1" eType="#//Airport" eOpposite="#//Airport/departingFlights"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arrivalAirport"
+      lowerBound="1" eType="#//Airport" eOpposite="#//Airport/arrivingFlights"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="aircraft"
+      lowerBound="1" eType="#//Aircraft"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bookings"
+      upperBound="-1" containment="true" eType="#//Booking" eOpposite="#//Booking/flight"/>
+  </eClassifiers>
+
+  <!-- 6) Passenger -->
+  <eClassifiers xsi:type="ecore:EClass" name="Passenger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fullName"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="passportNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bookings"
+      upperBound="-1" containment="true" eType="#//Booking" eOpposite="#//Booking/passenger"/>
+  </eClassifiers>
+
+  <!-- 7) Booking -->
+  <eClassifiers xsi:type="ecore:EClass" name="Booking">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bookingRef"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//BookingStatus"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flight"
+      lowerBound="1" eType="#//Flight" eOpposite="#//Flight/bookings"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="passenger"
+      lowerBound="1" eType="#//Passenger" eOpposite="#//Passenger/bookings"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ticket"
+      upperBound="1" containment="true" eType="#//Ticket" eOpposite="#//Ticket/booking"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payment"
+      upperBound="1" containment="true" eType="#//Payment" eOpposite="#//Payment/booking"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="baggages"
+      upperBound="-1" containment="true" eType="#//Baggage" eOpposite="#//Baggage/booking"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checkIn"
+      upperBound="1" containment="true" eType="#//CheckIn" eOpposite="#//CheckIn/booking"/>
+  </eClassifiers>
+
+  <!-- 8) Ticket -->
+  <eClassifiers xsi:type="ecore:EClass" name="Ticket">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticketNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuedAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booking"
+      lowerBound="1" eType="#//Booking" eOpposite="#//Booking/ticket"/>
+  </eClassifiers>
+
+  <!-- 9) Payment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paidAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booking"
+      lowerBound="1" eType="#//Booking" eOpposite="#//Booking/payment"/>
+  </eClassifiers>
+
+  <!-- 10) Baggage -->
+  <eClassifiers xsi:type="ecore:EClass" name="Baggage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tagNo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weightKg"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booking"
+      lowerBound="1" eType="#//Booking" eOpposite="#//Booking/baggages"/>
+  </eClassifiers>
+
+  <!-- 11) BoardingPass -->
+  <eClassifiers xsi:type="ecore:EClass" name="BoardingPass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="barcode"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boardingTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checkIn"
+      lowerBound="1" eType="#//CheckIn" eOpposite="#//CheckIn/boardingPass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seat"
+      upperBound="1" eType="#//Seat"/>
+  </eClassifiers>
+
+  <!-- 12) CheckIn -->
+  <eClassifiers xsi:type="ecore:EClass" name="CheckIn">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkInTime"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOnline"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booking"
+      lowerBound="1" eType="#//Booking" eOpposite="#//Booking/checkIn"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boardingPass"
+      upperBound="1" containment="true" eType="#//BoardingPass" eOpposite="#//BoardingPass/checkIn"/>
+  </eClassifiers>
+
+</ecore:EPackage>

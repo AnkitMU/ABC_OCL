@@ -1,0 +1,295 @@
+-- Benchmark: ecommerce_system / balanced
+-- Type: SAT Constraints Only
+-- Generated: 2026-02-07T19:01:54.904517
+-- Count: 58
+
+-- #1 Collection Has Specific Size in Customer
+-- Difficulty: easy
+context Customer
+inv: self.addresses->size() = 1
+
+-- #2 Attribute Must Be Null in Supplier
+-- Difficulty: trivial
+context Supplier
+inv: self.name = null
+
+-- #3 Attribute Not Null (Simple) in Address
+-- Difficulty: easy
+context Address
+inv: self.city <> null
+
+-- #4 Association Exists in Cart
+-- Difficulty: easy
+context Cart
+inv: self.customer <> null
+
+-- #5 Association Exists in Shipment
+-- Difficulty: easy
+context Shipment
+inv: self.order <> null
+
+-- #6 Association Exists in InventoryItem
+-- Difficulty: easy
+context InventoryItem
+inv: self.variant <> null
+
+-- #7 Association Exists in DiscountRule
+-- Difficulty: easy
+context DiscountRule
+inv: self.coupon <> null
+
+-- #8 Association Exists in Product
+-- Difficulty: easy
+context Product
+inv: self.category <> null
+
+-- #9 Numeric Multiple Of in Review
+-- Difficulty: easy
+context Review
+inv: self.rating mod 3 = 0
+
+-- #10 Collection Size in Range in Store
+-- Difficulty: medium
+context Store
+inv: self.coupons->size() >= 1 and self.coupons->size() <= 1
+
+-- #11 Numeric Absolute Value Bounded in Payment
+-- Difficulty: medium
+context Payment
+inv: self.amount.abs() <= 6
+
+-- #12 Collection Size in Range in Store
+-- Difficulty: medium
+context Store
+inv: self.products->size() >= 2 and self.products->size() <= 3
+
+-- #13 String Contains Substring in Order
+-- Difficulty: medium
+context Order
+inv: self.orderNo.indexOf('value') >= 0
+
+-- #14 String Maximum Length in Cart
+-- Difficulty: medium
+context Cart
+inv: self.createdAt.size() <= 18
+
+-- #15 String Exact Length in Payment
+-- Difficulty: easy
+context Payment
+inv: self.paidAt.size() = 30
+
+-- #16 Numeric Greater Than Value in Product
+-- Difficulty: trivial
+context Product
+inv: self.basePrice > 34
+
+-- #17 Set Union in Product
+-- Difficulty: easy
+context Product
+inv: self.reviews->union(self.reviews)->notEmpty()
+
+-- #18 Collection Unique Attribute Values in Product
+-- Difficulty: easy
+context Product
+inv: self.reviews->isUnique(x | x.comment)
+
+-- #19 String Contains Substring in Coupon
+-- Difficulty: medium
+context Coupon
+inv: self.validUntil.indexOf('value') >= 0
+
+-- #20 SortedBy Operation in Cart
+-- Difficulty: hard
+context Cart
+inv: self.items->notEmpty() implies self.items->sortedBy(x | x.quantity)->first().quantity <= self.items->sortedBy(x | x.quantity)->last().quantity
+
+-- #21 Set Union in Product
+-- Difficulty: easy
+context Product
+inv: self.variants->union(self.variants)->notEmpty()
+
+-- #22 Collection Maximum Size in Store
+-- Difficulty: medium
+context Store
+inv: self.products->size() <= 3
+
+-- #23 All Attributes Defined in Address
+-- Difficulty: easy
+context Address
+inv: self.country <> null and self.postalCode <> null
+
+-- #24 Numeric Is Even in InventoryItem
+-- Difficulty: easy
+context InventoryItem
+inv: self.quantity mod 2 = 0
+
+-- #25 Range Constraint in CartItem
+-- Difficulty: medium
+context CartItem
+inv: self.quantity >= 23 and self.quantity <= 75
+
+-- #26 String Maximum Length in Product
+-- Difficulty: medium
+context Product
+inv: self.sku.size() <= 59
+
+-- #27 String Contains Substring in Product
+-- Difficulty: medium
+context Product
+inv: self.sku.indexOf('value') >= 0
+
+-- #28 Collection Not Empty (Simple) in Order
+-- Difficulty: easy
+context Order
+inv: self.items->notEmpty()
+
+-- #29 Not Both Defined in Customer
+-- Difficulty: medium
+context Customer
+inv: not(self.customerId <> null and self.email <> null)
+
+-- #30 Attribute Not Null (Simple) in Order
+-- Difficulty: easy
+context Order
+inv: self.status <> null
+
+-- #31 All Attributes Defined in DiscountRule
+-- Difficulty: easy
+context DiscountRule
+inv: self.percentOff <> null and self.minOrderTotal <> null
+
+-- #32 Attribute Not Null (Simple) in Order
+-- Difficulty: easy
+context Order
+inv: self.orderNo <> null
+
+-- #33 Attribute Not Null (Simple) in Customer
+-- Difficulty: easy
+context Customer
+inv: self.fullName <> null
+
+-- #34 String Exact Length in Order
+-- Difficulty: easy
+context Order
+inv: self.orderNo.size() = 37
+
+-- #35 Symmetric Difference in Order
+-- Difficulty: easy
+context Order
+inv: self.items->symmetricDifference(self.items)->isEmpty()
+
+-- #36 Collection Excluding Element in Product
+-- Difficulty: medium
+context Product
+inv: self.variants->excluding(self.variants->any(true))->size() < self.variants->size()
+
+-- #37 Set Difference in Coupon
+-- Difficulty: easy
+context Coupon
+inv: self.orders->excludingAll(self.orders)->isEmpty()
+
+-- #38 Collection Maximum Size in Customer
+-- Difficulty: medium
+context Customer
+inv: self.addresses->size() <= 2
+
+-- #39 Collection Nested Collection Flatten in Customer
+-- Difficulty: medium
+context Customer
+inv: self.orders->collect(x | x.items)->size() >= 2
+
+-- #40 String Starts With in Cart
+-- Difficulty: medium
+context Cart
+inv: self.createdAt.size() >= 5 implies self.createdAt.substring(1, 5) = 'value'
+
+-- #41 Numeric Attribute Bounded in OrderItem
+-- Difficulty: medium
+context OrderItem
+inv: self.unitPrice >= 8 and self.unitPrice <= 27
+
+-- #42 Numeric Greater Than Value in InventoryItem
+-- Difficulty: trivial
+context InventoryItem
+inv: self.quantity > 98
+
+-- #43 Attribute Not Null (Simple) in ProductVariant
+-- Difficulty: easy
+context ProductVariant
+inv: self.priceDelta <> null
+
+-- #44 String Contains Substring in ProductVariant
+-- Difficulty: medium
+context ProductVariant
+inv: self.optionValue.indexOf('value') >= 0
+
+-- #45 All Different in Product
+-- Difficulty: medium
+context Product
+inv: self.variants->forAll(x, y | x <> y implies x.priceDelta <> y.priceDelta)
+
+-- #46 All Different in Order
+-- Difficulty: medium
+context Order
+inv: self.items->forAll(x, y | x <> y implies x.unitPrice <> y.unitPrice)
+
+-- #47 Set Difference in Product
+-- Difficulty: easy
+context Product
+inv: self.variants->excludingAll(self.variants)->isEmpty()
+
+-- #48 Set Intersection in Order
+-- Difficulty: easy
+context Order
+inv: self.items->intersection(self.items)->notEmpty()
+
+-- #49 Numeric Absolute Value Bounded in ProductVariant
+-- Difficulty: medium
+context ProductVariant
+inv: self.priceDelta.abs() <= 1
+
+-- #50 Collection Last Element in Product
+-- Difficulty: medium
+context Product
+inv: self.variants->notEmpty() implies self.variants->last().variantId <> null
+
+-- #51 String Maximum Length in Coupon
+-- Difficulty: medium
+context Coupon
+inv: self.validUntil.size() <= 88
+
+-- #52 String Maximum Length in Review
+-- Difficulty: medium
+context Review
+inv: self.comment.size() <= 51
+
+-- #53 String Contains Substring in Supplier
+-- Difficulty: medium
+context Supplier
+inv: self.name.indexOf('value') >= 0
+
+-- #54 String Not Empty in Coupon
+-- Difficulty: medium
+context Coupon
+inv: self.code <> '' and self.code.size() > 0
+
+-- #55 Collection Last Element in Cart
+-- Difficulty: medium
+context Cart
+inv: self.items->notEmpty() implies self.items->last().quantity <> null
+
+-- #56 Numeric Greater Than Value in Product
+-- Difficulty: trivial
+context Product
+inv: self.basePrice > 100
+
+-- #57 Numeric Less Than Value in CartItem
+-- Difficulty: trivial
+context CartItem
+inv: self.quantity < 83
+
+-- #58 String Exact Length in Category
+-- Difficulty: easy
+context Category
+inv: self.title.size() = 49
+

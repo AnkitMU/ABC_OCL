@@ -1,0 +1,65 @@
+-- Benchmark: library_system / balanced
+-- Type: UNSAT Constraints Only
+-- Generated: 2026-02-07T19:14:22.218813
+-- Count: 10
+
+-- #1 Attribute Must Be Null (UNSAT) in Loan
+-- Difficulty: trivial
+-- Mutation Strategy: simple_negation
+context Loan
+inv: not(self.startDate = null)
+
+-- #2 Association Exists (UNSAT) in Librarian
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Librarian
+inv: not(self.managedBranch <> null)
+
+-- #3 All Different (UNSAT) in Member
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Member
+inv: not(self.loans->forAll(x, y | x <> y implies x.returnDate <> y.returnDate))
+
+-- #4 Collection Not Empty Check (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Branch
+inv: (self.staff->size() > 0) and (self.staff->size() < -5)
+
+-- #5 Numeric Is Even (UNSAT) in Book
+-- Difficulty: easy
+-- Mutation Strategy: contradictory_bounds
+context Book
+inv: (self.publishYear mod 2 = 0) and (2 <> 0)
+
+-- #6 Collection Maximum Size (UNSAT) in Publisher
+-- Difficulty: medium
+-- Mutation Strategy: contradictory_bounds
+context Publisher
+inv: (self.books->size() <= 3) and (self.books->size() > 3)
+
+-- #7 All Attributes Defined (UNSAT) in Address
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Address
+inv: not(self.country <> null and self.city <> null)
+
+-- #8 Simple Implication (UNSAT) in Branch
+-- Difficulty: easy
+-- Mutation Strategy: simple_negation
+context Branch
+inv: not(self.name <> null implies self.code <> null)
+
+-- #9 Collect (Map) Operation (UNSAT) in Book
+-- Difficulty: medium
+-- Mutation Strategy: simple_negation
+context Book
+inv: not(self.reservations->collect(x | x.expiryDate)->notEmpty())
+
+-- #10 Collection First Element (UNSAT) in Member
+-- Difficulty: medium
+-- Mutation Strategy: empty_collection
+context Member
+inv: (self.reservations->notEmpty() implies self.reservations->first().expiryDate <> null) and (self.reservations->isEmpty())
+
