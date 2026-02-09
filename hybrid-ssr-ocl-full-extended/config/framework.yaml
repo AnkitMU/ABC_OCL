@@ -1,0 +1,6 @@
+enable_ssr: true
+max_iterations: 3
+confidence_threshold: 0.6
+use_eclipse_ocl: false
+report_format: "html"
+scopes_file: "config/scopes.yaml"

@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: hybrid-ssr-ocl
+Version: 0.1.0
+Summary: Hybrid SSR + SMT (Z3) OCL Verification Framework
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: z3-solver>=4.13
+Requires-Dist: pydantic>=2.7
+Requires-Dist: typer>=0.12
+Requires-Dist: rich>=13.7
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: jinja2>=3.1
+Dynamic: license-file
+
+# Hybrid SSR + SMT (Z3) OCL Verification — Full Extended
+
+This package includes:
+- SSR stubs (pre/post analyzers)
+- Rich **OCL→SMT encoder** (bounded collections, enums, quantifiers)
+- **Dynamic scope configuration** from `config/scopes.yaml`
+- Orchestrator, reports, examples, tests
+
+## Quick Start
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python -m ssr_ocl.cli verify --model examples/animal/model.xmi --ocl examples/animal/constraints.ocl
+```
+Artifacts are saved to `reports/runs/<timestamp>/`.

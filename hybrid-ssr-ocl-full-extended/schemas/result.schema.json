@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "required": [
+    "status"
+  ],
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "UNSAT",
+        "SAT",
+        "TYPE_ERROR",
+        "SYNTAX_ERROR"
+      ]
+    },
+    "negationChecked": {
+      "type": "boolean"
+    },
+    "counterexample": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeMs": {
+      "type": "number"
+    }
+  }
+}

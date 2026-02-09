@@ -1,0 +1,6 @@
+numeric_nonnegative:
+  match: "Int"
+  template: "self.%attr% >= 0"
+collection_forall_positive:
+  match: "Collection(Int)"
+  template: "self.%assoc%->forAll(x | x.%attr% > 0)"

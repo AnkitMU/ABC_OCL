@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="librarysystem"
+  nsURI="http://example.org/librarysystem"
+  nsPrefix="lib">
+
+  <!-- ===================== CLASSES ===================== -->
+
+  <eClassifiers xsi:type="ecore:EClass" name="Library">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <!-- Library.users 1..*  <->  Patron.mylib 1 -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="users"
+      upperBound="-1" containment="true" eType="#//Patron" eOpposite="#//Patron/mylib"/>
+
+    <!-- Library.holdings 1..*  <->  Copy.thelib 1 -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="holdings"
+      upperBound="-1" containment="true" eType="#//Copy" eOpposite="#//Copy/thelib"/>
+
+    <!-- Operations (signatures only) -->
+    <eOperations name="addcopy"/>
+    <eOperations name="addpatron"/>
+    <eOperations name="checkoutbook"/>
+    <eOperations name="returncopy"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EClass" name="Patron">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fines"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <!-- Patron.mylib 1  <->  Library.users * -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mylib"
+      lowerBound="1" eType="#//Library" eOpposite="#//Library/users"/>
+
+    <!-- Patron.checkedout 0..*  <->  Loan.checkedoutby 1 -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checkedout"
+      upperBound="-1" containment="true" eType="#//Loan" eOpposite="#//Loan/checkedoutby"/>
+
+    <!-- Operations -->
+    <eOperations name="checkout">
+      <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="return">
+      <eParameters name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+    <eOperations name="payFine">
+      <eParameters name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EClass" name="Loan">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dueDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <!-- Loan.checkedoutby 1  <->  Patron.checkedout * -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checkedoutby"
+      lowerBound="1" eType="#//Patron" eOpposite="#//Patron/checkedout"/>
+
+    <!-- Loan.copy 0..1  <->  Copy.loan 0..1  (each Loan may point to a Copy; Copy may or may not be on loan) -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="copy"
+      upperBound="1" eType="#//Copy" eOpposite="#//Copy/loan"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EClass" name="Copy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <!-- Copy.thelib 1  <->  Library.holdings * -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thelib"
+      lowerBound="1" eType="#//Library" eOpposite="#//Library/holdings"/>
+
+    <!-- Copy.book 1  <->  Book.copies * -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="book"
+      lowerBound="1" eType="#//Book" eOpposite="#//Book/copies"/>
+
+    <!-- Copy.loan 0..1  <->  Loan.copy 0..1 -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loan"
+      upperBound="1" eType="#//Loan" eOpposite="#//Loan/copy"/>
+
+    <!-- Operations -->
+    <eOperations name="addcopy"/>
+    <eOperations name="checkout"/>
+    <eOperations name="return"/>
+  </eClassifiers>
+
+  <eClassifiers xsi:type="ecore:EClass" name="Book">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <!-- Book.copies *  <->  Copy.book 1 -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="copies"
+      upperBound="-1" eType="#//Copy" eOpposite="#//Copy/book"/>
+  </eClassifiers>
+
+</ecore:EPackage>

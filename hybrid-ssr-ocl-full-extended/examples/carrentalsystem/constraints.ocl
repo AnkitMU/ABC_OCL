@@ -1,0 +1,44 @@
+-- 10 Business rules for Car Rental System
+
+context Branch
+inv CapacityRespected:
+  self.vehicles->size() <= self.capacity
+
+context Company
+inv VINUniqueAcrossCompany:
+  self.branches.vehicles->isUnique(v | v.vin)
+
+context Rental
+inv DatesOrder:
+  self.endDate > self.startDate
+
+context Rental
+inv MileageMonotonic:
+  self.mileageEnd >= self.mileageStart
+
+context Customer
+inv LegalAgeForAnyRental:
+   self.rentals->notEmpty() implies self.age >= 21
+
+context Rental
+inv LicenseValidAtStart:
+  self.customer.license.expiry >= self.startDate
+
+context Vehicle
+inv NoOverlappingRentals:
+  self.rentals->forAll(r1, r2 |
+    r1 <> r2 implies
+      r1.endDate <= r2.startDate or r2.endDate <= r1.startDate)
+
+context Rental
+inv PaymentMatchesTotalWhenPresent:
+  self.payment->notEmpty() implies self.payment.amount = self.totalAmount
+
+context Vehicle
+inv FuelLevelRange:
+  self.tankLevel >= 0 and self.tankLevel <= 100
+
+context Reservation
+inv ValidWindowAndBranch:
+  self.dateTo > self.dateFrom and
+  (self.vehicle->isEmpty() or self.vehicle.branch = self.branch)

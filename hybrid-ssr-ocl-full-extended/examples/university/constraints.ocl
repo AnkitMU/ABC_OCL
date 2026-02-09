@@ -1,0 +1,125 @@
+context University
+inv University_DepartmentsNonEmpty:
+  self.departments->size() > 0
+
+context University
+inv University_ProfessorEmailsUnique:
+  self.professors->isUnique(p | p.email)
+
+
+context University
+inv University_StudentIdsUnique:
+  self.students->isUnique(s | s.studentId)
+
+context University
+inv AlwaysTrueInvariant:
+  self.departments->size() >= 0  
+
+-- ===================== DEPARTMENT =====================
+
+-- (4) A Department must have at least one Course
+context Department
+inv Department_CoursesNonEmpty:
+  self.courses->size() > 0
+
+-- (5) Course codes are unique within a Department
+context Department
+inv Department_CourseCodeUnique:
+  self.courses->isUnique(c | c.code)
+
+-- ===================== COURSE =====================
+
+--(6) Course credits are within [1..10]
+context Course
+inv Course_CreditsRange:
+  self.credits >= 1 and self.credits <= 10
+
+-- (7) maxSeats is positive
+context Course
+inv Course_MaxSeatsPositive:
+  self.maxSeats > 0
+
+-- (8) A course cannot list itself as a prerequisite
+context Course
+inv Course_PrereqNoSelf:
+  not self.prerequisites->includes(self)
+
+-- (9) No immediate 2-cycle of prerequisites
+context Course
+inv Course_PrereqNoImmediateCycle:
+  self.prerequisites->forAll(p | not p.prerequisites->includes(self))
+
+-- (10) Room capacity must be at least maxSeats
+context Course
+inv Course_RoomCapacityAtLeastMaxSeats:
+  self.room <> null implies self.room.capacity >= self.maxSeats
+
+-- ===================== STUDENT =====================
+
+-- (11) Students must be 16 or older
+context Student
+inv Student_AgeMinimum:
+  self.age >= 16
+
+-- (12) GPA within [0.0 .. 4.0]
+context Student
+inv Student_GPARange:
+  self.gpa >= 0.0 and self.gpa <= 4.0
+
+-- (13) Each student must have an advisor
+context Student
+inv Student_HasAdvisor:
+  self.advisor <> null
+
+-- (14) No timeslot clash among a students enrollments
+context Student
+inv Student_NoTimeslotClash:
+  self.enrollments->isUnique(e | e.timeslot)
+
+-- (15) Max 6 enrollments per term (simple upper bound)
+context Student
+inv Student_MaxEnrollmentsPerTerm:
+  self.enrollments->size() <= 6
+
+-- ===================== ENROLLMENT =====================
+
+-- (16) Enrollment must link both a student and a course
+context Enrollment
+inv Enrollment_StudentCourseNonNull:
+  self.student <> null and self.course <> null
+
+-- (17) Enrollment timeslot must match the course's timeslot
+context Enrollment
+inv Enrollment_CourseTimeslotMatches:
+  self.course <> null and self.timeslot <> null implies self.course.timeslot = self.timeslot
+
+-- ===================== PROFESSOR =====================
+
+-- (18) Non-negative experience years
+context Professor
+inv Professor_NonNegativeExperience:
+  self.experienceYears >= 0
+
+-- (19) A professor teaches at most 5 courses
+context Professor
+inv Professor_MaxCourses:
+  self.courses->size() <= 5
+
+-- (20) No timeslot clash among a professors courses
+context Professor
+inv Professor_NoTimeslotClash:
+  self.courses->isUnique(c | c.timeslot)
+
+-- ===================== ROOM =====================
+
+-- (21) Room capacity must be positive
+context Room
+inv Room_CapacityPositive:
+  self.capacity > 0
+
+-- ===================== BUILDING =====================
+
+-- (22) Each building has at least one room
+context Building
+inv Building_RoomsNonEmpty:
+  self.rooms->size() > 0

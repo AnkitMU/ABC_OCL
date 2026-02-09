@@ -1,0 +1,21 @@
+
+classes:
+  # University domain
+  University: 1
+  Department: 3
+  Course: 10
+  Student: 20
+  Professor: 8
+  Room: 15
+  Building: 5
+  Enrollment: 50
+  Timeslot: 20
+  # Library domain
+  Library: 1
+  Patron: 5
+  Loan: 8
+  Copy: 6
+  Book: 4
+enums:
+  Semester: [Spring, Summer, Fall]
+  Degree: [UG, PG]

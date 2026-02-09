@@ -1,0 +1,44 @@
+-- LibrarySystem OCL Constraints (normalized to standard OCL syntax)
+
+-- ========= Copy-context invariants =========
+
+context Copy
+inv uniqueIds1:
+  -- Take all Copy ids, intersect with Bag{self.id}, expect exactly one match
+  Copy.allInstances()->collect(id)->intersection(Bag{ self.id })->size() = 1
+
+context Copy
+inv uniqueIds2:
+  -- Select ids equal to self.id, expect exactly one
+  Copy.allInstances()->collect(id)->select(i | i = self.id)->size() = 1
+
+context Copy
+inv uniqueIds3:
+  -- Among all copies, in the same library as self, only one has self.id
+  Copy.allInstances()->select(x : Copy | x.thelib = self.thelib and x.id = self.id)->size() = 1
+
+context Copy
+inv uniqueIds4:
+  -- Within my library holdings, exactly one copy with my id
+  self.thelib.holdings->select(x : Copy | x.id = self.id)->size() = 1
+
+context Copy
+inv uniqueIds5:
+  -- Same as above, lighter iterator declaration
+  self.thelib.holdings->select(x | x.id = self.id)->size() = 1
+
+context Copy
+inv uniqueIds6:
+  -- Drop iterator name entirely (valid for select with unambiguous property)
+  self.thelib.holdings->select(id = self.id)->size() = 1
+
+context Copy
+inv uniqueIds7:
+  -- Pairwise inequality of ids within the same library holdings
+  self.thelib.holdings->forAll(x | x <> self implies x.id <> self.id)
+
+-- ========= Library-context invariant (two-iterator forAll) =========
+
+context Library
+inv uniqueIdsLib:
+  self.holdings->forAll(x, y | x <> y implies x.id <> y.id)

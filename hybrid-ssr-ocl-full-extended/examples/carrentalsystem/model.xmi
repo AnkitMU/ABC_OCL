@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage
+  xmlns:xmi="http://www.omg.org/XMI"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  name="carrentalsystem"
+  nsURI="http://example.org/carrentalsystem"
+  nsPrefix="cars">
+
+  <!-- ===== ENUMS (optional / as needed) ===== -->
+  <eClassifiers xsi:type="ecore:EEnum" name="VehicleStatus">
+    <eLiterals name="Available" value="0"/>
+    <eLiterals name="Rented" value="1"/>
+    <eLiterals name="Maintenance" value="2"/>
+  </eClassifiers>
+
+  <!-- ===== CLASSES ===== -->
+
+  <!-- Company -->
+  <eClassifiers xsi:type="ecore:EClass" name="Company">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <!-- OCL #2: Company.branches [0..*], containment -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branches"
+      upperBound="-1" containment="true" eType="#//Branch" eOpposite="#//Branch/company"/>
+  </eClassifiers>
+
+  <!-- Branch -->
+  <eClassifiers xsi:type="ecore:EClass" name="Branch">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <!-- OCL #1: capacity used with vehicles->size() -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <!-- inverse of Company.branches -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="company"
+      lowerBound="1" eType="#//Company" eOpposite="#//Company/branches"/>
+
+    <!-- OCL #1 & #7: Branch.vehicles [0..*], containment; Vehicle.branch [1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vehicles"
+      upperBound="-1" containment="true" eType="#//Vehicle" eOpposite="#//Vehicle/branch"/>
+
+    <!-- OCL #5, #7, #8: keep rentals here if you store them under branch -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rentals"
+      upperBound="-1" containment="true" eType="#//Rental" eOpposite="#//Rental/branch"/>
+
+    <!-- OCL #10: reservations relate to a branch -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" containment="true" eType="#//Reservation" eOpposite="#//Reservation/branch"/>
+  </eClassifiers>
+
+  <!-- Vehicle -->
+  <eClassifiers xsi:type="ecore:EClass" name="Vehicle">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vin"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="category"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seats"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mileage"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <!-- OCL #9: present tankLevel attribute -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tankLevel"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dailyRate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status"
+      eType="#//VehicleStatus"/>
+
+    <!-- Vehicle.branch [1]; inverse of Branch.vehicles -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/vehicles"/>
+
+    <!-- OCL #7: Vehicle.rentals [0..*], no containment (typically) -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rentals"
+      upperBound="-1" eType="#//Rental" eOpposite="#//Rental/vehicle"/>
+
+    <!-- Optional link for reservations -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" eType="#//Reservation" eOpposite="#//Reservation/vehicle"/>
+  </eClassifiers>
+
+  <!-- Customer -->
+  <eClassifiers xsi:type="ecore:EClass" name="Customer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="age"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+
+    <!-- OCL #6: Customer.license [1], containment; License.customer [1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="license"
+      lowerBound="1" containment="true" eType="#//License" eOpposite="#//License/customer"/>
+
+    <!-- OCL #5: Customer.rentals [0..*] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rentals"
+      upperBound="-1" eType="#//Rental" eOpposite="#//Rental/customer"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reservations"
+      upperBound="-1" eType="#//Reservation" eOpposite="#//Reservation/customer"/>
+  </eClassifiers>
+
+  <!-- License -->
+  <eClassifiers xsi:type="ecore:EClass" name="License">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <!-- OCL #6: expiry needed for comparison with startDate -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expiry"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/license"/>
+  </eClassifiers>
+
+  <!-- Rental -->
+  <eClassifiers xsi:type="ecore:EClass" name="Rental">
+    <!-- OCL #3: startDate, endDate -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <!-- OCL #4: mileageStart, mileageEnd -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mileageStart"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mileageEnd"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <!-- OCL #8: totalAmount used with payment.amount -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalAmount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+
+    <!-- Optional link back to owning Branch (if you store rentals per branch) -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/rentals"/>
+
+    <!-- OCL #7: Rental.vehicle [1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vehicle"
+      lowerBound="1" eType="#//Vehicle" eOpposite="#//Vehicle/rentals"/>
+
+    <!-- OCL #5/#6/#8: Rental.customer [1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/rentals"/>
+
+    <!-- OCL #8: Rental.payment [0..1], containment; Payment.rental [1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payment"
+      upperBound="1" containment="true" eType="#//Payment" eOpposite="#//Payment/rental"/>
+  </eClassifiers>
+
+  <!-- Payment -->
+  <eClassifiers xsi:type="ecore:EClass" name="Payment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rental"
+      lowerBound="1" eType="#//Rental" eOpposite="#//Rental/payment"/>
+  </eClassifiers>
+
+  <!-- Reservation -->
+  <eClassifiers xsi:type="ecore:EClass" name="Reservation">
+    <!-- OCL #10: dateFrom/dateTo -->
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateFrom"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTo"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="createdAt"
+      eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+
+    <!-- OCL #10: Reservation.branch [1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="branch"
+      lowerBound="1" eType="#//Branch" eOpposite="#//Branch/reservations"/>
+
+    <!-- OCL #10: Reservation.vehicle [0..1] -->
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vehicle"
+      upperBound="1" eType="#//Vehicle" eOpposite="#//Vehicle/reservations"/>
+
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customer"
+      lowerBound="1" eType="#//Customer" eOpposite="#//Customer/reservations"/>
+  </eClassifiers>
+
+</ecore:EPackage>

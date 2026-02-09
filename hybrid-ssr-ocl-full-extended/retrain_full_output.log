@@ -1,0 +1,536 @@
+✅ Extracted 8 classes from examples/carrentalsystem/model.xmi
+   - Company: 1 attributes, 1 references
+   - Branch: 2 attributes, 4 references
+   - Vehicle: 7 attributes, 3 references
+   - Customer: 2 attributes, 3 references
+   - License: 2 attributes, 1 references
+   - Rental: 5 attributes, 4 references
+   - Payment: 2 attributes, 1 references
+   - Reservation: 3 attributes, 3 references
+
+================================================================================
+🔍 HYBRID FRAMEWORK COMPLETE TEST SUITE
+================================================================================
+
+📁 XMI Model: examples/carrentalsystem/model.xmi
+📄 OCL File: examples/carrentalsystem/constraints.ocl
+🕐 Timestamp: 1762347156.0111387
+
+================================================================================
+🔍 PHASE 0: MODEL CONSISTENCY VALIDATION
+================================================================================
+
+📋 Validating XMI and OCL consistency...
+   XMI: model.xmi
+   OCL: constraints.ocl
+
+
+================================================================================
+🔍 MODEL CONSISTENCY VALIDATION
+================================================================================
+XMI Model: model.xmi
+OCL File:  constraints.ocl
+
+📦 XMI Model Classes: 8
+   Branch, Company, Customer, License, Payment, Rental, Reservation, Vehicle
+
+📋 OCL Context Classes: 6
+   Branch, Company, Customer, Rental, Reservation, Vehicle
+
+🔎 Checking Context Classes...
+   ✅ All 6 context classes found in XMI model
+
+📝 Analyzing 10 OCL Constraints...
+   ✅ All navigations appear valid
+
+📊 Coverage Analysis:
+   ℹ️  2 XMI classes have no OCL constraints:
+      License, Payment
+
+================================================================================
+✅ VALIDATION PASSED: XMI and OCL belong to the same model
+   • All 6 context classes found
+   • 10 constraints validated
+================================================================================
+
+
+✅ Validation PASSED - Models are consistent
+   • All 6 context classes found
+   • 10 constraints validated
+
+================================================================================
+🔍 PHASE 1A: DOMAIN ADAPTATION (Neural Classifier Training)
+================================================================================
+
+🧠 Training neural classifier for domain: model
+   Model will be saved to: models/adapted_model
+
+[Step 1] Generating domain-specific training data...
+✅ Extracted 8 classes from examples/carrentalsystem/model.xmi
+   - Company: 1 attributes, 1 references
+   - Branch: 2 attributes, 4 references
+   - Vehicle: 7 attributes, 3 references
+   - Customer: 2 attributes, 3 references
+   - License: 2 attributes, 1 references
+   - Rental: 5 attributes, 4 references
+   - Payment: 2 attributes, 1 references
+   - Reservation: 3 attributes, 3 references
+
+🔄 Generating OCL examples using 8 domain classes...
+✅ Generated 22800 domain-specific OCL examples
+✅ Saved 22800 domain examples to ocl_domain_model_adapted.json
+✅ Generated 22800 domain examples
+   Saved to: ocl_domain_model_adapted.json
+
+[Step 2] Merging with generic training data...
+✅ Merged: 5000 generic + 22800 domain = 27800 total
+
+[Step 3] Training SentenceTransformer classifier...
+✅ Loaded SentenceTransformer model from models/adapted_model
+🧠 SentenceTransformer Classifier Training
+============================================================
+Examples: 27800
+Patterns: 50
+
+📥 Generating embeddings with all-MiniLM-L6-v2...
+Batches:   0%|          | 0/869 [00:00<?, ?it/s]Batches:   0%|          | 1/869 [00:00<04:42,  3.07it/s]Batches:   0%|          | 4/869 [00:00<01:20, 10.79it/s]Batches:   1%|          | 7/869 [00:00<00:52, 16.38it/s]Batches:   1%|▏         | 11/869 [00:00<00:39, 21.48it/s]Batches:   2%|▏         | 15/869 [00:00<00:33, 25.69it/s]Batches:   2%|▏         | 18/869 [00:00<00:32, 26.00it/s]Batches:   3%|▎         | 22/869 [00:01<00:31, 27.12it/s]Batches:   3%|▎         | 26/869 [00:01<00:28, 29.64it/s]Batches:   3%|▎         | 30/869 [00:01<00:26, 31.61it/s]Batches:   4%|▍         | 34/869 [00:01<00:26, 31.75it/s]Batches:   4%|▍         | 38/869 [00:01<00:25, 33.13it/s]Batches:   5%|▍         | 42/869 [00:01<00:25, 32.48it/s]Batches:   5%|▌         | 46/869 [00:01<00:27, 29.51it/s]Batches:   6%|▌         | 50/869 [00:01<00:26, 31.15it/s]Batches:   6%|▋         | 55/869 [00:02<00:23, 34.26it/s]Batches:   7%|▋         | 59/869 [00:02<00:23, 34.98it/s]Batches:   7%|▋         | 63/869 [00:02<00:22, 36.06it/s]Batches:   8%|▊         | 67/869 [00:02<00:21, 36.70it/s]Batches:   8%|▊         | 71/869 [00:02<00:22, 35.35it/s]Batches:   9%|▊         | 75/869 [00:02<00:24, 32.73it/s]Batches:   9%|▉         | 80/869 [00:02<00:22, 35.18it/s]Batches:  10%|▉         | 85/869 [00:02<00:21, 36.04it/s]Batches:  10%|█         | 90/869 [00:02<00:20, 37.72it/s]Batches:  11%|█         | 95/869 [00:03<00:19, 39.31it/s]Batches:  11%|█▏        | 99/869 [00:03<00:19, 38.55it/s]Batches:  12%|█▏        | 104/869 [00:03<00:19, 39.50it/s]Batches:  13%|█▎        | 109/869 [00:03<00:18, 40.19it/s]Batches:  13%|█▎        | 114/869 [00:03<00:18, 40.53it/s]Batches:  14%|█▎        | 119/869 [00:03<00:19, 38.37it/s]Batches:  14%|█▍        | 123/869 [00:03<00:20, 35.55it/s]Batches:  15%|█▍        | 128/869 [00:03<00:19, 37.36it/s]Batches:  15%|█▌        | 133/869 [00:04<00:20, 36.40it/s]Batches:  16%|█▌        | 137/869 [00:04<00:19, 36.99it/s]Batches:  16%|█▌        | 141/869 [00:04<00:19, 36.50it/s]Batches:  17%|█▋        | 146/869 [00:04<00:18, 38.23it/s]Batches:  17%|█▋        | 150/869 [00:04<00:19, 37.26it/s]Batches:  18%|█▊        | 154/869 [00:04<00:19, 36.21it/s]Batches:  18%|█▊        | 159/869 [00:04<00:18, 37.67it/s]Batches:  19%|█▉        | 164/869 [00:04<00:18, 38.94it/s]Batches:  19%|█▉        | 169/869 [00:05<00:17, 39.93it/s]Batches:  20%|██        | 174/869 [00:05<00:18, 36.88it/s]Batches:  21%|██        | 179/869 [00:05<00:18, 37.95it/s]Batches:  21%|██        | 183/869 [00:05<00:22, 30.20it/s]Batches:  22%|██▏       | 187/869 [00:05<00:22, 29.97it/s]Batches:  22%|██▏       | 191/869 [00:05<00:29, 23.13it/s]Batches:  23%|██▎       | 196/869 [00:06<00:29, 22.72it/s]Batches:  23%|██▎       | 200/869 [00:06<00:26, 25.04it/s]Batches:  24%|██▎       | 205/869 [00:06<00:22, 29.29it/s]Batches:  24%|██▍       | 210/869 [00:06<00:20, 32.59it/s]Batches:  25%|██▍       | 214/869 [00:06<00:19, 33.49it/s]Batches:  25%|██▌       | 219/869 [00:06<00:17, 37.15it/s]Batches:  26%|██▌       | 224/869 [00:06<00:16, 38.39it/s]Batches:  26%|██▋       | 230/869 [00:06<00:15, 42.22it/s]Batches:  27%|██▋       | 235/869 [00:07<00:15, 41.89it/s]Batches:  28%|██▊       | 240/869 [00:07<00:14, 42.21it/s]Batches:  28%|██▊       | 245/869 [00:07<00:14, 43.02it/s]Batches:  29%|██▉       | 251/869 [00:07<00:13, 45.77it/s]Batches:  30%|██▉       | 257/869 [00:07<00:12, 47.21it/s]Batches:  30%|███       | 263/869 [00:07<00:12, 49.22it/s]Batches:  31%|███       | 269/869 [00:07<00:11, 50.72it/s]Batches:  32%|███▏      | 275/869 [00:07<00:11, 50.97it/s]Batches:  32%|███▏      | 281/869 [00:07<00:11, 50.65it/s]Batches:  33%|███▎      | 287/869 [00:08<00:11, 50.09it/s]Batches:  34%|███▎      | 293/869 [00:08<00:11, 52.20it/s]Batches:  34%|███▍      | 299/869 [00:08<00:10, 54.20it/s]Batches:  35%|███▌      | 305/869 [00:08<00:10, 54.45it/s]Batches:  36%|███▌      | 311/869 [00:08<00:09, 55.88it/s]Batches:  37%|███▋      | 318/869 [00:08<00:09, 57.25it/s]Batches:  37%|███▋      | 324/869 [00:08<00:09, 57.07it/s]Batches:  38%|███▊      | 330/869 [00:08<00:09, 56.13it/s]Batches:  39%|███▊      | 336/869 [00:08<00:09, 54.86it/s]Batches:  39%|███▉      | 342/869 [00:09<00:10, 52.38it/s]Batches:  40%|████      | 348/869 [00:09<00:09, 52.89it/s]Batches:  41%|████      | 354/869 [00:09<00:09, 52.70it/s]Batches:  41%|████▏     | 360/869 [00:09<00:09, 51.97it/s]Batches:  42%|████▏     | 366/869 [00:09<00:09, 50.85it/s]Batches:  43%|████▎     | 373/869 [00:09<00:09, 53.14it/s]Batches:  44%|████▎     | 379/869 [00:09<00:10, 47.11it/s]Batches:  44%|████▍     | 384/869 [00:09<00:10, 47.69it/s]Batches:  45%|████▍     | 389/869 [00:10<00:11, 42.74it/s]Batches:  45%|████▌     | 395/869 [00:10<00:10, 46.95it/s]Batches:  46%|████▌     | 401/869 [00:10<00:09, 49.43it/s]Batches:  47%|████▋     | 408/869 [00:10<00:08, 52.84it/s]Batches:  48%|████▊     | 415/869 [00:10<00:08, 56.60it/s]Batches:  49%|████▊     | 422/869 [00:10<00:07, 58.55it/s]Batches:  49%|████▉     | 428/869 [00:10<00:07, 57.92it/s]Batches:  50%|████▉     | 434/869 [00:10<00:07, 58.05it/s]Batches:  51%|█████     | 441/869 [00:10<00:07, 60.58it/s]Batches:  52%|█████▏    | 448/869 [00:11<00:06, 60.28it/s]Batches:  52%|█████▏    | 455/869 [00:11<00:07, 53.56it/s]Batches:  53%|█████▎    | 461/869 [00:11<00:07, 54.57it/s]Batches:  54%|█████▍    | 468/869 [00:11<00:07, 57.17it/s]Batches:  55%|█████▍    | 475/869 [00:11<00:07, 54.27it/s]Batches:  55%|█████▌    | 482/869 [00:11<00:06, 56.58it/s]Batches:  56%|█████▌    | 488/869 [00:11<00:06, 55.22it/s]Batches:  57%|█████▋    | 495/869 [00:11<00:06, 57.18it/s]Batches:  58%|█████▊    | 502/869 [00:12<00:06, 58.17it/s]Batches:  58%|█████▊    | 508/869 [00:12<00:06, 57.74it/s]Batches:  59%|█████▉    | 514/869 [00:12<00:06, 58.28it/s]Batches:  60%|█████▉    | 521/869 [00:12<00:05, 60.08it/s]Batches:  61%|██████    | 528/869 [00:12<00:05, 61.26it/s]Batches:  62%|██████▏   | 535/869 [00:12<00:06, 50.60it/s]Batches:  62%|██████▏   | 541/869 [00:12<00:06, 51.27it/s]Batches:  63%|██████▎   | 548/869 [00:12<00:05, 54.63it/s]Batches:  64%|██████▍   | 554/869 [00:13<00:05, 54.36it/s]Batches:  64%|██████▍   | 560/869 [00:13<00:05, 53.66it/s]Batches:  65%|██████▌   | 567/869 [00:13<00:05, 57.22it/s]Batches:  66%|██████▌   | 574/869 [00:13<00:04, 59.53it/s]Batches:  67%|██████▋   | 582/869 [00:13<00:04, 63.69it/s]Batches:  68%|██████▊   | 590/869 [00:13<00:04, 66.95it/s]Batches:  69%|██████▉   | 598/869 [00:13<00:03, 68.52it/s]Batches:  70%|██████▉   | 605/869 [00:13<00:03, 68.24it/s]Batches:  70%|███████   | 612/869 [00:13<00:03, 67.53it/s]Batches:  71%|███████   | 619/869 [00:13<00:03, 67.34it/s]Batches:  72%|███████▏  | 626/869 [00:14<00:03, 66.31it/s]Batches:  73%|███████▎  | 633/869 [00:14<00:03, 66.79it/s]Batches:  74%|███████▎  | 640/869 [00:14<00:03, 66.56it/s]Batches:  74%|███████▍  | 647/869 [00:14<00:03, 63.02it/s]Batches:  75%|███████▌  | 654/869 [00:14<00:03, 63.38it/s]Batches:  76%|███████▌  | 661/869 [00:14<00:03, 64.55it/s]Batches:  77%|███████▋  | 668/869 [00:14<00:03, 65.68it/s]Batches:  78%|███████▊  | 675/869 [00:14<00:03, 64.26it/s]Batches:  78%|███████▊  | 682/869 [00:15<00:04, 38.54it/s]Batches:  79%|███████▉  | 688/869 [00:15<00:04, 40.22it/s]Batches:  80%|███████▉  | 694/869 [00:15<00:03, 44.20it/s]Batches:  81%|████████  | 701/869 [00:15<00:03, 48.50it/s]Batches:  81%|████████▏ | 708/869 [00:15<00:03, 52.70it/s]Batches:  82%|████████▏ | 715/869 [00:15<00:02, 56.00it/s]Batches:  83%|████████▎ | 722/869 [00:15<00:02, 59.23it/s]Batches:  84%|████████▍ | 729/869 [00:15<00:02, 61.00it/s]Batches:  85%|████████▍ | 736/869 [00:16<00:02, 62.09it/s]Batches:  86%|████████▌ | 743/869 [00:16<00:01, 63.70it/s]Batches:  86%|████████▋ | 751/869 [00:16<00:01, 65.85it/s]Batches:  87%|████████▋ | 759/869 [00:16<00:01, 67.73it/s]Batches:  88%|████████▊ | 766/869 [00:16<00:01, 65.44it/s]Batches:  89%|████████▉ | 773/869 [00:16<00:01, 66.56it/s]Batches:  90%|████████▉ | 780/869 [00:16<00:01, 66.43it/s]Batches:  91%|█████████ | 787/869 [00:16<00:01, 66.95it/s]Batches:  91%|█████████▏| 794/869 [00:16<00:01, 66.97it/s]Batches:  92%|█████████▏| 802/869 [00:17<00:00, 68.91it/s]Batches:  93%|█████████▎| 809/869 [00:17<00:00, 66.35it/s]Batches:  94%|█████████▍| 817/869 [00:17<00:00, 68.74it/s]Batches:  95%|█████████▍| 824/869 [00:17<00:00, 67.82it/s]Batches:  96%|█████████▌| 832/869 [00:17<00:00, 69.67it/s]Batches:  97%|█████████▋| 840/869 [00:17<00:00, 68.37it/s]Batches:  98%|█████████▊| 848/869 [00:17<00:00, 71.10it/s]Batches:  99%|█████████▊| 856/869 [00:17<00:00, 70.51it/s]Batches:  99%|█████████▉| 864/869 [00:17<00:00, 72.10it/s]Batches: 100%|██████████| 869/869 [00:18<00:00, 48.25it/s]
+/Users/ankitjha/Downloads/hybrid-ssr-ocl-full-extended/.venv/lib/python3.13/site-packages/sklearn/linear_model/_logistic.py:1272: FutureWarning: 'multi_class' was deprecated in version 1.5 and will be removed in 1.8. From then on, it will always use 'multinomial'. Leave it to its default value to avoid this warning.
+  warnings.warn(
+✅ Embedding shape: (27800, 384)
+
+🎯 Training LogisticRegression...
+✅ Training accuracy: 0.9955
+
+============================================================
+🎉 Training complete!
+Model saved to: models/adapted_model
+
+✅ Classifier trained and saved to: models/adapted_model
+
+================================================================================
+🔍 PHASE 1: METADATA EXTRACTION
+================================================================================
+
+📊 Domain Model: model
+   Classes: 8
+   Associations: 20
+
+📦 Classes extracted:
+   • Branch
+   • Company
+   • Customer
+   • License
+   • Payment
+   • Rental
+   • Reservation
+   • Vehicle
+
+🔗 Associations extracted:
+   • Company.branches → Branch [0..*] (contained)
+   • Branch.company → Company [1..1]
+   • Branch.vehicles → Vehicle [0..*] (contained)
+   • Branch.rentals → Rental [0..*] (contained)
+   • Branch.reservations → Reservation [0..*] (contained)
+   • Vehicle.branch → Branch [1..1]
+   • Vehicle.rentals → Rental [0..*]
+   • Vehicle.reservations → Reservation [0..*]
+   • Customer.license → License [1..1] (contained)
+   • Customer.rentals → Rental [0..*]
+   • Customer.reservations → Reservation [0..*]
+   • License.customer → Customer [1..1]
+   • Rental.branch → Branch [1..1]
+   • Rental.vehicle → Vehicle [1..1]
+   • Rental.customer → Customer [1..1]
+   ... and 5 more
+
+================================================================================
+🔍 PHASE 2: CONSTRAINT PARSING
+================================================================================
+
+📋 Constraints loaded: 10
+
+   1. CapacityRespected (Context: Branch)
+      self.vehicles->size() <= self.capacity...
+
+   2. VINUniqueAcrossCompany (Context: Company)
+      self.branches.vehicles->isUnique(v | v.vin)...
+
+   3. DatesOrder (Context: Rental)
+      self.endDate > self.startDate...
+
+   4. MileageMonotonic (Context: Rental)
+      self.mileageEnd >= self.mileageStart...
+
+   5. LegalAgeForAnyRental (Context: Customer)
+      self.rentals->notEmpty() implies self.age >= 21...
+
+   ... and 5 more constraints
+
+================================================================================
+🔍 PHASE 3: PATTERN DETECTION (HYBRID)
+================================================================================
+
+🧠 Using Hybrid Approach: Neural Classifier + Comprehensive Regex Fallback
+   Confidence Threshold: 0.5 (below this → comprehensive regex)
+   Regex Patterns: 617 comprehensive patterns across 50 types
+   ⚙️  OCL Normalization: ENABLED
+
+🎯 Detecting patterns in 10 constraints:
+
+    1. CapacityRespected              → size_constraint (conf: 0.972)
+    2. VINUniqueAcrossCompany         → uniqueness_constraint (conf: 0.972)
+    3. DatesOrder                     → collection_navigation (conf: 0.706)
+    4. MileageMonotonic               → numeric_comparison (conf: 0.966)
+    5. LegalAgeForAnyRental           → boolean_guard_implies (conf: 0.995)
+    6. LicenseValidAtStart            → navigation_chain (conf: 0.642)
+    7. NoOverlappingRentals           → pairwise_uniqueness (conf: 0.875)
+    8. PaymentMatchesTotalWhenPresent → contractual_temporal (conf: 0.981)
+    9. FuelLevelRange                 → numeric_comparison (conf: 0.745)
+   10. ValidWindowAndBranch           → boolean_guard_implies (conf: 0.898)
+
+📊 Pattern Distribution:
+   • numeric_comparison             : 2 constraint(s)
+   • boolean_guard_implies          : 2 constraint(s)
+   • size_constraint                : 1 constraint(s)
+   • uniqueness_constraint          : 1 constraint(s)
+   • collection_navigation          : 1 constraint(s)
+   • navigation_chain               : 1 constraint(s)
+   • pairwise_uniqueness            : 1 constraint(s)
+   • contractual_temporal           : 1 constraint(s)
+
+📋 Neural Classifier Stats:
+   Average Confidence: 0.875
+   High Confidence (>=0.5): 10/10
+   Regex Fallback Used: 0/10 (0%)
+
+================================================================================
+🔍 PHASE 4: ASSOCIATION RESOLUTION
+================================================================================
+
+🔗 Resolving constraints to domain associations:
+
+    1. CapacityRespected             
+       ✅ Association: Branch.vehicles → Vehicle [0..*] (contained)
+       ✅ Multiplicity: [0..*]
+    2. VINUniqueAcrossCompany        
+       ✅ Association: Company.branches → Branch [0..*] (contained)
+       ✅ Multiplicity: [0..*]
+    3. DatesOrder                    
+       ℹ️  Attribute (not association): Rental.endDate : EString
+    4. MileageMonotonic              
+       ℹ️  Attribute (not association): Rental.mileageEnd : EInt
+    5. LegalAgeForAnyRental          
+       ✅ Association: Customer.rentals → Rental [0..*]
+       ✅ Multiplicity: [0..*]
+    6. LicenseValidAtStart           
+       ✅ Association: Rental.customer → Customer [1..1]
+       ✅ Multiplicity: [1..1]
+    7. NoOverlappingRentals          
+       ✅ Association: Vehicle.rentals → Rental [0..*]
+       ✅ Multiplicity: [0..*]
+    8. PaymentMatchesTotalWhenPresent
+       ✅ Association: Rental.payment → Payment [0..1] (contained)
+       ✅ Multiplicity: [0..1]
+    9. FuelLevelRange                
+       ℹ️  Attribute (not association): Vehicle.tankLevel : EInt
+   10. ValidWindowAndBranch          
+       ℹ️  Attribute (not association): Reservation.dateTo : EString
+
+   Resolved: 10, Unresolved: 0
+
+================================================================================
+🔍 PHASE 5: SMT ENCODING
+================================================================================
+
+📝 Encoding 10 constraints to Z3:
+
+   1. CapacityRespected
+      Pattern: size_constraint
+
+📝 Encoding pattern: size_constraint
+   OCL: self.vehicles->size() <= self.capacity...
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 19
+
+   2. VINUniqueAcrossCompany
+      Pattern: uniqueness_constraint
+
+📝 Encoding pattern: uniqueness_constraint
+   OCL: self.branches.vehicles->isUnique(v | v.vin)...
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 10
+
+   3. DatesOrder
+      Pattern: collection_navigation
+
+📝 Encoding pattern: collection_navigation
+   OCL: self.endDate > self.startDate...
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 1
+
+   4. MileageMonotonic
+      Pattern: numeric_comparison
+
+📝 Encoding pattern: numeric_comparison
+   OCL: self.mileageEnd >= self.mileageStart...
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 0
+
+   5. LegalAgeForAnyRental
+      Pattern: boolean_guard_implies
+
+📝 Encoding pattern: boolean_guard_implies
+   OCL: self.rentals->notEmpty() implies self.age >= 21...
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 3
+
+   6. LicenseValidAtStart
+      Pattern: navigation_chain
+
+📝 Encoding pattern: navigation_chain
+   OCL: self.customer.license.expiry >= self.startDate...
+🔗 Navigation: Rental.customer → Customer [1..1]
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 1
+
+   7. NoOverlappingRentals
+      Pattern: pairwise_uniqueness
+
+📝 Encoding pattern: pairwise_uniqueness
+   OCL: self.rentals->forAll(r1, r2 |
+    r1 <> r2 implies
+      r1....
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 10
+
+   8. PaymentMatchesTotalWhenPresent
+      Pattern: contractual_temporal
+
+📝 Encoding pattern: contractual_temporal
+   OCL: self.payment->notEmpty() implies self.payment.amount = self....
+   Z3 Result: sat
+      Z3 Result: sat
+      Variables: 3
+
+   Successful: 8, Failed: 0
+
+================================================================================
+🔍 PHASE 6: VERIFICATION
+================================================================================
+
+✅ Verifying 10 constraints:
+
+   1. CapacityRespected
+      Constraint: self.vehicles->size() <= self.capacity...
+
+📝 Encoding pattern: size_constraint
+   OCL: self.vehicles->size() <= self.capacity...
+   Z3 Result: sat
+      ⚠️  SAT - Counterexample found (violation possible)
+      Sample assignment:
+         Branch_present_0 = True
+         Branch_present_1 = True
+         Vehicle_present_0 = True
+
+   2. VINUniqueAcrossCompany
+      Constraint: self.branches.vehicles->isUnique(v | v.vin)...
+
+📝 Encoding pattern: uniqueness_constraint
+   OCL: self.branches.vehicles->isUnique(v | v.vin)...
+   Z3 Result: sat
+      ⚠️  SAT - Counterexample found (violation possible)
+      Sample assignment:
+         Branch_present_0 = True
+         Branch_present_1 = True
+         Branch_present_2 = True
+
+   3. DatesOrder
+      Constraint: self.endDate > self.startDate...
+
+📝 Encoding pattern: collection_navigation
+   OCL: self.endDate > self.startDate...
+   Z3 Result: sat
+      ⚠️  SAT - Counterexample found (violation possible)
+      Sample assignment:
+         first = first
+
+   4. MileageMonotonic
+      Constraint: self.mileageEnd >= self.mileageStart...
+
+📝 Encoding pattern: numeric_comparison
+   OCL: self.mileageEnd >= self.mileageStart...
+   Z3 Result: sat
+      ⚠️  SAT - Counterexample found (violation possible)
+      Sample assignment:
+
+   5. LegalAgeForAnyRental
+      Constraint: self.rentals->notEmpty() implies self.age >= 21...
+
+📝 Encoding pattern: boolean_guard_implies
+   OCL: self.rentals->notEmpty() implies self.age >= 21...
+   Z3 Result: sat
+      ⚠️  SAT - Counterexample found (violation possible)
+      Sample assignment:
+         age_cons = age_cons
+         guard_cond = True
+         consequence = False
+
+   Verified: 0, Violations: 5
+
+================================================================================
+🔍 PHASE 6B: GLOBAL CONSISTENCY VERIFICATION
+================================================================================
+
+🔍 Auto-generated scope from XMI metadata:
+   nVehicle: 1
+   nBranch: 1
+   nCompany: 1
+   nRental: 1
+   nCustomer: 1
+   nLicense: 1
+   nReservation: 1
+   nPayment: 1
+
+✅ Loaded generic model: 8 classes, 20 associations
+
+================================================================================
+🌍 GENERIC GLOBAL CONSISTENCY VERIFICATION
+================================================================================
+Model: model
+Classes: Branch, Company, Customer, License, Payment, Rental, Reservation, Vehicle
+Verifying 10 constraints can coexist...
+Scope: {'nVehicle': 1, 'nBranch': 1, 'nCompany': 1, 'nRental': 1, 'nCustomer': 1, 'nLicense': 1, 'nReservation': 1, 'nPayment': 1}
+Mode: RICH INSTANCES (realistic values)
+Timeout: 60000ms
+
+
+📦 Creating shared domain entities (generic)...
+   ✓ Created variables for 8 classes
+   ✓ Created variables for 24 attributes
+   ✓ Created variables for 20 associations
+
+🔧 Adding domain constraints (generic)...
+   ✓ Added presence, bounds, and totality constraints
+
+🎯 Adding rich instance semantic constraints...
+   ✓ Capacity constraint for Branch.capacity: > 0
+   ✓ Age constraint for Vehicle.mileage: [0, 150]
+   ✓ Percentage/level constraint for Vehicle.tankLevel: [0, 100]
+   ✓ Age constraint for Customer.age: [0, 150]
+   ✓ Date constraint for License.expiry: > 0
+   ✓ Date constraint for Rental.startDate: > 0
+   ✓ Date constraint for Rental.endDate: > 0
+   ✓ Age constraint for Rental.mileageStart: [0, 150]
+   ✓ Age constraint for Rental.mileageEnd: [0, 150]
+   ✓ Price/cost constraint for Rental.totalAmount: >= 0
+   ✓ Price/cost constraint for Payment.amount: >= 0
+   ✓ Date constraint for Payment.timestamp: > 0
+   ✓ Date constraint for Reservation.dateFrom: > 0
+   ✓ Date constraint for Reservation.dateTo: > 0
+   ✓ Date ordering for Rental: startDate < endDate
+   ✓ Date ordering for Rental: mileageStart < mileageEnd
+   ✓ Date ordering for Reservation: dateFrom < dateTo
+   ✓ Added 17 rich instance constraints total
+
+📝 Encoding 10 constraints (pattern-based)...
+
+   [1/10] CapacityRespected (size_constraint)
+      ✓ Encoded using pattern 'size_constraint'
+
+   [2/10] VINUniqueAcrossCompany (uniqueness_constraint)
+      ✓ Encoded using pattern 'uniqueness_constraint'
+
+   [3/10] DatesOrder (collection_navigation)
+      ✓ Encoded using pattern 'collection_navigation'
+
+   [4/10] MileageMonotonic (numeric_comparison)
+      ✓ Encoded using pattern 'numeric_comparison'
+
+   [5/10] LegalAgeForAnyRental (boolean_guard_implies)
+      ✓ Encoded using pattern 'boolean_guard_implies'
+
+   [6/10] LicenseValidAtStart (navigation_chain)
+      ✓ Encoded using pattern 'navigation_chain'
+
+   [7/10] NoOverlappingRentals (pairwise_uniqueness)
+      ✓ Encoded using pattern 'pairwise_uniqueness'
+
+   [8/10] PaymentMatchesTotalWhenPresent (contractual_temporal)
+      ✓ Encoded using pattern 'contractual_temporal'
+
+   [9/10] FuelLevelRange (numeric_comparison)
+      ✓ Encoded using pattern 'numeric_comparison'
+
+   [10/10] ValidWindowAndBranch (boolean_operations)
+      ✓ Encoded using pattern 'boolean_operations'
+
+✅ Encoded 10/10 constraints successfully
+
+🔍 Checking satisfiability...
+   (This may take a moment...)
+
+================================================================================
+✅ MODEL IS CONSISTENT
+================================================================================
+All constraints can be satisfied simultaneously!
+A valid model instance exists.
+
+📋 Example Valid Instance:
+================================================================================
+ℹ️  Values formatted for readability. Use show_raw_values=True to see Z3 values.
+
+📦 BRANCHS:
+   Branch#0
+      • name: Branch_0_name
+      • capacity: 6
+
+📦 COMPANYS:
+   Company#0
+      • name: Company_0_name
+
+📦 CUSTOMERS:
+   Customer#0
+      • name: Customer_0_name
+      • age: 25
+
+📦 LICENSES:
+   License#0
+      • number: License_0_number
+      • expiry: 2024-01-02
+
+📦 PAYMENTS:
+   Payment#0
+      • amount: $0.00
+      • timestamp: 2024-01-02
+
+📦 RENTALS:
+   Rental#0
+      • startDate: 2024-01-02
+      • endDate: 2024-01-03
+      • mileageStart: 0 km
+      • mileageEnd: 1,000 km
+      • totalAmount: $0.00
+
+📦 RESERVATIONS:
+   Reservation#0
+      • dateFrom: 2024-01-02
+      • dateTo: 2024-01-03
+      • createdAt: Reservation_0_createdAt
+
+📦 VEHICLES:
+   Vehicle#0
+      • vin: 1HGCM82633A1000000
+      • category: Vehicle_0_category
+      • seats: 4
+      • mileage: 0 km
+      • tankLevel: 0%
+      • dailyRate: $0.00
+      • status: Vehicle_0_status
+

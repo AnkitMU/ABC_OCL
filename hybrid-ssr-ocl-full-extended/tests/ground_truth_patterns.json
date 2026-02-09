@@ -1,0 +1,196 @@
+{
+  "version": "1.0",
+  "total_examples": 23,
+  "examples": [
+    {
+      "constraint": "self.students->forAll(x, y | x <> y implies x.id <> y.id)",
+      "expected_pattern": "pairwise_uniqueness",
+      "context": "Student",
+      "description": "All students must have unique IDs",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.items->select(i | i.active)->size() = 5",
+      "expected_pattern": "exact_count_selection",
+      "context": "Container",
+      "description": "Exactly 5 active items",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "Student.allInstances()->forAll(s | s.age >= 18)",
+      "expected_pattern": "global_collection",
+      "context": "Student",
+      "description": "All students globally must be adults",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.setA->intersection(self.setB)->notEmpty()",
+      "expected_pattern": "set_intersection",
+      "context": "Container",
+      "description": "Sets must have common elements",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.items->size() >= 10",
+      "expected_pattern": "size_constraint",
+      "context": "Container",
+      "description": "At least 10 items required",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.students->isUnique(s | s.email)",
+      "expected_pattern": "uniqueness_constraint",
+      "context": "Class",
+      "description": "All emails must be unique",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.validItems->includes(self.selectedItem)",
+      "expected_pattern": "collection_membership",
+      "context": "Selector",
+      "description": "Selected item must be in valid set",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.manager <> null",
+      "expected_pattern": "null_check",
+      "context": "Employee",
+      "description": "Manager must be assigned",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.salary >= self.minSalary",
+      "expected_pattern": "numeric_comparison",
+      "context": "Employee",
+      "description": "Salary must meet minimum",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.items->one(i | i.primary)",
+      "expected_pattern": "exactly_one",
+      "context": "Container",
+      "description": "Exactly one primary item",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.items->notEmpty() implies self.items->forAll(i | i.valid)",
+      "expected_pattern": "boolean_guard_implies",
+      "context": "Container",
+      "description": "If items exist, all must be valid",
+      "should_normalize": false,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.items->isEmpty() or self.items->forAll(i | i.valid)",
+      "expected_pattern": "boolean_guard_implies",
+      "context": "Container",
+      "description": "If items exist, all must be valid (normalized form)",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.dateTo > self.dateFrom and (self.vehicle->isEmpty() or self.vehicle.branch = self.branch)",
+      "expected_pattern": "contractual_temporal",
+      "context": "Reservation",
+      "description": "Date validation with vehicle branch constraint",
+      "should_normalize": true,
+      "alternative_patterns": [
+        "boolean_guard_implies"
+      ]
+    },
+    {
+      "constraint": "self.startDate->notEmpty() implies self.startDate < self.endDate",
+      "expected_pattern": "contractual_temporal",
+      "context": "Event",
+      "description": "Start date must precede end date when present",
+      "should_normalize": false,
+      "alternative_patterns": [
+        "boolean_guard_implies"
+      ]
+    },
+    {
+      "constraint": "self.students->select(s | s.age >= 18)",
+      "expected_pattern": "select_reject",
+      "context": "Class",
+      "description": "Select adult students",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.courses->forAll(c | c.students->forAll(s | s.enrolled))",
+      "expected_pattern": "forall_nested",
+      "context": "University",
+      "description": "All students in all courses are enrolled",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.departments->exists(d | d.employees->exists(e | e.manager))",
+      "expected_pattern": "exists_nested",
+      "context": "Company",
+      "description": "At least one department has an employee with a manager",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.active and self.verified and self.approved",
+      "expected_pattern": "boolean_operations",
+      "context": "Account",
+      "description": "Multiple boolean conditions",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "if self.premium then 0.9 else 1.0 endif",
+      "expected_pattern": "if_then_else",
+      "context": "Customer",
+      "description": "Conditional discount",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "let total = self.items->size() in total > 0",
+      "expected_pattern": "let_expression",
+      "context": "Order",
+      "description": "Define and use local variable",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.setA->union(self.setB)->size() > 10",
+      "expected_pattern": "union_intersection",
+      "context": "Container",
+      "description": "Union of sets has sufficient size",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.department.company.address.city = 'NYC'",
+      "expected_pattern": "navigation_chain",
+      "context": "Employee",
+      "description": "Deep navigation through associations",
+      "should_normalize": true,
+      "alternative_patterns": []
+    },
+    {
+      "constraint": "self.manager->isEmpty() or self.manager.department = self.department",
+      "expected_pattern": "optional_navigation",
+      "context": "Employee",
+      "description": "Safe navigation with null check",
+      "should_normalize": true,
+      "alternative_patterns": [
+        "boolean_guard_implies"
+      ]
+    }
+  ]
+}
