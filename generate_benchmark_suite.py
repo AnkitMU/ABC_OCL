@@ -1,22 +1,9 @@
 #!/usr/bin/env python3
 """
-Benchmark Suite Generator - Enhanced Headless CLI
 Fully automatic OCL constraint benchmark generation with advanced features.
-
-Features:
-- XMI metamodel extraction
-- Pattern-based constraint generation  
-- Metadata enrichment (operators, depth, difficulty)
-- UNSAT generation via mutation
-- AST similarity deduplication
-- Semantic similarity clustering
-- Implication checking
-- Manifest.jsonl generation for ML pipelines
 
 Usage:
     python generate_benchmark_suite.py --config examples/example_suite.yaml
-    python generate_benchmark_suite.py --config suite.yaml --verbose --debug
-    python generate_benchmark_suite.py --config suite.yaml --no-research-features
 """
 import sys
 import os
